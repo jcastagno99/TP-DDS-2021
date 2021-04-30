@@ -29,4 +29,13 @@ public class Refugio {
     return dias <= 10;
   }
 
+  void agregarCaracteristicasAMascotas(String caracteristicaNueva) {
+    this.mascotasRegistradas.stream().forEach(mascota -> mascota.caracteristicas.put(caracteristicaNueva, ""));
+  }
+  public void eliminarCaracteristicaExistente(String caracteristicaExistente) {
+    //Faltaria chequear si lo que quiero eliminar no existe
+    //TODO
+    this.mascotasRegistradas.stream().forEach(mascota -> mascota.caracteristicas.remove(caracteristicaExistente));
+  }
+
 }
