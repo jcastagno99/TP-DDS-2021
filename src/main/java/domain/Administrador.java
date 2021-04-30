@@ -1,10 +1,10 @@
 package domain;
 
-public class Administrador {
+public class Administrador extends Usuario {
 
-  String nombreAdm;
-  //TODO
-  String contrasenia;
+  public Administrador(String nombreAdm, String contrasenia) {
+    super(nombreAdm, contrasenia);
+  }
 
   public void agregarNuevaCaracteristica(String caracteristicaNueva) {
     Refugio.instance().agregarCaracteristicasAMascotas(caracteristicaNueva);
