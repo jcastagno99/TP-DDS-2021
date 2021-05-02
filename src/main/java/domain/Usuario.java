@@ -1,16 +1,18 @@
 package domain;
 
+import password.ValidadorContraseniaComun;
+import password.ValidarTodasLasMetricas;
+
 public class Usuario {
 
-  String nombreAdm;
+  String nombre;
   String contrasenia;
-  ValidadorContrasenia miValidador;
+  ValidarTodasLasMetricas miValidador = new ValidarTodasLasMetricas();
 
 
-  public Usuario(String nombreAdm, String contrasenia) {
-    if (miValidador.contraseniaNoTanDebil(contrasenia)) {
-      this.contrasenia = contrasenia;
-    }
-    this.nombreAdm = nombreAdm;
+  public Usuario(String nombre, String contrasenia) {
+    miValidador.esValido(contrasenia);
+    this.contrasenia = contrasenia;
+    this.nombre = nombre;
   }
 }

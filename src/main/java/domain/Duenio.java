@@ -21,7 +21,11 @@ public class Duenio {
     this.contacto = contacto;
   }
 
-  void registrarMascota(Mascota mascota) {
+  public void registrarMascota(Mascota mascota) {
     this.mascotas.add(mascota);
+  }
+
+  public List<Mascota> getMascotas() {
+    return mascotas;
   }
 }
