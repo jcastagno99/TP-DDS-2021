@@ -27,7 +27,6 @@ public class ValidadorContraseniaComun implements ValidadorContrasenia {
       }
     } catch (IOException e) {
       throw new ReadfileException();
-
     }
   }
 
