@@ -5,3 +5,4 @@ public class ContraseniaInvalidaException extends RuntimeException {
     super(message);
   }
 }
+

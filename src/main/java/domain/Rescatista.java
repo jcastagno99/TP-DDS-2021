@@ -10,6 +10,7 @@ public class Rescatista {
   String documento;
   int numeroDocumento;
   Contacto contacto;
+  String direccion;
 
   void informarMascotaPerdida(List<Blob> fotos, String descripcion, Ubicacion ubicacion) {
     MascotaPerdida mascota = new MascotaPerdida(fotos, descripcion, ubicacion);

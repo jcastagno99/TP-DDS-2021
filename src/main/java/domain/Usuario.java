@@ -9,9 +9,8 @@ public class Usuario {
   String contrasenia;
   public ValidarTodasLasMetricas miValidador = new ValidarTodasLasMetricas();
 
-
   public Usuario(String nombre, String contrasenia) {
-    miValidador.esValido(contrasenia);
+    miValidador.validar(contrasenia);
     this.contrasenia = contrasenia;
     this.nombre = nombre;
   }

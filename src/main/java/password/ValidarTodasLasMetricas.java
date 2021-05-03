@@ -10,8 +10,8 @@ public class ValidarTodasLasMetricas {
     this.validadores = Arrays.asList(new ValidadorContraseniaComun(), new ValidadorLongitudContrasenia());
   }
 
-  public void esValido(String unaContrasenia) {
-    validadores.forEach(validador -> validador.esValido(unaContrasenia));
+  public void validar(String unaContrasenia) {
+    validadores.forEach(validador -> validador.validar(unaContrasenia));
   }
 
 }

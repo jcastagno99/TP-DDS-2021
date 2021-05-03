@@ -5,16 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Duenio {
-  List<Mascota> mascotas;
-  String nombreCompleto;
-  LocalDate fechaNacimiento;
-  String documento;
-  int numeroDocumento;
-  Contacto contacto;
+  private List<Mascota> mascotas;
+  private String nombre;
+  private String apellido;
+  private LocalDate fechaNacimiento;
+  private String documento;
+  private int numeroDocumento;
+  private Contacto contacto;
 
-  public Duenio(String nombreCompleto, LocalDate fechaNacimiento, String documento, int numeroDocumento, Contacto contacto) {
+  public Duenio(String nombre, String apellido, LocalDate fechaNacimiento, String documento, int numeroDocumento, Contacto contacto) {
     this.mascotas = new ArrayList<>();
-    this.nombreCompleto = nombreCompleto;
+    this.nombre = nombre;
+    this.apellido = apellido;
     this.fechaNacimiento = fechaNacimiento;
     this.documento = documento;
     this.numeroDocumento = numeroDocumento;

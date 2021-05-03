@@ -5,10 +5,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class MascotaPerdida {
-  List<Blob> fotos;
-  String descripcion;
-  Ubicacion ubicacion;
-  LocalDate fechaEncuentro;
+  private List<Blob> fotos;
+  private String descripcion;
+  private Ubicacion ubicacion;
+  private LocalDate fechaEncuentro;
 
   public MascotaPerdida(List<Blob> fotos, String descripcion, Ubicacion ubicacion) {
     this.fotos = fotos;

@@ -6,10 +6,10 @@ public class Administrador extends Usuario {
     super(nombreAdm, contrasenia);
   }
 
-  public void agregarNuevaCaracteristica(String caracteristicaNueva) {
+  public void agregarNuevaCaracteristica(TipoCaracteristica caracteristicaNueva) {
     Refugio.instance().agregarCaracteristicasAMascotas(caracteristicaNueva);
   }
-  public void eliminarCaracteristicaExistente(String caracteristicaExistente) {
+  public void eliminarCaracteristicaExistente(TipoCaracteristica caracteristicaExistente) {
     Refugio.instance().eliminarCaracteristicaExistente(caracteristicaExistente);
   }
 

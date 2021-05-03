@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 public class Refugio {
   private static final Refugio INSTANCE = new Refugio();
 
-  List<Mascota> mascotasRegistradas;
-  List<MascotaPerdida> mascotasPerdidas;
+  private List<Mascota> mascotasRegistradas;
+  private List<MascotaPerdida> mascotasPerdidas;
 
   public static Refugio instance() {
     return INSTANCE;
@@ -29,13 +29,11 @@ public class Refugio {
     return dias <= 10;
   }
 
-  void agregarCaracteristicasAMascotas(String caracteristicaNueva) {
-    this.mascotasRegistradas.stream().forEach(mascota -> mascota.caracteristicas.put(caracteristicaNueva, ""));
+  void agregarCaracteristicasAMascotas(TipoCaracteristica caracteristicaNueva) {
+    this.mascotasRegistradas.stream().forEach(mascota -> mascota.agregarCaracteristica(caracteristicaNueva));
   }
-  public void eliminarCaracteristicaExistente(String caracteristicaExistente) {
-    //Faltaria chequear si lo que quiero eliminar no existe
-    //TODO
-    this.mascotasRegistradas.stream().forEach(mascota -> mascota.caracteristicas.remove(caracteristicaExistente));
+  public void eliminarCaracteristicaExistente(TipoCaracteristica caracteristicaExistente) {
+    this.mascotasRegistradas.stream().forEach(mascota -> mascota.quitarCaracteristica(caracteristicaExistente));
   }
 
 }

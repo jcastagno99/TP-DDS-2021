@@ -16,8 +16,7 @@ public class ValidadorContraseniaComun implements ValidadorContrasenia {
   public ValidadorContraseniaComun() {
   }
 
-  @Override
-  public void esValido(String contrasenia) {
+  public void validar(String contrasenia) {
     Path path = Paths.get("src/main/resources/10k-most-common.txt");
     Stream<String> stream;
     try {
