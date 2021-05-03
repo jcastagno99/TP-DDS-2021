@@ -12,7 +12,7 @@ public class DuenioTest {
   Mascota miguelito = new Mascota(TipoMascota.GATO,"Miguelito","Gato",1,Sexo.MASCULINO,"Gordo y naranja");
 
   Contacto pepeContacto = new Contacto("Pepe Oscar Mezar",540111587,"pepeMezar@pimientaNegra.com");
-  Duenio unDuenio = new Duenio("Pepe",LocalDate.now(),"DNI",19875698,pepeContacto);
+  Duenio unDuenio = new Duenio("Pepe","Chavez",LocalDate.now(),"DNI",19875698,pepeContacto);
 
   @Test
   public void unaMascotaSeRegistraCorrectamenteAUnDuenio(){
