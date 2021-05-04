@@ -1,6 +1,8 @@
 package password;
 
+import domain.Roles.Usuario;
+
 public interface ValidadorContrasenia {
 
-  void validar(String contrasenia);
+  void validar(Usuario unUsuario);
 }
