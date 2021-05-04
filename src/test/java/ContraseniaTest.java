@@ -24,4 +24,10 @@ public class ContraseniaTest {
   public void unaContraseniaEsValida(){
     assertEquals("753951pepe",pepito.getContrasenia());
   }
+
+  @Test
+  public void unaContraseniaContieneAlUsuario(){
+    Throwable exception = assertThrows(ContraseniaInvalidaException.class,()->new Usuario("Juan","1233123123Juan"));
+    assertEquals("La contrasenia contiene al usuario",exception.getMessage());
+  }
 }

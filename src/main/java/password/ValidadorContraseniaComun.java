@@ -17,12 +17,12 @@ public class ValidadorContraseniaComun implements ValidadorContrasenia {
   public ValidadorContraseniaComun() {
   }
 
-  public void validar(Usuario unUsuario) {
+  public void validar(String usuario, String contrasenia) {
     Path path = Paths.get("src/main/resources/10k-most-common.txt");
     Stream<String> stream;
     try {
       stream = Files.lines(path);
-      if (stream.anyMatch(palabraComun -> palabraComun.equals(unUsuario.getContrasenia()))) {
+      if (stream.anyMatch(palabraComun -> palabraComun.equals(contrasenia))) {
         throw new ContraseniaInvalidaException("La contrasenia pertenece a las 10k mas usadas");
       }
     } catch (IOException e) {

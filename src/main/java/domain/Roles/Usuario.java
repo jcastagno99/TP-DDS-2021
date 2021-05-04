@@ -10,16 +10,18 @@ public class Usuario {
   public ValidarTodasLasMetricas miValidador = new ValidarTodasLasMetricas();
 
   public Usuario(String usuario, String contrasenia) {
-    miValidador.validar(this);
+    miValidador.validar(usuario,contrasenia);
     this.contrasenia = contrasenia;
     this.usuario = usuario;
   }
 
-  public String getUsuario() {
-    return usuario;
-  }
   public String getContrasenia() {
     return contrasenia;
+  }
+
+  /*
+ public String getUsuario() {
+    return usuario;
   }
 
   public boolean contraseniaContieneUsuario() {
@@ -29,4 +31,6 @@ public class Usuario {
   public boolean longitudContraseñaEsMenorA(int i) {
     return contrasenia.length() < i;
   }
+
+  */
 }

@@ -4,5 +4,5 @@ import domain.Roles.Usuario;
 
 public interface ValidadorContrasenia {
 
-  void validar(Usuario unUsuario);
+  void validar(String usuario, String contrasenia);
 }

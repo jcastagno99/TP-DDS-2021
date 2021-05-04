@@ -5,9 +5,9 @@ import exception.ContraseniaInvalidaException;
 
 public class ValidadorNoContieneUsuario implements ValidadorContrasenia {
 
-    public void validar(Usuario unUsuario) {
-        if (unUsuario.contraseniaContieneUsuario()){
-            throw new ContraseniaInvalidaException("La contrasenia es demasiado corta");
+    public void validar(String usuario, String contrasenia) {
+        if (contrasenia.contains(usuario)) {
+            throw new ContraseniaInvalidaException("La contrasenia contiene al usuario");
         }
     }
 
