@@ -1,4 +1,8 @@
-import domain.*;
+import domain.Mascotas.Mascota;
+import domain.Mascotas.Sexo;
+import domain.Mascotas.TipoMascota;
+import domain.Roles.Contacto;
+import domain.Roles.Duenio;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

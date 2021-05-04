@@ -1,18 +1,18 @@
-package domain;
+package domain.Roles;
 
 import password.ValidadorContraseniaComun;
 import password.ValidarTodasLasMetricas;
 
 public class Usuario {
 
-  String nombre;
+  String usuario;
   String contrasenia;
   public ValidarTodasLasMetricas miValidador = new ValidarTodasLasMetricas();
 
-  public Usuario(String nombre, String contrasenia) {
+  public Usuario(String usuario, String contrasenia) {
     miValidador.validar(contrasenia);
     this.contrasenia = contrasenia;
-    this.nombre = nombre;
+    this.usuario = usuario;
   }
 
   public String getContrasenia() {

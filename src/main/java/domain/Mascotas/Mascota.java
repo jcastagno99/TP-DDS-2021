@@ -1,7 +1,6 @@
-package domain;
+package domain.Mascotas;
 
 import exception.CaracteristicaNoEncontradaException;
-import jdk.nashorn.internal.runtime.ScriptObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;

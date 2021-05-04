@@ -1,4 +1,4 @@
-package domain;
+package domain.Mascotas;
 
 import java.sql.Blob;
 import java.time.LocalDate;

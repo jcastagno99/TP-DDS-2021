@@ -1,4 +1,7 @@
-package domain;
+package domain.Roles;
+
+import domain.Refugio.Refugio;
+import domain.Mascotas.TipoCaracteristica;
 
 public class Administrador extends Usuario {
 

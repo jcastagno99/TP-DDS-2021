@@ -1,4 +1,4 @@
-import domain.*;
+import domain.Roles.Usuario;
 import exception.ContraseniaInvalidaException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
