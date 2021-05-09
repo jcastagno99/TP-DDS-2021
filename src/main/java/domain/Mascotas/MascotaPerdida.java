@@ -1,16 +1,14 @@
 package domain.Mascotas;
 
-import java.sql.Blob;
 import java.time.LocalDate;
-import java.util.List;
 
 public class MascotaPerdida {
-  private List<Blob> fotos;
+  private String fotos;
   private String descripcion;
   private Ubicacion ubicacion;
   private LocalDate fechaEncuentro;
 
-  public MascotaPerdida(List<Blob> fotos, String descripcion, Ubicacion ubicacion) {
+  public MascotaPerdida(String fotos, String descripcion, Ubicacion ubicacion) {
     this.fotos = fotos;
     this.descripcion = descripcion;
     this.ubicacion = ubicacion;
@@ -19,5 +17,9 @@ public class MascotaPerdida {
 
   public LocalDate getFechaEncuentro() {
     return fechaEncuentro;
+  }
+
+  public String getDescripcion() {
+    return descripcion;
   }
 }

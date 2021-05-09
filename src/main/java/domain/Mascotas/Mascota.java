@@ -1,11 +1,7 @@
 package domain.Mascotas;
 
 import exception.CaracteristicaNoEncontradaException;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.sql.Blob;
 import java.util.Map;
 
 public class Mascota {
@@ -15,17 +11,17 @@ public class Mascota {
   private int edadAproximada;
   private Sexo sexo;
   private String descripcionFisica;
-  private List<Blob> fotos;
-  private Map <TipoCaracteristica, String> caracteristicas;
+  private String fotos;
+  private Map<TipoCaracteristica, String> caracteristicas;
 
-  public Mascota(TipoMascota tipoMascota, String nombre, String apodo, int edadAproximada, Sexo sexo, String descripcionFisica) {
+  public Mascota(TipoMascota tipoMascota, String nombre, String apodo, int edadAproximada, Sexo sexo, String descripcionFisica, String fotos) {
     this.tipoMascota = tipoMascota;
     this.nombre = nombre;
     this.apodo = apodo;
     this.edadAproximada = edadAproximada;
     this.sexo = sexo;
     this.descripcionFisica = descripcionFisica;
-    this.fotos = new ArrayList<>();
+    this.fotos = fotos;
     this.caracteristicas = new HashMap<TipoCaracteristica, String>();
   }
 
@@ -33,7 +29,7 @@ public class Mascota {
     this.caracteristicas.put(tipo, ""); // El map, pisa una característica existente?
   }
 
-  public void quitarCaracteristica (TipoCaracteristica tipo) {
+  public void quitarCaracteristica(TipoCaracteristica tipo) {
     /*try {
       this.caracteristicas.remove(tipo);
     }

@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DuenioTest {
 
-  Mascota bernardo = new Mascota(TipoMascota.PERRO,"Bernardo","Pitoto",5, Sexo.MASCULINO,"Gordo, bajito y tricolor");
-  Mascota miguelito = new Mascota(TipoMascota.GATO,"Miguelito","Gato",1,Sexo.MASCULINO,"Gordo y naranja");
+  Mascota bernardo = new Mascota(TipoMascota.PERRO,"Bernardo","Pitoto",5, Sexo.MASCULINO,"Gordo, bajito y tricolor","URL");
+  Mascota miguelito = new Mascota(TipoMascota.GATO,"Miguelito","Gato",1,Sexo.MASCULINO,"Gordo y naranja","URL");
 
   Contacto pepeContacto = new Contacto("Pepe Oscar",  "Mezar",540111587,"pepeMezar@pimientaNegra.com");
   Duenio unDuenio = new Duenio("PepeOscar",  "Mezar1234567","Pepe","Chavez",LocalDate.now(),"DNI",19875698,pepeContacto);

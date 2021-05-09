@@ -1,6 +1,5 @@
 package domain.Roles;
 
-import password.ValidadorContraseniaComun;
 import password.ValidarTodasLasMetricas;
 
 public class Usuario {
@@ -10,7 +9,7 @@ public class Usuario {
   public ValidarTodasLasMetricas miValidador = new ValidarTodasLasMetricas();
 
   public Usuario(String usuario, String contrasenia) {
-    miValidador.validar(usuario,contrasenia);
+    miValidador.validar(usuario, contrasenia);
     this.contrasenia = contrasenia;
     this.usuario = usuario;
   }
@@ -19,18 +18,4 @@ public class Usuario {
     return contrasenia;
   }
 
-  /*
- public String getUsuario() {
-    return usuario;
-  }
-
-  public boolean contraseniaContieneUsuario() {
-    return contrasenia.contains(usuario);
-  }
-
-  public boolean longitudContraseñaEsMenorA(int i) {
-    return contrasenia.length() < i;
-  }
-
-  */
 }

@@ -3,10 +3,10 @@ package domain.Roles;
 import domain.Mascotas.MascotaPerdida;
 import domain.Refugio.Refugio;
 import domain.Mascotas.Ubicacion;
+import domain.Refugio.RepositorioMascotasPerdidas;
 
-import java.sql.Blob;
 import java.time.LocalDate;
-import java.util.List;
+
 
 public class Rescatista {
   private String nombre;
@@ -27,8 +27,8 @@ public class Rescatista {
     this.direccion = direccion;
   }
 
-  void informarMascotaPerdida(List<Blob> fotos, String descripcion, Ubicacion ubicacion) {
+  public void informarMascotaPerdida(String fotos, String descripcion, Ubicacion ubicacion) {
     MascotaPerdida mascota = new MascotaPerdida(fotos, descripcion, ubicacion);
-    Refugio.instance().agregarMascotaPerdida(mascota);
+    RepositorioMascotasPerdidas.instance().agregarMascotaPerdida(mascota);
   }
 }

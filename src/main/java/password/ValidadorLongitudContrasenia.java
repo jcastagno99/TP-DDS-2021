@@ -3,12 +3,14 @@ package password;
 import domain.Roles.Usuario;
 import exception.ContraseniaInvalidaException;
 
-public class ValidadorLongitudContrasenia implements ValidadorContrasenia {
+public class ValidadorLongitudContrasenia extends ValidadorContrasenia {
 
-  public void validar(String usuario, String contrasenia) {
-    if (contrasenia.length() < 8) {
-      throw new ContraseniaInvalidaException("La contrasenia es demasiado corta");
-    }
-
+  public ValidadorLongitudContrasenia(String mensaje) {
+    super(mensaje);
   }
+
+  boolean condicion(String usuario, String contrasenia) {
+    return contrasenia.length() < 8;
+  }
+  
 }

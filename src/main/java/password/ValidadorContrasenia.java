@@ -1,8 +1,20 @@
 package password;
 
-import domain.Roles.Usuario;
+import exception.ContraseniaInvalidaException;
 
-public interface ValidadorContrasenia {
+public abstract class ValidadorContrasenia {
+  String mensaje;
 
-  void validar(String usuario, String contrasenia);
+  public ValidadorContrasenia(String mensaje) {
+    this.mensaje = mensaje;
+  }
+
+  void validar(String usuario, String contrasenia) {
+    if(this.condicion(usuario, contrasenia)) {
+      throw new ContraseniaInvalidaException(mensaje);
+    }
+  }
+
+  abstract boolean condicion(String usuario, String contrasenia);
+
 }
