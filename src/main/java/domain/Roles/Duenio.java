@@ -1,5 +1,6 @@
 package domain.Roles;
 
+import domain.Asociacion.Asociacion;
 import domain.Mascotas.Mascota;
 
 import java.time.LocalDate;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
   public class Duenio extends Usuario {
-    private List<Mascota> mascotas;
+    //private List<Mascota> mascotas;
     private String nombre;
     private String apellido;
     private LocalDate fechaNacimiento;
@@ -17,7 +18,7 @@ import java.util.List;
 
   public Duenio(String usuario, String contrasenia, String nombre, String apellido, LocalDate fechaNacimiento, String documento, int numeroDocumento, Contacto contacto) {
     super(usuario, contrasenia);
-    this.mascotas = new ArrayList<>();
+    //this.mascotas = new ArrayList<>();
     this.nombre = nombre;
     this.apellido = apellido;
     this.fechaNacimiento = fechaNacimiento;
@@ -26,11 +27,10 @@ import java.util.List;
     this.contacto = contacto;
   }
 
-  public void registrarMascota(Mascota mascota) {
-    this.mascotas.add(mascota);
+  public void registrarMascota(Mascota mascota, Asociacion unaAsoc) {
+    mascota.agregarCaracteristicas(unaAsoc);
+    unaAsoc.agregarMascota(mascota);
+    mascota.setDuenio(this);
   }
 
-  public List<Mascota> getMascotas() {
-    return mascotas;
-  }
 }

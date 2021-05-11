@@ -1,3 +1,4 @@
+import domain.Asociacion.Asociacion;
 import domain.Mascotas.Mascota;
 import domain.Mascotas.Sexo;
 import domain.Mascotas.TipoMascota;
@@ -16,18 +17,15 @@ public class DuenioTest {
   Mascota miguelito = new Mascota(TipoMascota.GATO,"Miguelito","Gato",1,Sexo.MASCULINO,"Gordo y naranja","URL");
 
   Contacto pepeContacto = new Contacto("Pepe Oscar",  "Mezar",540111587,"pepeMezar@pimientaNegra.com");
-  Duenio unDuenio = new Duenio("PepeOscar",  "Mezar1234567","Pepe","Chavez",LocalDate.now(),"DNI",19875698,pepeContacto);
+  Duenio pepe = new Duenio("PepeOscar",  "Mezar1234567","Pepe","Chavez",LocalDate.now(),"DNI",19875698,pepeContacto);
+
+  Asociacion callejeritos = new Asociacion();
 
   @Test
-  public void unaMascotaSeRegistraCorrectamenteAUnDuenio(){
-    unDuenio.registrarMascota(miguelito);
-    assertEquals(true,unDuenio.getMascotas().contains(miguelito));
+  public void unDuenioRegistraCorrectamenteASuMascota(){
+    pepe.registrarMascota(miguelito, callejeritos);
+    assertTrue(miguelito.tieneDuenio(pepe));
   }
 
-  @Test
-  public void unaMascotaNoRegistradaNoApareceEnLaListaDelDuenio(){
-    unDuenio.registrarMascota(bernardo);
-    assertEquals(false,unDuenio.getMascotas().contains(miguelito));
-  }
 }
 

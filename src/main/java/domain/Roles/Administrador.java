@@ -12,10 +12,10 @@ public class Administrador extends Usuario {
     this.asociacionACargo = asociacionACargo;
   }
 
-  public void agregarNuevaCaracteristica(TipoCaracteristica caracteristicaNueva) {
+  public void agregarNuevaCaracteristica(String caracteristicaNueva) {
     asociacionACargo.agregarCaracteristicasAMascotas(caracteristicaNueva);
   }
-  public void eliminarCaracteristicaExistente(TipoCaracteristica caracteristicaExistente) {
+  public void eliminarCaracteristicaExistente(String caracteristicaExistente) {
     asociacionACargo.eliminarCaracteristicaExistente(caracteristicaExistente);
   }
 
