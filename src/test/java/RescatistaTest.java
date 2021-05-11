@@ -1,5 +1,5 @@
 import domain.Mascotas.Ubicacion;
-import domain.Refugio.RepositorioMascotasPerdidas;
+import domain.Asociacion.RepositorioMascotasPerdidas;
 import domain.Roles.Contacto;
 import domain.Roles.Rescatista;
 import org.junit.jupiter.api.Test;

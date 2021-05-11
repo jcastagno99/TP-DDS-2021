@@ -1,9 +1,8 @@
 package domain.Roles;
 
 import domain.Mascotas.MascotaPerdida;
-import domain.Refugio.Refugio;
 import domain.Mascotas.Ubicacion;
-import domain.Refugio.RepositorioMascotasPerdidas;
+import domain.Asociacion.RepositorioMascotasPerdidas;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package domain.Refugio;
+package domain.Asociacion;
 
 import domain.Mascotas.MascotaPerdida;
 

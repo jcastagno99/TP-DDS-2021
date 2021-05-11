@@ -1,10 +1,10 @@
-package domain.Refugio;
+package domain.Asociacion;
 
 import domain.Mascotas.Mascota;
 import domain.Mascotas.TipoCaracteristica;
 import java.util.List;
 
-public class Refugio {
+public class Asociacion {
 
   public List<Mascota> mascotasRegistradas;
 

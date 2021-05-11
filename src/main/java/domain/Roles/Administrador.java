@@ -1,22 +1,22 @@
 package domain.Roles;
 
-import domain.Refugio.Refugio;
+import domain.Asociacion.Asociacion;
 import domain.Mascotas.TipoCaracteristica;
 
 public class Administrador extends Usuario {
 
-  Refugio refugioACargo;
+  Asociacion asociacionACargo;
 
-  public Administrador(String nombreAdm, String contrasenia, Refugio refugioACargo) {
+  public Administrador(String nombreAdm, String contrasenia, Asociacion asociacionACargo) {
     super(nombreAdm, contrasenia);
-    this.refugioACargo = refugioACargo;
+    this.asociacionACargo = asociacionACargo;
   }
 
   public void agregarNuevaCaracteristica(TipoCaracteristica caracteristicaNueva) {
-    refugioACargo.agregarCaracteristicasAMascotas(caracteristicaNueva);
+    asociacionACargo.agregarCaracteristicasAMascotas(caracteristicaNueva);
   }
   public void eliminarCaracteristicaExistente(TipoCaracteristica caracteristicaExistente) {
-    refugioACargo.eliminarCaracteristicaExistente(caracteristicaExistente);
+    asociacionACargo.eliminarCaracteristicaExistente(caracteristicaExistente);
   }
 
 
