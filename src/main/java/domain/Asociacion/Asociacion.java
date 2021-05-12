@@ -15,8 +15,6 @@ import java.util.Map;
 public class Asociacion {
 
   private List<Mascota> mascotasRegistradas;
-  //private List<Duenio> duenios;
-  //private List<String> caracteristicasPosibles;
   private Map<String, String> caracteristicasPedidas;
 
   public Asociacion() {
@@ -25,18 +23,10 @@ public class Asociacion {
   }
 
 
-  /*public void agregarCaracteristicasAMascotas(String caracteristicaNueva) {
-    this.mascotasRegistradas.stream().forEach(mascota -> mascota.agregarCaracteristica(caracteristicaNueva));
-  }
-  public void eliminarCaracteristicaExistente(String caracteristicaExistente) {
-    this.mascotasRegistradas.stream().forEach(mascota -> mascota.quitarCaracteristica(caracteristicaExistente));
-  }*/
-
   public void agregarCaracteristicasAMascotas(String caracteristicaNueva) {
     if(this.caracteristicaExistente(caracteristicaNueva)) {
       throw new CaracteristicaExistenteException("La caracteristica que se quiere agregar ya existe");
     }
-    //caracteristicasPosibles.add(caracteristicaNueva);
     caracteristicasPedidas.put(caracteristicaNueva,"");
   }
 

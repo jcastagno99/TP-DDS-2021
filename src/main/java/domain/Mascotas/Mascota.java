@@ -27,29 +27,6 @@ public class Mascota {
     this.fotos = fotos;
     this.caracteristicas = new HashMap<String,String>();
   }
-
-/*  public void agregarCaracteristica(String tipo) {
-    this.caracteristicas.put(tipo, ""); // El map, pisa una característica existente?
-  }
-
-  public void quitarCaracteristica(String tipo) {
-    try {
-      this.caracteristicas.remove(tipo);
-    }
-    catch( ) {
-      //TODO No sabemos bien cómo catchear o manejar esta excepción, por lo que optamos hacerlo con una validación común
-    }
-    this.validarCaracteristicaExistente(tipo);
-    this.caracteristicas.remove(tipo);
-
-  }
-
-  public void validarCaracteristicaExistente(String tipo) {
-    if (!this.caracteristicas.containsKey((tipo))) {
-      throw new CaracteristicaNoEncontradaException("La característica a quitar no existe. Por favor ingrese otra característica");
-    }
-  }*/
-
   public void agregarCaracteristicas(Asociacion unaAsoc){
     this.caracteristicas = unaAsoc.getCaracteristicasPedidas();
   }
