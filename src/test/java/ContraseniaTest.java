@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ContraseniaTest {
-  Usuario pepito = new Usuario("Pepe","753951pepe");
+  private Usuario pepito = new Usuario("Pepe","753951pepe");
 
 
   @Test

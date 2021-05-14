@@ -27,7 +27,7 @@ public class Rescatista {
   }
 
   public void informarMascotaPerdida(String fotos, String descripcion, Ubicacion ubicacion) {
-    MascotaPerdida mascota = new MascotaPerdida(fotos, descripcion, ubicacion);
+    MascotaPerdida mascota = new MascotaPerdida(fotos, descripcion, ubicacion, this);
     RepositorioMascotasPerdidas.instance().agregarMascotaPerdida(mascota);
   }
 }

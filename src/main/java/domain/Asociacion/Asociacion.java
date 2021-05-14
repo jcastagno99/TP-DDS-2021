@@ -22,7 +22,6 @@ public class Asociacion {
     caracteristicasPedidas = new HashMap<>();
   }
 
-
   public void agregarCaracteristicasAMascotas(String caracteristicaNueva) {
     if(this.caracteristicaExistente(caracteristicaNueva)) {
       throw new CaracteristicaExistenteException("La caracteristica que se quiere agregar ya existe");
