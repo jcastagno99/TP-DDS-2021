@@ -1,14 +1,13 @@
 package domain.Roles;
 
 import domain.Asociacion.Asociacion;
-import domain.Mascotas.TipoCaracteristica;
 
 public class Administrador extends Usuario {
 
   Asociacion asociacionACargo;
 
   public Administrador(String nombreAdm, String contrasenia, Asociacion asociacionACargo) {
-    super(nombreAdm, contrasenia);
+    super(nombreAdm, contrasenia, asociacionACargo);
     this.asociacionACargo = asociacionACargo;
   }
 

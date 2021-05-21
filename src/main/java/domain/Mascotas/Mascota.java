@@ -27,8 +27,17 @@ public class Mascota {
     this.fotos = fotos;
     this.caracteristicas = new HashMap<String,String>();
   }
-  public void agregarCaracteristicas(Asociacion unaAsoc){
+
+  public void copiarCaracteristicas(Asociacion unaAsoc) {
     this.caracteristicas = unaAsoc.getCaracteristicasPedidas();
+  }
+
+  public void setearCaracteristica(String caracteristica, String descripcion) {
+
+    if (!this.caracteristicaExistente(caracteristica)) {
+      throw new CaracteristicaNoEncontradaException("La descripcion solicitada no se puede agregar porque la caracteristica no existe");
+    }
+    this.caracteristicas.put(caracteristica, descripcion);
   }
 
   public void setDuenio(Duenio duenio) {
@@ -38,5 +47,10 @@ public class Mascota {
   public boolean tieneDuenio(Duenio duenio) {
     return miDuenio.equals(duenio);
   }
+
+  public boolean caracteristicaExistente(String caracteristica) {
+    return this.caracteristicas.containsKey(caracteristica);
+  }
+
 
 }
