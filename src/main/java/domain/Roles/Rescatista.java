@@ -1,8 +1,12 @@
 package domain.Roles;
 
+import domain.Asociacion.Asociacion;
+import domain.Asociacion.Publicacion;
+import domain.Asociacion.RepositorioAsociaciones;
 import domain.Mascotas.MascotaPerdida;
 import domain.Mascotas.Ubicacion;
 import domain.Asociacion.RepositorioMascotasPerdidas;
+
 
 import java.time.LocalDate;
 
@@ -29,5 +33,8 @@ public class Rescatista {
   public void informarMascotaPerdida(String fotos, String descripcion, Ubicacion ubicacion) {
     MascotaPerdida mascota = new MascotaPerdida(fotos, descripcion, ubicacion, this);
     RepositorioMascotasPerdidas.instance().agregarMascotaPerdida(mascota);
+    Asociacion asociacionCercana = RepositorioAsociaciones.instance().obtenerAsociacionMasCercaA(ubicacion);
+    asociacionCercana.crearPublicacion(mascota,contacto);
+
   }
 }

@@ -1,6 +1,9 @@
 package domain.Asociacion;
 
 import domain.Mascotas.Mascota;
+import domain.Mascotas.MascotaPerdida;
+import domain.Mascotas.Ubicacion;
+import domain.Roles.Contacto;
 import domain.Roles.Duenio;
 import exception.CaracteristicaExistenteException;
 import exception.CaracteristicaNoEncontradaException;
@@ -15,11 +18,17 @@ public class Asociacion {
   private List<Mascota> mascotasRegistradas;
   private List<Duenio> dueniosRegistrados;
   private Map<String, String> caracteristicasPedidas;
+  public Ubicacion ubicacion;
+  public ArrayList<Publicacion> publicacionesPendientes;
+  public ArrayList<Publicacion> publicaciones;
 
-  public Asociacion() {
+  public Asociacion(Ubicacion ubicacion) {
     mascotasRegistradas = new ArrayList<>();
     dueniosRegistrados = new ArrayList<>();
     caracteristicasPedidas = new HashMap<>();
+    publicacionesPendientes = new ArrayList<>();
+    this.ubicacion = ubicacion;
+    RepositorioAsociaciones.instance().agregarAsociacion(this);
   }
 
   public void agregarCaracteristicasAMascotas(String caracteristicaNueva) {
@@ -45,6 +54,11 @@ public class Asociacion {
     mascotasRegistradas.add(mascota);
   }
 
+  public void crearPublicacion(MascotaPerdida mascota, Contacto contacto) {
+    Publicacion publicacion = new Publicacion(mascota, contacto);
+    publicacionesPendientes.add(publicacion);
+  }
+
   public Map<String, String> getCaracteristicasPedidas() {
     return caracteristicasPedidas;
   }
@@ -55,6 +69,10 @@ public class Asociacion {
 
   public List<Duenio> getDueniosRegistrados() {
     return dueniosRegistrados;
+  }
+
+  public Ubicacion getUbicacion() {
+    return ubicacion;
   }
 
 }
