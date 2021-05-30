@@ -6,9 +6,13 @@ import domain.Asociacion.RepositorioAsociaciones;
 import domain.Mascotas.MascotaPerdida;
 import domain.Mascotas.Ubicacion;
 import domain.Asociacion.RepositorioMascotasPerdidas;
+import domain.services.RefugiosDDS.ServicioRefugioDDS;
+import domain.services.RefugiosDDS.entities.Hogar;
 
 
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 
 public class Rescatista {
@@ -36,5 +40,9 @@ public class Rescatista {
     Asociacion asociacionCercana = RepositorioAsociaciones.instance().obtenerAsociacionMasCercaA(ubicacion);
     asociacionCercana.crearPublicacion(mascota,contacto);
 
+  }
+
+  public List<Hogar> solicitarHogares() throws  IOException{
+    return ServicioRefugioDDS.instance().listarHogares();
   }
 }
