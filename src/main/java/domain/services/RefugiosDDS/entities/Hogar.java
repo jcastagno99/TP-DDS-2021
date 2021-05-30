@@ -4,15 +4,15 @@ import java.util.List;
 
 public class Hogar {
 
-  String id;
-  String nombre;
-  Ubicacion ubicacion;
-  String telefono;
-  Admisiones admisiones;
-  int capacidad;
-  int lugaresDisponibles;
-  boolean patio;
-  List<String> caracteristicas;
+  public String id;
+  public String nombre;
+  public Ubicacion ubicacion;
+  public String telefon;
+  public Admisiones admisiones;
+  public int capacidad;
+  public int lugaresDisponibles;
+  public boolean patio;
+  public List<String> caracteristicas;
 
 
 

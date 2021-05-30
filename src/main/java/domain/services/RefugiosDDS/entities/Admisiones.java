@@ -1,7 +1,7 @@
 package domain.services.RefugiosDDS.entities;
 
 public class Admisiones {
-  boolean perros;
-  boolean gatos;
+  public boolean perros;
+  public boolean gatos;
 
 }
