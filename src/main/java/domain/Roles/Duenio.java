@@ -1,9 +1,13 @@
 package domain.Roles;
 
 import domain.Asociacion.Asociacion;
+import domain.Asociacion.Publicacion;
+import domain.Asociacion.RepositorioAsociaciones;
 import domain.Mascotas.Mascota;
 
+import javax.swing.plaf.PanelUI;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Duenio extends Usuario {
     private String nombre;
@@ -34,4 +38,13 @@ public class Duenio extends Usuario {
   public String getApellido() {
     return apellido;
   }
+
+  public List<Publicacion> verPublicaciones() {
+    return RepositorioAsociaciones.instance().getPublicaciones();
+  }
+
+  public void contactarRescatista(Publicacion unaPublicacion){
+    //TODO
+  }
 }
+

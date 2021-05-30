@@ -57,6 +57,7 @@ public class Asociacion {
   public void crearPublicacion(MascotaPerdida mascota, Contacto contacto) {
     Publicacion publicacion = new Publicacion(mascota, contacto, this);
     publicacionesPendientes.add(publicacion);
+    RepositorioAsociaciones.instance().agregarPublicacion(publicacion);
   }
 
   public Map<String, String> getCaracteristicasPedidas() {

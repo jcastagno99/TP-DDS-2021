@@ -15,6 +15,10 @@ public class RepositorioAsociaciones {
 
   private List<Asociacion> asociaciones = new ArrayList<>();
 
+  // Esto después va a tener que pasarse a un repositorio general donde estén las publicaciones, las asociaciones y las mascotas perdidas
+  // TODO
+  private List<Publicacion> publicaciones = new ArrayList<>();
+
   public static RepositorioAsociaciones instance() {
     return INSTANCE;
   }
@@ -29,5 +33,14 @@ public class RepositorioAsociaciones {
     Double ubicacionMasCercana = mapeoAuxiliar.get(0);
     return asociaciones.stream().filter(unaAsociacion -> unaAsociacion.getUbicacion().calcularDistanciaA(unaUbicacion) == ubicacionMasCercana).collect(Collectors.toList()).get(0);
   }
+
+  public void agregarPublicacion(Publicacion unaPublicacion){
+    publicaciones.add(unaPublicacion);
+  }
+
+  public List<Publicacion> getPublicaciones(){
+    return publicaciones;
+  }
+  //
 
 }
