@@ -5,9 +5,9 @@ import domain.Roles.Contacto;
 
 public class Publicacion {
 
-  MascotaPerdida mascota;
-  Contacto contactoRescatista;
-  Asociacion asociacion;
+  public MascotaPerdida mascota;
+  public Contacto contactoRescatista;
+  public Asociacion asociacion;
 
   public Publicacion(MascotaPerdida mascota, Contacto contactoRescatista, Asociacion asociacion) {
     this.mascota = mascota;

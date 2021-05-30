@@ -60,6 +60,15 @@ public class Asociacion {
     RepositorioAsociaciones.instance().agregarPublicacion(publicacion);
   }
 
+  public void aprobarPrimerPublicacionPendiente() {
+    this.publicaciones.add(this.publicacionesPendientes.get(0));
+    this.publicacionesPendientes.remove(0);
+  }
+
+  public void recharzarPrimerPubblicacionPendiente() {
+    this.publicacionesPendientes.remove(0);
+  }
+
   public Map<String, String> getCaracteristicasPedidas() {
     return caracteristicasPedidas;
   }

@@ -1,7 +1,5 @@
 package domain.services.RefugiosDDS;
 
-import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -17,8 +15,8 @@ public class ServicioRefugioDDS {
         .build();
   }
 
-  public static ServicioRefugioDDS instancia(){
-    if(instancia== null){
+  public static ServicioRefugioDDS instancia() {
+    if (instancia == null) {
       instancia = new ServicioRefugioDDS();
     }
     return instancia;

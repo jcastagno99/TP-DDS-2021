@@ -1,10 +1,8 @@
 package domain.Asociacion;
 
-import domain.Mascotas.MascotaPerdida;
 import domain.Mascotas.Ubicacion;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,6 +39,5 @@ public class RepositorioAsociaciones {
   public List<Publicacion> getPublicaciones(){
     return publicaciones;
   }
-  //
 
 }
