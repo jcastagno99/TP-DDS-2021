@@ -7,9 +7,11 @@ public class Publicacion {
 
   MascotaPerdida mascota;
   Contacto contactoRescatista;
+  Asociacion asociacion;
 
-  public Publicacion(MascotaPerdida mascota, Contacto contactoRescatista) {
+  public Publicacion(MascotaPerdida mascota, Contacto contactoRescatista, Asociacion asociacion) {
     this.mascota = mascota;
     this.contactoRescatista = contactoRescatista;
+    this.asociacion = asociacion;
   }
 }
