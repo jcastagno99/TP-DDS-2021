@@ -26,4 +26,8 @@ public class MascotaPerdida {
   public String getDescripcion() {
     return descripcion;
   }
+
+  public Rescatista getRescatista() {
+    return rescatista;
+  }
 }

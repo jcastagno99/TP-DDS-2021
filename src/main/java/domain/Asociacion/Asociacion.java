@@ -27,6 +27,7 @@ public class Asociacion {
     dueniosRegistrados = new ArrayList<>();
     caracteristicasPedidas = new HashMap<>();
     publicacionesPendientes = new ArrayList<>();
+    publicaciones = new ArrayList<>();
     this.ubicacion = ubicacion;
     RepositorioAsociaciones.instance().agregarAsociacion(this);
   }
@@ -85,4 +86,11 @@ public class Asociacion {
     return ubicacion;
   }
 
+  public ArrayList<Publicacion> getPublicacionesPendientes() {
+    return publicacionesPendientes;
+  }
+
+  public ArrayList<Publicacion> getPublicaciones() {
+    return publicaciones;
+  }
 }

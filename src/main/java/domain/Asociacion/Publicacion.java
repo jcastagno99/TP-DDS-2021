@@ -14,4 +14,8 @@ public class Publicacion {
     this.contactoRescatista = contactoRescatista;
     this.asociacion = asociacion;
   }
+
+  public MascotaPerdida getMascota() {
+    return mascota;
+  }
 }

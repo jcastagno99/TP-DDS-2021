@@ -13,8 +13,8 @@ public class RepositorioAsociaciones {
 
   private List<Asociacion> asociaciones = new ArrayList<>();
 
-  // Esto después va a tener que pasarse a un repositorio general donde estén las publicaciones, las asociaciones y las mascotas perdidas
-  // TODO
+  // Esto después va a tener que pasarse a un repositorio general donde estén las asociaciones y las mascotas perdidas
+
   private List<Publicacion> publicaciones = new ArrayList<>();
 
   public static RepositorioAsociaciones instance() {

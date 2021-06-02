@@ -42,7 +42,7 @@ public class Rescatista {
 
   }
 
-  public List<Hogar> solicitarHogares() throws  IOException{
+  public List<Hogar> solicitarHogares() throws  IOException {
     return ServicioRefugioDDS.instance().listarHogares();
   }
 }

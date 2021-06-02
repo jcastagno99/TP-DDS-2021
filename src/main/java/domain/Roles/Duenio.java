@@ -43,8 +43,8 @@ public class Duenio extends Usuario {
     return RepositorioAsociaciones.instance().getPublicaciones();
   }
 
-  public void contactarRescatista(Publicacion unaPublicacion){
-    //TODO
+  public Rescatista contactarRescatista(Publicacion unaPublicacion) {
+    return unaPublicacion.getMascota().getRescatista();
   }
 }
 
