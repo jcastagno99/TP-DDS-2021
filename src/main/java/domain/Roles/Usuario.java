@@ -9,7 +9,7 @@ public class Usuario {
   private String contrasenia;
   public ValidarTodasLasMetricas miValidador = new ValidarTodasLasMetricas();
 
-  public Usuario(String usuario, String contrasenia,Asociacion asociacion) {
+  public Usuario(String usuario, String contrasenia) {
     miValidador.validar(usuario, contrasenia);
     this.contrasenia = contrasenia;
     this.usuario = usuario;

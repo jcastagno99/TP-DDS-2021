@@ -18,7 +18,7 @@ public class Duenio extends Usuario {
     private Contacto contacto;
 
   public Duenio(String usuario, String contrasenia, Asociacion asociacion, String nombre, String apellido, LocalDate fechaNacimiento, String documento, int numeroDocumento, Contacto contacto) {
-    super(usuario, contrasenia, asociacion);
+    super(usuario, contrasenia);
     this.nombre = nombre;
     this.apellido = apellido;
     this.fechaNacimiento = fechaNacimiento;

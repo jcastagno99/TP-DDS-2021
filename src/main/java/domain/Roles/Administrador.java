@@ -7,7 +7,7 @@ public class Administrador extends Usuario {
   Asociacion asociacionACargo;
 
   public Administrador(String nombreAdm, String contrasenia, Asociacion asociacionACargo) {
-    super(nombreAdm, contrasenia, asociacionACargo);
+    super(nombreAdm, contrasenia);
     this.asociacionACargo = asociacionACargo;
   }
 
