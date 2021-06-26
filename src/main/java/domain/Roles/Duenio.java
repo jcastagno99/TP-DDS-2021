@@ -3,6 +3,8 @@ package domain.Roles;
 import domain.Asociacion.Asociacion;
 import domain.Asociacion.Publicacion;
 import domain.Asociacion.RepositorioAsociaciones;
+import domain.Mail.Mail;
+import domain.Mail.MailSender;
 import domain.Mascotas.Mascota;
 
 import javax.swing.plaf.PanelUI;
@@ -43,8 +45,16 @@ public class Duenio extends Usuario {
     return RepositorioAsociaciones.instance().getPublicaciones();
   }
 
-  public Rescatista contactarRescatista(Publicacion unaPublicacion) {
-    return unaPublicacion.getMascota().getRescatista();
+  public void contactarRescatista(Publicacion unaPublicacion) {
+    Rescatista rescatista = unaPublicacion.getMascota().getRescatista();
+
+    String telefono = String.valueOf(contacto.getTelefono());
+    Mail unMail = new Mail("Una de las mascotas que publico es mia", "Comuniquese con el siguiente numero: " + telefono, contacto.getEmail());
+    MailSender.instance().sendMail(unMail, rescatista.getContacto().getEmail());
+  }
+
+  public Contacto getContacto() {
+    return contacto;
   }
 }
 

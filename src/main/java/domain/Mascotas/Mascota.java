@@ -48,6 +48,14 @@ public class Mascota {
     return miDuenio.equals(duenio);
   }
 
+  public Duenio getMiDuenio() {
+    return miDuenio;
+  }
+
+  public String getNombre() {
+    return nombre;
+  }
+
   public boolean caracteristicaExistente(String caracteristica) {
     return this.caracteristicas.containsKey(caracteristica);
   }

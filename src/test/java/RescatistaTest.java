@@ -17,7 +17,7 @@ public class RescatistaTest {
 
   @Test
   public void unaMascotaPerdidaSeInformaCorrectamente(){
-    shrek.informarMascotaPerdida("URL","Es un munieco muy guapo y de carton", ubicacion);
+    shrek.informarMascotaPerdidaSinChapita("URL","Es un munieco muy guapo y de carton", ubicacion);
     assertEquals("Es un munieco muy guapo y de carton", repo.getMascotasPerdidas().get(0).getDescripcion());
   }
 }

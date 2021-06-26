@@ -1,8 +1,10 @@
 package domain.Roles;
 
 import domain.Asociacion.Asociacion;
-import domain.Asociacion.Publicacion;
 import domain.Asociacion.RepositorioAsociaciones;
+import domain.Mail.Mail;
+import domain.Mail.MailSender;
+import domain.Mascotas.Mascota;
 import domain.Mascotas.MascotaPerdida;
 import domain.Mascotas.Ubicacion;
 import domain.Asociacion.RepositorioMascotasPerdidas;
@@ -34,12 +36,21 @@ public class Rescatista {
     this.direccion = direccion;
   }
 
-  public void informarMascotaPerdida(String fotos, String descripcion, Ubicacion ubicacion) {
+  public Contacto getContacto() {
+    return contacto;
+  }
+
+  public void informarMascotaPerdidaSinChapita(String fotos, String descripcion, Ubicacion ubicacion) {
     MascotaPerdida mascota = new MascotaPerdida(fotos, descripcion, ubicacion, this);
     RepositorioMascotasPerdidas.instance().agregarMascotaPerdida(mascota);
     Asociacion asociacionCercana = RepositorioAsociaciones.instance().obtenerAsociacionMasCercaA(ubicacion);
     asociacionCercana.crearPublicacion(mascota,contacto);
+  }
 
+  public void informarMascotaPerdidaConChapita(Mascota mascota) {
+    String telefono = String.valueOf(contacto.getTelefono());
+    Mail unMail = new Mail("Fue encontrada su mascota: " + mascota.getNombre(), "Comuniquese con el rescatista: " + telefono, contacto.getEmail());
+    MailSender.instance().sendMail(unMail, mascota.getMiDuenio().getContacto().getEmail());
   }
 
   public List<Hogar> solicitarHogares() throws  IOException {

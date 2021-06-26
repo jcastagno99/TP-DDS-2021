@@ -12,4 +12,12 @@ public class Contacto {
     this.telefono = telefono;
     this.email = email;
   }
+
+  public int getTelefono() {
+    return telefono;
+  }
+
+  public String getEmail() {
+    return email;
+  }
 }
