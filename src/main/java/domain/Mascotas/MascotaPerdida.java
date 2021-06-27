@@ -10,13 +10,17 @@ public class MascotaPerdida {
   private Ubicacion ubicacion;
   private LocalDate fechaEncuentro;
   private Rescatista rescatista;
+  TipoMascota tipoMascota;
+  Tamanio tamanio;
 
-  public MascotaPerdida(String fotos, String descripcion, Ubicacion ubicacion, Rescatista rescatista) {
+  public MascotaPerdida(String fotos, String descripcion, Ubicacion ubicacion, Rescatista rescatista, TipoMascota tipoMascota, Tamanio tamanio) {
     this.fotos = fotos;
     this.descripcion = descripcion;
     this.ubicacion = ubicacion;
     this.fechaEncuentro = LocalDate.now();
     this.rescatista = rescatista;
+    this.tipoMascota = tipoMascota;
+    this.tamanio = tamanio;
   }
 
   public LocalDate getFechaEncuentro() {
@@ -29,5 +33,13 @@ public class MascotaPerdida {
 
   public Rescatista getRescatista() {
     return rescatista;
+  }
+
+  public boolean esDeTamanio(Tamanio tamanio) {
+    return this.tamanio.equals(tamanio);
+  }
+
+  public boolean esDeTipo(TipoMascota tipoMascota) {
+    return this.tipoMascota.equals(tipoMascota);
   }
 }

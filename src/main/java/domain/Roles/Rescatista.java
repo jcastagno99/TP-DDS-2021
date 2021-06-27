@@ -4,9 +4,7 @@ import domain.Asociacion.Asociacion;
 import domain.Asociacion.RepositorioAsociaciones;
 import domain.Mail.Mail;
 import domain.Mail.MailSender;
-import domain.Mascotas.Mascota;
-import domain.Mascotas.MascotaPerdida;
-import domain.Mascotas.Ubicacion;
+import domain.Mascotas.*;
 import domain.Asociacion.RepositorioMascotasPerdidas;
 import domain.services.RefugiosDDS.ServicioRefugioDDS;
 import domain.services.RefugiosDDS.entities.Hogar;
@@ -40,8 +38,8 @@ public class Rescatista {
     return contacto;
   }
 
-  public void informarMascotaPerdidaSinChapita(String fotos, String descripcion, Ubicacion ubicacion) {
-    MascotaPerdida mascota = new MascotaPerdida(fotos, descripcion, ubicacion, this);
+  public void informarMascotaPerdidaSinChapita(String fotos, String descripcion, Ubicacion ubicacion, TipoMascota tipoMascota, Tamanio tamanio) {
+    MascotaPerdida mascota = new MascotaPerdida(fotos, descripcion, ubicacion, this, tipoMascota, tamanio);
     RepositorioMascotasPerdidas.instance().agregarMascotaPerdida(mascota);
     Asociacion asociacionCercana = RepositorioAsociaciones.instance().obtenerAsociacionMasCercaA(ubicacion);
     asociacionCercana.crearPublicacion(mascota,contacto);

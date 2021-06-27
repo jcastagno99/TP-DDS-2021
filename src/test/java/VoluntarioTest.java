@@ -6,6 +6,7 @@ import domain.Roles.Contacto;
 import domain.Roles.Rescatista;
 import domain.Roles.Voluntario;
 import org.junit.jupiter.api.Test;
+import org.omg.IOP.TAG_MULTIPLE_COMPONENTS;
 
 import java.time.LocalDate;
 
@@ -16,7 +17,7 @@ public class VoluntarioTest {
   private Asociacion callejeritos =  new Asociacion(ubiCallejeritos);
   private Contacto pepeContacto = new Contacto("Pepe Oscar",  "Mezar",540111587,"pepeMezar@pimientaNegra.com");
   private Rescatista shrek = new Rescatista("Shrek","Ogro", LocalDate.now(),"DNI",3,pepeContacto,"MuyMuyLejano");
-  private MascotaPerdida unaMascota = new MascotaPerdida("fotos","alto lindo",ubiCallejeritos,shrek);
+  private MascotaPerdida unaMascota = new MascotaPerdida("fotos","alto lindo",ubiCallejeritos,shrek, TipoMascota.PERRO, Tamanio.MEDIANO);
   private Voluntario elPimientas = new Voluntario("MeGustaLaPimienta","SiEsRecienMolidaMejor987",callejeritos);
   private Publicacion publicacion1 = new Publicacion(unaMascota, pepeContacto, callejeritos);
   private Publicacion publicacion2 = new Publicacion(unaMascota, pepeContacto, callejeritos);

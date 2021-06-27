@@ -1,3 +1,5 @@
+import domain.Mascotas.Tamanio;
+import domain.Mascotas.TipoMascota;
 import domain.Mascotas.Ubicacion;
 import domain.Asociacion.RepositorioMascotasPerdidas;
 import domain.Roles.Contacto;
@@ -17,7 +19,7 @@ public class RescatistaTest {
 
   @Test
   public void unaMascotaPerdidaSeInformaCorrectamente(){
-    shrek.informarMascotaPerdidaSinChapita("URL","Es un munieco muy guapo y de carton", ubicacion);
+    shrek.informarMascotaPerdidaSinChapita("URL","Es un munieco muy guapo y de carton", ubicacion, TipoMascota.PERRO, Tamanio.GRANDE);
     assertEquals("Es un munieco muy guapo y de carton", repo.getMascotasPerdidas().get(0).getDescripcion());
   }
 }
