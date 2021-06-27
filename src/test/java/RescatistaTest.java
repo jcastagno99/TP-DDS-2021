@@ -1,6 +1,6 @@
 import domain.Mascotas.Tamanio;
 import domain.Mascotas.TipoMascota;
-import domain.Mascotas.Ubicacion;
+import domain.Mascotas.UbicacionDeDominio;
 import domain.Asociacion.RepositorioMascotasPerdidas;
 import domain.Roles.Contacto;
 import domain.Roles.Rescatista;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RescatistaTest {
 
   private RepositorioMascotasPerdidas repo = RepositorioMascotasPerdidas.instance();
-  private Ubicacion ubicacion = new Ubicacion(2474,21334);
+  private UbicacionDeDominio ubicacion = new UbicacionDeDominio(2474,21334);
   private Contacto burroContacto = new Contacto("Burro","Rodriguez",540111587,"burroMezar@pimientaNegra.com");
   private Rescatista shrek = new Rescatista("Shrek","Ogro", LocalDate.now(),"DNI",3,burroContacto,"MuyMuyLejano");
 

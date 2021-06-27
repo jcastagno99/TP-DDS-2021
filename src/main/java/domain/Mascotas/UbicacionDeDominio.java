@@ -1,10 +1,10 @@
 package domain.Mascotas;
 
-public class Ubicacion {
+public class UbicacionDeDominio {
   double latitud;
   double longitud;
 
-  public Ubicacion(double latitud, double longitud) {
+  public UbicacionDeDominio(double latitud, double longitud) {
     this.latitud = latitud;
     this.longitud = longitud;
   }
@@ -17,7 +17,8 @@ public class Ubicacion {
     return longitud;
   }
 
-  public double calcularDistanciaA(Ubicacion otraUbicacion) {
+  public double calcularDistanciaA(UbicacionDeDominio otraUbicacion) {
     return Math.hypot((latitud - otraUbicacion.getLatitud()),longitud - otraUbicacion.getLongitud());
   }
+
 }

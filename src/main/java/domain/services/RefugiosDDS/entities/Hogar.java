@@ -3,6 +3,7 @@ package domain.services.RefugiosDDS.entities;
 import domain.Mascotas.MascotaPerdida;
 import domain.Mascotas.Tamanio;
 import domain.Mascotas.TipoMascota;
+import domain.Mascotas.UbicacionDeDominio;
 
 import java.util.List;
 
@@ -55,5 +56,10 @@ public class Hogar {
 
   public boolean tiene(List<String> caracteristicasMascota) {
     return caracteristicasMascota.containsAll(this.caracteristicas);
+  }
+
+  public boolean estaDentroDelRadio(UbicacionDeDominio unaUbicacion, int radioDeCercania) {
+    UbicacionDeDominio auxiliar = new UbicacionDeDominio(ubicacion.getLat(), ubicacion.getLongitud());
+    return radioDeCercania >= unaUbicacion.calcularDistanciaA(auxiliar);
   }
 }

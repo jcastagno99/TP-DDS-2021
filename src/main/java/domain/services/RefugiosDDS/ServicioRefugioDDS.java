@@ -1,6 +1,7 @@
 package domain.services.RefugiosDDS;
 
 import domain.Mascotas.MascotaPerdida;
+import domain.Mascotas.UbicacionDeDominio;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -50,8 +51,8 @@ public class ServicioRefugioDDS {
   }
 
   // TODO de alguna manera vamos a tener que conseguir la mascota para la cual se le va a buscar un hogar
-  public List<Hogar> filtrar(MascotaPerdida mascotaPerdida, String ... caracteristicas) throws IOException {
-    List<Hogar> hogaresBase = this.obtenerHogaresBase(mascotaPerdida);
+  public List<Hogar> filtrar(int radioDeCercania, MascotaPerdida mascotaPerdida, String ... caracteristicas) throws IOException {
+    List<Hogar> hogaresBase = this.obtenerHogaresBase(radioDeCercania, mascotaPerdida);
 
     /* Necesitamos tres listas:
      * 1. Hogares potenciales (que cumplen con la base + disponibilidad y aca no miro las caracteristicas etxras, pueden o no tener)
@@ -77,9 +78,10 @@ public class ServicioRefugioDDS {
     return hogares.stream().filter(hogar -> hogar.tiene(caracteristicasParaFiltrado)).collect(Collectors.toList());
   }
 
-  private List<Hogar> obtenerHogaresBase(MascotaPerdida mascotaPerdida) throws IOException{
+  private List<Hogar> obtenerHogaresBase(int radioDeCercania, MascotaPerdida mascotaPerdida) throws IOException{
     // Retorna hogares a los que puede entrar por especie, tamaño y disponibilidad
-    return this.listarHogares().stream().filter(hogar -> hogar.puedeAdmitirMascota(mascotaPerdida)).collect(Collectors.toList());
+    // TODO lo estamos hardcodeando pq no creemos que pueda ser implementable ahora
+    UbicacionDeDominio mockUbicacion = new UbicacionDeDominio(12,13);
+    return this.listarHogares().stream().filter(hogar -> hogar.estaDentroDelRadio(mockUbicacion, radioDeCercania) && hogar.puedeAdmitirMascota(mascotaPerdida)).collect(Collectors.toList());
 }
-
 }

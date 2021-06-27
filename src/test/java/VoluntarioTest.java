@@ -6,14 +6,13 @@ import domain.Roles.Contacto;
 import domain.Roles.Rescatista;
 import domain.Roles.Voluntario;
 import org.junit.jupiter.api.Test;
-import org.omg.IOP.TAG_MULTIPLE_COMPONENTS;
 
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class VoluntarioTest {
-  private Ubicacion ubiCallejeritos = new Ubicacion (-35, -45);
+  private UbicacionDeDominio ubiCallejeritos = new UbicacionDeDominio(-35, -45);
   private Asociacion callejeritos =  new Asociacion(ubiCallejeritos);
   private Contacto pepeContacto = new Contacto("Pepe Oscar",  "Mezar",540111587,"pepeMezar@pimientaNegra.com");
   private Rescatista shrek = new Rescatista("Shrek","Ogro", LocalDate.now(),"DNI",3,pepeContacto,"MuyMuyLejano");

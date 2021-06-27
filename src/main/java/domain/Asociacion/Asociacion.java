@@ -2,7 +2,7 @@ package domain.Asociacion;
 
 import domain.Mascotas.Mascota;
 import domain.Mascotas.MascotaPerdida;
-import domain.Mascotas.Ubicacion;
+import domain.Mascotas.UbicacionDeDominio;
 import domain.Roles.Contacto;
 import domain.Roles.Duenio;
 import exception.CaracteristicaExistenteException;
@@ -18,10 +18,10 @@ public class Asociacion {
   private List<Mascota> mascotasRegistradas;
   private List<Duenio> dueniosRegistrados;
   private Map<String, String> caracteristicasPedidas;
-  public Ubicacion ubicacion;
+  public UbicacionDeDominio ubicacion;
   public ArrayList<Publicacion> publicaciones;
 
-  public Asociacion(Ubicacion ubicacion) {
+  public Asociacion(UbicacionDeDominio ubicacion) {
     mascotasRegistradas = new ArrayList<>();
     dueniosRegistrados = new ArrayList<>();
     caracteristicasPedidas = new HashMap<>();
@@ -71,7 +71,7 @@ public class Asociacion {
     return dueniosRegistrados;
   }
 
-  public Ubicacion getUbicacion() {
+  public UbicacionDeDominio getUbicacion() {
     return ubicacion;
   }
 

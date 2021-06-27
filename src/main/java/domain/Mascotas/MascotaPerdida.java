@@ -7,13 +7,13 @@ import java.time.LocalDate;
 public class MascotaPerdida {
   private String fotos;
   private String descripcion;
-  private Ubicacion ubicacion;
+  private UbicacionDeDominio ubicacion;
   private LocalDate fechaEncuentro;
   private Rescatista rescatista;
   TipoMascota tipoMascota;
   Tamanio tamanio;
 
-  public MascotaPerdida(String fotos, String descripcion, Ubicacion ubicacion, Rescatista rescatista, TipoMascota tipoMascota, Tamanio tamanio) {
+  public MascotaPerdida(String fotos, String descripcion, UbicacionDeDominio ubicacion, Rescatista rescatista, TipoMascota tipoMascota, Tamanio tamanio) {
     this.fotos = fotos;
     this.descripcion = descripcion;
     this.ubicacion = ubicacion;

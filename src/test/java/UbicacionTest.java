@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UbicacionTest {
-  private Ubicacion ubicacion1 = new Ubicacion (-10, 5);
-  private Ubicacion ubicacion2 = new Ubicacion (2, 1);
+  private UbicacionDeDominio ubicacion1 = new UbicacionDeDominio(-10, 5);
+  private UbicacionDeDominio ubicacion2 = new UbicacionDeDominio(2, 1);
 
   @Test
   public void seCalculaCorrectamenteLaDistanciaEntre2Ubicaciones() {
