@@ -21,6 +21,7 @@ public class Asociacion {
   public UbicacionDeDominio ubicacion;
   public ArrayList<PublicacionMascotaPerdida> publicaciones;
   public ArrayList<PublicacionAdopcion> publicacionesAdopcion;
+  public ArrayList<PublicacionAdoptante> publicacionesAdoptante;
   public HashMap<String, String> preguntasAdopcion;
 
   public Asociacion(UbicacionDeDominio ubicacion) {
@@ -69,6 +70,19 @@ public class Asociacion {
     publicacion.agregarPreguntas(preguntasAdopcion);
     publicacionesAdopcion.add(publicacion);
   }
+
+  public void agregarPublicacionAdoptante(PublicacionAdoptante publicacion){
+    publicacionesAdoptante.add(publicacion);
+  }
+
+  void recomendacionesSemanales(){
+    List<PublicacionAdopcion> publicacionesMatcheadas = new ArrayList<>();
+    publicacionesAdoptante.forEach(publicacionAdoptante -> {publicacionesAdopcion.forEach(publicacionMascota ->
+    {if(publicacionMascota.seAdaptaA(publicacionAdoptante)){
+      publicacionesMatcheadas.add(publicacionMascota);}
+    });publicacionAdoptante.recibirRecomendaciones(publicacionesMatcheadas);});
+  }
+
 
   public Map<String, String> getCaracteristicasPedidas() {
     return caracteristicasPedidas;

@@ -44,6 +44,10 @@ public class RepositorioAsociaciones {
     return publicaciones;
   }
 
+  public List<Asociacion> getAsociaciones() {
+    return asociaciones;
+  }
+
   public HashMap<String, String> getPreguntasObligatorias() {
     return preguntasObligatorias;
   }

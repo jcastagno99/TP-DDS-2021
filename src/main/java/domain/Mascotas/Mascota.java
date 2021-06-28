@@ -4,6 +4,7 @@ import domain.Asociacion.Asociacion;
 import domain.Roles.Duenio;
 import exception.CaracteristicaNoEncontradaException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Mascota {
@@ -16,6 +17,7 @@ public class Mascota {
   private String fotos;
   private Duenio miDuenio;
   private Map<String, String> caracteristicas;
+  private List<String> necesidades;
 
   public Mascota(TipoMascota tipoMascota, String nombre, String apodo, int edadAproximada, Sexo sexo, String descripcionFisica, String fotos) {
     this.tipoMascota = tipoMascota;
@@ -60,5 +62,11 @@ public class Mascota {
     return this.caracteristicas.containsKey(caracteristica);
   }
 
+  public List<String> getNecesidades() {
+    return necesidades;
+  }
 
+  public Map<String, String> getCaracteristicas() {
+    return caracteristicas;
+  }
 }

@@ -34,6 +34,11 @@ public class PublicacionAdopcion {
     MailSender.instance().sendMail(unMail,contactoDuenio.getEmail());
   }
 
+  boolean seAdaptaA(PublicacionAdoptante unAdoptante){
+   // return unAdoptante.getPreferencias().containsAll(mascota.getCaracteristicas()) && unAdoptante.getComodidades().containsAll(mascota.getNecesidades());
+    return true;
+  }
+
   public Mascota getMascota() {
     return mascota;
   }
