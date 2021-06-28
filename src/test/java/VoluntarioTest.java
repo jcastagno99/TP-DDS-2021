@@ -1,6 +1,6 @@
 import domain.Asociacion.Asociacion;
 import domain.Asociacion.EstadoPublicacion;
-import domain.Asociacion.Publicacion;
+import domain.Asociacion.PublicacionMascotaPerdida;
 import domain.Mascotas.*;
 import domain.Roles.Contacto;
 import domain.Roles.Rescatista;
@@ -18,8 +18,8 @@ public class VoluntarioTest {
   private Rescatista shrek = new Rescatista("Shrek","Ogro", LocalDate.now(),"DNI",3,pepeContacto,"MuyMuyLejano");
   private MascotaPerdida unaMascota = new MascotaPerdida("fotos","alto lindo",ubiCallejeritos,shrek, TipoMascota.PERRO, Tamanio.MEDIANO);
   private Voluntario elPimientas = new Voluntario("MeGustaLaPimienta","SiEsRecienMolidaMejor987",callejeritos);
-  private Publicacion publicacion1 = new Publicacion(unaMascota, pepeContacto, callejeritos);
-  private Publicacion publicacion2 = new Publicacion(unaMascota, pepeContacto, callejeritos);
+  private PublicacionMascotaPerdida publicacion1 = new PublicacionMascotaPerdida(unaMascota, pepeContacto, callejeritos);
+  private PublicacionMascotaPerdida publicacion2 = new PublicacionMascotaPerdida(unaMascota, pepeContacto, callejeritos);
 
   @Test
   public void unVoluntarioPuedeAprobarUnaPublicacion() {

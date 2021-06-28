@@ -19,7 +19,9 @@ public class Asociacion {
   private List<Duenio> dueniosRegistrados;
   private Map<String, String> caracteristicasPedidas;
   public UbicacionDeDominio ubicacion;
-  public ArrayList<Publicacion> publicaciones;
+  public ArrayList<PublicacionMascotaPerdida> publicaciones;
+  public ArrayList<PublicacionAdopcion> publicacionesAdopcion;
+  public HashMap<String, String> preguntasAdopcion;
 
   public Asociacion(UbicacionDeDominio ubicacion) {
     mascotasRegistradas = new ArrayList<>();
@@ -54,9 +56,18 @@ public class Asociacion {
   }
 
   public void crearPublicacion(MascotaPerdida mascota, Contacto contacto) {
-    Publicacion publicacion = new Publicacion(mascota, contacto, this);
+    PublicacionMascotaPerdida publicacion = new PublicacionMascotaPerdida(mascota, contacto, this);
     publicaciones.add(publicacion);
     RepositorioAsociaciones.instance().agregarPublicacion(publicacion);
+  }
+
+  public void agregarPreguntaAdopcion(String pregunta){
+    preguntasAdopcion.put(pregunta,"");
+  }
+
+  public void agregarPublicacionAdopcion(PublicacionAdopcion publicacion){
+    publicacion.agregarPreguntas(preguntasAdopcion);
+    publicacionesAdopcion.add(publicacion);
   }
 
   public Map<String, String> getCaracteristicasPedidas() {
@@ -75,7 +86,9 @@ public class Asociacion {
     return ubicacion;
   }
 
-  public ArrayList<Publicacion> getPublicaciones() {
+  public ArrayList<PublicacionMascotaPerdida> getPublicaciones() {
     return publicaciones;
   }
+
+
 }

@@ -1,13 +1,12 @@
 package domain.Asociacion;
 
-import com.sun.org.apache.xpath.internal.functions.Function2Args;
 import domain.Mascotas.UbicacionDeDominio;
+import domain.Roles.Duenio;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class RepositorioAsociaciones {
@@ -15,10 +14,11 @@ public class RepositorioAsociaciones {
   private static final RepositorioAsociaciones INSTANCE = new RepositorioAsociaciones();
 
   private List<Asociacion> asociaciones = new ArrayList<>();
+  private HashMap<String , String> preguntasObligatorias; // Mover a service locator, cuando se setean?
 
   // Esto después va a tener que pasarse a un repositorio general donde estén las asociaciones y las mascotas perdidas
 
-  private List<Publicacion> publicaciones = new ArrayList<>();
+  private List<PublicacionMascotaPerdida> publicaciones = new ArrayList<>();
 
   public static RepositorioAsociaciones instance() {
     return INSTANCE;
@@ -29,27 +29,22 @@ public class RepositorioAsociaciones {
   }
 
   public Asociacion obtenerAsociacionMasCercaA(UbicacionDeDominio unaUbicacion) {
-
-    Asociacion asociacionMasCercana = this.asociaciones.stream().collect(Collectors.minBy(Comparator.comparing(asociacion -> asociacion.getUbicacion().calcularDistanciaA(unaUbicacion)))).get();
-/*
-    List<Double> mapeoAuxiliar = asociaciones.stream().map(unaAsocion -> unaAsocion.getUbicacion().calcularDistanciaA(unaUbicacion)).collect(Collectors.toList());
-    Collections.sort(mapeoAuxiliar);
-    Double ubicacionMasCercana = mapeoAuxiliar.get(0);
-
-    
-    Asociacion asociacionMasCercana1 = this.asociaciones.stream().collect(Collectors.
-        minBy((unaAsociacion, otraAsociacion) -> (int) unaAsociacion.getUbicacion().calcularDistanciaA(unaUbicacion) - (int) otraAsociacion.getUbicacion().calcularDistanciaA(unaUbicacion)).get());
-    */
-
-    return asociacionMasCercana;
+    return this.asociaciones.stream().min(Comparator.comparing(asociacion -> asociacion.getUbicacion().calcularDistanciaA(unaUbicacion))).get();
   }
 
-  public void agregarPublicacion(Publicacion unaPublicacion){
+  public Asociacion obtenerAsociacionALaQuePertenece(Duenio unDuenio){
+    return this.asociaciones.stream().filter(asociacion -> asociacion.getDueniosRegistrados().contains(unDuenio)).collect(Collectors.toList()).get(0);
+  }
+
+  public void agregarPublicacion(PublicacionMascotaPerdida unaPublicacion){
     publicaciones.add(unaPublicacion);
   }
 
-  public List<Publicacion> getPublicaciones(){
+  public List<PublicacionMascotaPerdida> getPublicaciones(){
     return publicaciones;
   }
 
+  public HashMap<String, String> getPreguntasObligatorias() {
+    return preguntasObligatorias;
+  }
 }
