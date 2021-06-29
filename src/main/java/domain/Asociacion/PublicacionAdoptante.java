@@ -15,9 +15,6 @@ public class PublicacionAdoptante {
     this.comodidades = comodidades;
   }
 
-  void recibirRecomendaciones(List<PublicacionAdopcion> mascotas){
-    publicante.agregarRecomendaciones(mascotas);
-  }
 
   public Contacto getContacto() {
     return publicante.getContacto();

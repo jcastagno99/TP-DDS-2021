@@ -16,7 +16,6 @@ public class Duenio extends Usuario {
     private String documento;
     private int numeroDocumento;
     private Contacto contacto;
-    private List<PublicacionAdopcion> recomendaciones = new ArrayList<>();
 
   public Duenio(String usuario, String contrasenia, Asociacion asociacion, String nombre, String apellido, LocalDate fechaNacimiento, String documento, int numeroDocumento, Contacto contacto) {
     super(usuario, contrasenia);
@@ -52,8 +51,10 @@ public class Duenio extends Usuario {
     MailSender.instance().sendMail(unMail, rescatista.getContacto().getEmail());
   }
 
-  void darEnAdopcion(Mascota unaMascota){ //Asumo que el sistema solo me permite poner en adopcion mascotas de las que yo soy dueño
-    Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionALaQuePertenece(this);
+  //Asumo que el sistema solo me permite poner en adopcion mascotas de las que yo soy dueño
+  //La asociacion llega cuando el usuario la selecciona por UI
+  void darEnAdopcion(Mascota unaMascota, Asociacion asociacion){
+    //Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionALaQuePertenece(this);
     PublicacionAdopcion publicacion = new PublicacionAdopcion(unaMascota,contacto);
     asociacion.agregarPublicacionAdopcion(publicacion);
   }
@@ -61,14 +62,11 @@ public class Duenio extends Usuario {
   void quieroAdoptar(List<String> preferencias, List<String> comodidades){
     Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionALaQuePertenece(this);
     PublicacionAdoptante publicacion = new PublicacionAdoptante(preferencias,comodidades);
-    Mail unMail = new Mail("Su publicación fue creada, le enviamos el link para eliminarla","https://pelispedia.com","noreplay@Asociacion");
+    Mail unMail = new Mail("Su publicación fue creada, le enviamos el link para eliminarla","https://pelispedia.com","noreplay@Asociacion"); //Debería agregar el atributo?
     MailSender.instance().sendMail(unMail,contacto.getEmail());
     asociacion.agregarPublicacionAdoptante(publicacion);
   }
 
-  public void agregarRecomendaciones(List<PublicacionAdopcion> mascotas){
-    recomendaciones.addAll(mascotas);
-  }
 
   public Contacto getContacto() {
     return contacto;

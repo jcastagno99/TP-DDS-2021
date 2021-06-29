@@ -13,6 +13,7 @@ public class PublicacionAdopcion {
   Mascota mascota;
   Contacto contactoDuenio;
   private HashMap<String, String> preguntas = RepositorioAsociaciones.instance().getPreguntasObligatorias();
+  String link; // Se genera con interfaz web, de momento lo dejo aca para hacer la lógica del envio de mail
 
   public PublicacionAdopcion(Mascota mascota, Contacto contactoDuenio) {
     this.mascota = mascota;
@@ -36,7 +37,12 @@ public class PublicacionAdopcion {
 
   boolean seAdaptaA(PublicacionAdoptante unAdoptante){
    // return unAdoptante.getPreferencias().containsAll(mascota.getCaracteristicas()) && unAdoptante.getComodidades().containsAll(mascota.getNecesidades());
+    //Rompe por la diferencia de tipos entre String y Hasmap
     return true;
+  }
+
+  public String getLink() {
+    return link;
   }
 
   public Mascota getMascota() {

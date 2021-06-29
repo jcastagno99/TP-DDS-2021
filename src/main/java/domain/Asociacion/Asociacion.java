@@ -1,5 +1,7 @@
 package domain.Asociacion;
 
+import domain.Mail.Mail;
+import domain.Mail.MailSender;
 import domain.Mascotas.Mascota;
 import domain.Mascotas.MascotaPerdida;
 import domain.Mascotas.UbicacionDeDominio;
@@ -80,16 +82,23 @@ public class Asociacion {
     publicacionesAdoptante.forEach(publicacionAdoptante -> {publicacionesAdopcion.forEach(publicacionMascota ->
     {if(publicacionMascota.seAdaptaA(publicacionAdoptante)){
       publicacionesMatcheadas.add(publicacionMascota);}
-    });publicacionAdoptante.recibirRecomendaciones(publicacionesMatcheadas);});
+    });this.enviarMailRecomendacion(publicacionAdoptante,publicacionesMatcheadas);});
   }
 
-
-  public Map<String, String> getCaracteristicasPedidas() {
-    return caracteristicasPedidas;
+  void enviarMailRecomendacion(PublicacionAdoptante adoptante, List<PublicacionAdopcion> publicacionesAdopcion){
+    String cuerpoMail = "Links a las publicaciones: ";
+    List<String> links = new ArrayList<>();
+    publicacionesAdopcion.forEach(publicacion -> {links.add(publicacion.getLink());});
+    Mail unMail = new Mail("Recomendaciones semanales", cuerpoMail.concat(links.toString()),"noreplay@Asociacion");
+    MailSender.instance().sendMail(unMail,adoptante.getContacto().getEmail());
   }
 
   public void agregarNuevoDuenio(Duenio unDuenio) {
     this.dueniosRegistrados.add(unDuenio);
+  }
+
+  public Map<String, String> getCaracteristicasPedidas() {
+    return caracteristicasPedidas;
   }
 
   public List<Duenio> getDueniosRegistrados() {
