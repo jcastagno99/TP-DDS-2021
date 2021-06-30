@@ -59,6 +59,7 @@ public class Duenio extends Usuario {
     asociacion.agregarPublicacionAdopcion(publicacion);
   }
 
+  //Similar al metodo de arriba, si el Usuario puede elegir la asociacion esta deberia llegar por parametro, tal vez por UI
   void quieroAdoptar(List<String> preferencias, List<String> comodidades){
     Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionALaQuePertenece(this);
     PublicacionAdoptante publicacion = new PublicacionAdoptante(preferencias,comodidades);
