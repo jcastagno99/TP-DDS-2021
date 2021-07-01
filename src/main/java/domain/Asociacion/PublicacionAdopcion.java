@@ -33,10 +33,10 @@ public class PublicacionAdopcion {
     String email = interesado.getContacto().getEmail();
     Mail unMail = new Mail("Quiero adoptar a su mascota " + mascota.getNombre(), "Comuniquese con el siguiente numero: " + telefono, email);
     MailSender.instance().sendMail(unMail,contactoDuenio.getEmail());
-  }
+  }// tal vez un buildear/factory
 
   boolean seAdaptaA(PublicacionAdoptante unAdoptante){
-   // return unAdoptante.getPreferencias().containsAll(mascota.getCaracteristicas()) && unAdoptante.getComodidades().containsAll(mascota.getNecesidades());
+   //return unAdoptante.getPreferencias().containsAll(mascota.getCaracteristicas()) && unAdoptante.getComodidades().containsAll(mascota.getNecesidades());
     //Rompe por la diferencia de tipos entre String y Hasmap
     return true;
   }

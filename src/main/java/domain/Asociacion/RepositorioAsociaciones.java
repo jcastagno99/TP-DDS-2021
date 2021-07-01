@@ -14,7 +14,7 @@ public class RepositorioAsociaciones {
   private static final RepositorioAsociaciones INSTANCE = new RepositorioAsociaciones();
 
   private List<Asociacion> asociaciones = new ArrayList<>();
-  private HashMap<String , String> preguntasObligatorias; // Mover a service locator, cuando se setean?
+  private HashMap<String , String> preguntasObligatorias; // Mover a un repo propio
 
   // Esto después va a tener que pasarse a un repositorio general donde estén las asociaciones y las mascotas perdidas
 

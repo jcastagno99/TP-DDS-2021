@@ -24,7 +24,7 @@ public class Asociacion {
   public ArrayList<PublicacionMascotaPerdida> publicaciones;
   public ArrayList<PublicacionAdopcion> publicacionesAdopcion;
   public ArrayList<PublicacionAdoptante> publicacionesAdoptante;
-  public HashMap<String, String> preguntasAdopcion;
+  public HashMap<String, String> preguntasAdopcion; //TODO Deberia contener solo las preguntas, List<Pregunta>
 
   public Asociacion(UbicacionDeDominio ubicacion) {
     mascotasRegistradas = new ArrayList<>();
@@ -79,16 +79,19 @@ public class Asociacion {
 
   void recomendacionesSemanales(){
     List<PublicacionAdopcion> publicacionesMatcheadas = new ArrayList<>();
-    publicacionesAdoptante.forEach(publicacionAdoptante -> {publicacionesAdopcion.forEach(publicacionMascota ->
+    publicacionesAdoptante.forEach(publicacionAdoptante ->
+    {publicacionesAdopcion.forEach(publicacionMascota -> //TODO Cambiar por un filter
     {if(publicacionMascota.seAdaptaA(publicacionAdoptante)){
       publicacionesMatcheadas.add(publicacionMascota);}
-    });this.enviarMailRecomendacion(publicacionAdoptante,publicacionesMatcheadas);});
+    }
+    );this.enviarMailRecomendacion(publicacionAdoptante,publicacionesMatcheadas);});
   }
 
   void enviarMailRecomendacion(PublicacionAdoptante adoptante, List<PublicacionAdopcion> publicacionesAdopcion){
     String cuerpoMail = "Links a las publicaciones: ";
     List<String> links = new ArrayList<>();
     publicacionesAdopcion.forEach(publicacion -> {links.add(publicacion.getLink());});
+    //TODO usar map y join
     Mail unMail = new Mail("Recomendaciones semanales", cuerpoMail.concat(links.toString()),"noreplay@Asociacion");
     MailSender.instance().sendMail(unMail,adoptante.getContacto().getEmail());
   }
