@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Asociacion {
 
@@ -24,14 +25,15 @@ public class Asociacion {
   public ArrayList<PublicacionMascotaPerdida> publicaciones;
   public ArrayList<PublicacionAdopcion> publicacionesAdopcion;
   public ArrayList<PublicacionAdoptante> publicacionesAdoptante;
-  public HashMap<String, String> preguntasAdopcion; //TODO Deberia contener solo las preguntas, List<Pregunta>
+  public List<Pregunta> preguntasAdopcion;
 
   public Asociacion(UbicacionDeDominio ubicacion) {
-    mascotasRegistradas = new ArrayList<>();
-    dueniosRegistrados = new ArrayList<>();
-    caracteristicasPedidas = new HashMap<>();
-    publicaciones = new ArrayList<>();
+    this.mascotasRegistradas = new ArrayList<>();
+    this.dueniosRegistrados = new ArrayList<>();
+    this.caracteristicasPedidas = new HashMap<>();
+    this.publicaciones = new ArrayList<>();
     this.ubicacion = ubicacion;
+    this.preguntasAdopcion = new ArrayList<>();
     RepositorioAsociaciones.instance().agregarAsociacion(this);
   }
 
@@ -64,36 +66,36 @@ public class Asociacion {
     RepositorioAsociaciones.instance().agregarPublicacion(publicacion);
   }
 
-  public void agregarPreguntaAdopcion(String pregunta){
-    preguntasAdopcion.put(pregunta,"");
+  public void agregarPreguntaAdopcion(Pregunta pregunta) {
+    preguntasAdopcion.add(pregunta);
   }
 
-  public void agregarPublicacionAdopcion(PublicacionAdopcion publicacion){
+  public void agregarPublicacionAdopcion(PublicacionAdopcion publicacion) {
     publicacion.agregarPreguntas(preguntasAdopcion);
     publicacionesAdopcion.add(publicacion);
   }
 
-  public void agregarPublicacionAdoptante(PublicacionAdoptante publicacion){
+  public void agregarPublicacionAdoptante(PublicacionAdoptante publicacion) {
     publicacionesAdoptante.add(publicacion);
   }
 
-  void recomendacionesSemanales(){
-    List<PublicacionAdopcion> publicacionesMatcheadas = new ArrayList<>();
+  void recomendacionesSemanales() {
     publicacionesAdoptante.forEach(publicacionAdoptante ->
-    {publicacionesAdopcion.forEach(publicacionMascota -> //TODO Cambiar por un filter
-    {if(publicacionMascota.seAdaptaA(publicacionAdoptante)){
-      publicacionesMatcheadas.add(publicacionMascota);}
-    }
-    );this.enviarMailRecomendacion(publicacionAdoptante,publicacionesMatcheadas);});
+        this.enviarMailRecomendacion(publicacionAdoptante,
+            this.matchearPublicaciones(publicacionAdoptante, publicacionesAdopcion)));
   }
 
-  void enviarMailRecomendacion(PublicacionAdoptante adoptante, List<PublicacionAdopcion> publicacionesAdopcion){
+  List<PublicacionAdopcion> matchearPublicaciones(PublicacionAdoptante persona, List<PublicacionAdopcion> lista) {
+    return lista.stream().filter(publicacionAdopcion -> publicacionAdopcion.seAdaptaA(persona)).collect(Collectors.toList());
+  }
+
+  void enviarMailRecomendacion(PublicacionAdoptante adoptante, List<PublicacionAdopcion> publicacionesAdopcion) {
     String cuerpoMail = "Links a las publicaciones: ";
     List<String> links = new ArrayList<>();
-    publicacionesAdopcion.forEach(publicacion -> {links.add(publicacion.getLink());});
-    //TODO usar map y join
-    Mail unMail = new Mail("Recomendaciones semanales", cuerpoMail.concat(links.toString()),"noreplay@Asociacion");
-    MailSender.instance().sendMail(unMail,adoptante.getContacto().getEmail());
+    publicacionesAdopcion.forEach(publicacion -> {links.add(publicacion.getLink() + ", ");});
+    //TODO usar map y join, repreguntar
+    Mail unMail = new Mail("Recomendaciones semanales", cuerpoMail.concat(links.toString()), "noreplay@Asociacion");
+    MailSender.instance().sendMail(unMail, adoptante.getContacto().getEmail());
   }
 
   public void agregarNuevoDuenio(Duenio unDuenio) {

@@ -7,12 +7,13 @@ import domain.Roles.Contacto;
 import domain.Roles.Duenio;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class PublicacionAdopcion {
 
   Mascota mascota;
   Contacto contactoDuenio;
-  private HashMap<String, String> preguntas = RepositorioAsociaciones.instance().getPreguntasObligatorias();
+  private List<Pregunta> preguntas = RepositorioAsociaciones.instance().getPreguntasObligatorias();
   String link; // Se genera con interfaz web, de momento lo dejo aca para hacer la lógica del envio de mail
 
   public PublicacionAdopcion(Mascota mascota, Contacto contactoDuenio) {
@@ -20,23 +21,19 @@ public class PublicacionAdopcion {
     this.contactoDuenio = contactoDuenio;
   }
 
-  void agregarPreguntas(HashMap<String, String> preguntasNuevas){
-    preguntas.putAll(preguntasNuevas);
+  void agregarPreguntas(List<Pregunta> preguntasNuevas) {
+    preguntas.addAll(preguntasNuevas);
   }
 
-  void responderPregunta(String pregunta, String respuesta){
-    preguntas.put(pregunta,respuesta);
-  }
-
-  void solicitudAdopcion(Duenio interesado){
+  void solicitudAdopcion(Duenio interesado) {
     String telefono = interesado.getContacto().getTelefono().toString();
     String email = interesado.getContacto().getEmail();
     Mail unMail = new Mail("Quiero adoptar a su mascota " + mascota.getNombre(), "Comuniquese con el siguiente numero: " + telefono, email);
-    MailSender.instance().sendMail(unMail,contactoDuenio.getEmail());
-  }// tal vez un buildear/factory
+    MailSender.instance().sendMail(unMail, contactoDuenio.getEmail());
+  } // tal vez un buildear/factory
 
-  boolean seAdaptaA(PublicacionAdoptante unAdoptante){
-   //return unAdoptante.getPreferencias().containsAll(mascota.getCaracteristicas()) && unAdoptante.getComodidades().containsAll(mascota.getNecesidades());
+  boolean seAdaptaA(PublicacionAdoptante unAdoptante) {
+    //return unAdoptante.getPreferencias().containsAll(mascota.getCaracteristicas()) && unAdoptante.getComodidades().containsAll(mascota.getNecesidades());
     //Rompe por la diferencia de tipos entre String y Hasmap
     return true;
   }

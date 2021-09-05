@@ -5,7 +5,6 @@ import domain.Roles.Duenio;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,7 +13,7 @@ public class RepositorioAsociaciones {
   private static final RepositorioAsociaciones INSTANCE = new RepositorioAsociaciones();
 
   private List<Asociacion> asociaciones = new ArrayList<>();
-  private HashMap<String , String> preguntasObligatorias; // Mover a un repo propio
+  private List<Pregunta> preguntasObligatorias; // Mover a un repo propio
 
   // Esto después va a tener que pasarse a un repositorio general donde estén las asociaciones y las mascotas perdidas
 
@@ -32,7 +31,7 @@ public class RepositorioAsociaciones {
     return this.asociaciones.stream().min(Comparator.comparing(asociacion -> asociacion.getUbicacion().calcularDistanciaA(unaUbicacion))).get();
   }
 
-  public Asociacion obtenerAsociacionALaQuePertenece(Duenio unDuenio){
+  public Asociacion obtenerAsociacionALaQuePertenece(Duenio unDuenio) {
     return this.asociaciones.stream().filter(asociacion -> asociacion.getDueniosRegistrados().contains(unDuenio)).collect(Collectors.toList()).get(0);
   }
 
@@ -48,7 +47,7 @@ public class RepositorioAsociaciones {
     return asociaciones;
   }
 
-  public HashMap<String, String> getPreguntasObligatorias() {
+  public List<Pregunta> getPreguntasObligatorias() {
     return preguntasObligatorias;
   }
 }
