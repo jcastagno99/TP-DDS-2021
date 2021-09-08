@@ -51,18 +51,16 @@ public class Duenio extends Usuario {
     MailSender.instance().sendMail(unMail, rescatista.getContacto().getEmail());
   }
 
-  //TODO estos estan al revez
-  //Asumo que el sistema solo me permite poner en adopcion mascotas de las que yo soy dueño
+
   //La asociacion llega cuando el usuario la selecciona por UI
-  void darEnAdopcion(Mascota unaMascota, Asociacion asociacion){
-    //Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionALaQuePertenece(this);
+  void darEnAdopcion(Mascota unaMascota){
+    Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionALaQuePertenece(this);
     PublicacionAdopcion publicacion = new PublicacionAdopcion(unaMascota,contacto);
     asociacion.agregarPublicacionAdopcion(publicacion);
   }
 
   //Similar al metodo de arriba, si el Usuario puede elegir la asociacion esta deberia llegar por parametro, tal vez por UI
-  void quieroAdoptar(List<String> preferencias, List<String> comodidades){
-    Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionALaQuePertenece(this);
+  void quieroAdoptar(List<Caracteristica> preferencias, List<String> comodidades,Asociacion asociacion){
     PublicacionAdoptante publicacion = new PublicacionAdoptante(preferencias,comodidades);
     Mail unMail = new Mail("Su publicación fue creada, le enviamos el link para eliminarla","https://pelispedia.com","noreplay@Asociacion");
     MailSender.instance().sendMail(unMail,contacto.getEmail());

@@ -33,9 +33,8 @@ public class PublicacionAdopcion {
   } // tal vez un buildear/factory
 
   boolean seAdaptaA(PublicacionAdoptante unAdoptante) {
-    //return unAdoptante.getPreferencias().containsAll(mascota.getCaracteristicas()) && unAdoptante.getComodidades().containsAll(mascota.getNecesidades());
-    //Rompe por la diferencia de tipos entre String y Hasmap
-    return true;
+    return mascota.getCaracteristicas().containsAll(unAdoptante.getPreferencias()) &&
+        unAdoptante.getComodidades().containsAll(mascota.getNecesidades());
   }
 
   public String getLink() {

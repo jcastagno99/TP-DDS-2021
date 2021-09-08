@@ -6,11 +6,11 @@ import domain.Roles.Duenio;
 import java.util.List;
 
 public class PublicacionAdoptante {
-  List<String> preferencias;
+  List<Caracteristica> preferencias;
   List<String> comodidades;
   Duenio publicante;
 
-  public PublicacionAdoptante(List<String> preferencias, List<String> comodidades) {
+  public PublicacionAdoptante(List<Caracteristica> preferencias, List<String> comodidades) {
     this.preferencias = preferencias;
     this.comodidades = comodidades;
   }
@@ -20,7 +20,7 @@ public class PublicacionAdoptante {
     return publicante.getContacto();
   }
 
-  public List<String> getPreferencias() {
+  public List<Caracteristica> getPreferencias() {
     return preferencias;
   }
 

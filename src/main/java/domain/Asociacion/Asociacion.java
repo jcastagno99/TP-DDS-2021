@@ -11,16 +11,14 @@ import exception.CaracteristicaExistenteException;
 import exception.CaracteristicaNoEncontradaException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Asociacion {
 
   private List<Mascota> mascotasRegistradas;
   private List<Duenio> dueniosRegistrados;
-  private Map<String, String> caracteristicasPedidas;
+  private List<Caracteristica> caracteristicasPedidas;
   public UbicacionDeDominio ubicacion;
   public ArrayList<PublicacionMascotaPerdida> publicaciones;
   public ArrayList<PublicacionAdopcion> publicacionesAdopcion;
@@ -30,7 +28,7 @@ public class Asociacion {
   public Asociacion(UbicacionDeDominio ubicacion) {
     this.mascotasRegistradas = new ArrayList<>();
     this.dueniosRegistrados = new ArrayList<>();
-    this.caracteristicasPedidas = new HashMap<>();
+    this.caracteristicasPedidas = new ArrayList<>();
     this.publicaciones = new ArrayList<>();
     this.ubicacion = ubicacion;
     this.preguntasAdopcion = new ArrayList<>();
@@ -41,7 +39,7 @@ public class Asociacion {
     if (this.caracteristicaExistente(caracteristicaNueva)) {
       throw new CaracteristicaExistenteException("La caracteristica que se quiere agregar ya existe");
     }
-    caracteristicasPedidas.put(caracteristicaNueva, "");
+    caracteristicasPedidas.add(new Caracteristica(caracteristicaNueva));
   }
 
   public void eliminarCaracteristicaExistente(String caracteristicaExistente) {
@@ -49,11 +47,16 @@ public class Asociacion {
     if (!this.caracteristicaExistente(caracteristicaExistente)) {
       throw new CaracteristicaNoEncontradaException("La característica solicitada no se puede eliminar porque no existe");
     }
-    caracteristicasPedidas.remove(caracteristicaExistente);
+    this.removerCaracteristica(caracteristicaExistente);
   }
 
-  public boolean caracteristicaExistente(String caracteristica) {
-    return caracteristicasPedidas.containsKey(caracteristica);
+  public void removerCaracteristica(String tipoCaracteristica){
+    Caracteristica temporal = caracteristicasPedidas.stream().filter(caracteristica -> caracteristica.esTipo(tipoCaracteristica)).collect(Collectors.toList()).get(0);
+    caracteristicasPedidas.remove(temporal);
+  }
+
+  public boolean caracteristicaExistente(String tipoCaracteristica) {
+    return caracteristicasPedidas.stream().anyMatch(caracteristica -> caracteristica.getTipo().equals(tipoCaracteristica));
   }
 
   public void agregarMascota(Mascota mascota) {
@@ -102,7 +105,7 @@ public class Asociacion {
     this.dueniosRegistrados.add(unDuenio);
   }
 
-  public Map<String, String> getCaracteristicasPedidas() {
+  public List<Caracteristica> getCaracteristicasPedidas() {
     return caracteristicasPedidas;
   }
 
