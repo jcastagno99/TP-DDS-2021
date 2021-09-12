@@ -3,7 +3,9 @@ package domain.Roles;
 import domain.Asociacion.*;
 import domain.Mail.Mail;
 import domain.Mail.MailSender;
+import domain.Mascotas.DatosDeEncuentroDeMascota;
 import domain.Mascotas.Mascota;
+import domain.Mascotas.MascotaPerdida;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -67,6 +69,9 @@ public class Duenio extends Usuario {
     asociacion.agregarPublicacionAdoptante(publicacion);
   }
 
+  public void mascotaFueEncontrada(Rescatista r,  DatosDeEncuentroDeMascota d) {
+
+  }
 
   public Contacto getContacto() {
     return contacto;

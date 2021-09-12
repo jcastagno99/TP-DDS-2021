@@ -1,5 +1,7 @@
 package domain.Asociacion;
 
+import domain.Mascotas.Mascota;
+import domain.Mascotas.MascotaPerdida;
 import domain.Mascotas.UbicacionDeDominio;
 import domain.Roles.Duenio;
 
@@ -49,5 +51,9 @@ public class RepositorioAsociaciones {
 
   public List<Pregunta> getPreguntasObligatorias() {
     return preguntasObligatorias;
+  }
+
+  public Asociacion obtenerAsociacionALaQuePerteneceMascota(Mascota mascota){
+    return this.asociaciones.stream().filter(asociacion -> asociacion.getMascotasRegistradas().contains(mascota)).collect(Collectors.toList()).get(0);
   }
 }

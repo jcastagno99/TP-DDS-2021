@@ -2,6 +2,7 @@ package domain.Roles;
 
 import domain.Asociacion.Asociacion;
 import domain.Asociacion.PublicacionMascotaPerdida;
+import domain.Mascotas.MascotaPerdidaConChapita;
 
 public class Voluntario extends Usuario {
 
@@ -11,6 +12,8 @@ public class Voluntario extends Usuario {
     super(usuario, contrasenia);
     this.asociacion = asociacion;
   }
+
+  public void notificarAlDuenio(MascotaPerdidaConChapita mascotaPerdida){mascotaPerdida.informarADuenio();}
 
   public void aprobarPublicacion(PublicacionMascotaPerdida publicacion) {
     publicacion.aprobar();

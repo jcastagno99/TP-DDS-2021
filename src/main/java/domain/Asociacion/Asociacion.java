@@ -4,6 +4,7 @@ import domain.Mail.Mail;
 import domain.Mail.MailSender;
 import domain.Mascotas.Mascota;
 import domain.Mascotas.MascotaPerdida;
+import domain.Mascotas.MascotaPerdidaConChapita;
 import domain.Mascotas.UbicacionDeDominio;
 import domain.Roles.Contacto;
 import domain.Roles.Duenio;
@@ -15,15 +16,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Asociacion {
-
   private List<Mascota> mascotasRegistradas;
   private List<Duenio> dueniosRegistrados;
   private List<Caracteristica> caracteristicasPedidas;
-  public UbicacionDeDominio ubicacion;
-  public ArrayList<PublicacionMascotaPerdida> publicaciones;
-  public ArrayList<PublicacionAdopcion> publicacionesAdopcion;
-  public ArrayList<PublicacionAdoptante> publicacionesAdoptante;
-  public List<Pregunta> preguntasAdopcion;
+  private UbicacionDeDominio ubicacion;
+  private ArrayList<PublicacionMascotaPerdida> publicaciones;
+  private ArrayList<PublicacionAdopcion> publicacionesAdopcion;
+  private ArrayList<PublicacionAdoptante> publicacionesAdoptante;
+  private List<Pregunta> preguntasAdopcion;
+  private List<MascotaPerdidaConChapita> mascotasPerdidasConChapita;
+
 
   public Asociacion(UbicacionDeDominio ubicacion) {
     this.mascotasRegistradas = new ArrayList<>();
@@ -33,6 +35,7 @@ public class Asociacion {
     this.ubicacion = ubicacion;
     this.preguntasAdopcion = new ArrayList<>();
     RepositorioAsociaciones.instance().agregarAsociacion(this);
+    this.mascotasPerdidasConChapita = new ArrayList<>();
   }
 
   public void agregarCaracteristicasAMascotas(String caracteristicaNueva) {
@@ -117,9 +120,14 @@ public class Asociacion {
     return ubicacion;
   }
 
+  public List<Mascota> getMascotasRegistradas(){return mascotasRegistradas;}
+
   public ArrayList<PublicacionMascotaPerdida> getPublicaciones() {
     return publicaciones;
   }
 
 
+  public void agregarNuevaMascotaPerdidaConChapita(MascotaPerdidaConChapita mascotaPerdidaConChapita) {
+    this.mascotasPerdidasConChapita.add(mascotaPerdidaConChapita);
+  }
 }
