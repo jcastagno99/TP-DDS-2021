@@ -18,6 +18,19 @@ public class DatosDeEncuentroDeMascota {
     this.fotos.add(foto);
     Collections.addAll(this.fotos, fotos);
   }
+
+  public String getDescripcionEstadoEncuentro() {
+    return this.descripcionEstadoEncuentro;
+  }
+
+  public UbicacionDeDominio getUbicacion() {
+    return this.ubicacion;
+  }
+
+  public List<String> getFotos() {
+    return this.fotos;
+  }
+
 }
 
 

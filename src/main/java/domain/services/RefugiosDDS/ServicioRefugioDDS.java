@@ -1,6 +1,6 @@
 package domain.services.RefugiosDDS;
 
-import domain.Mascotas.MascotaPerdida;
+import domain.Mascotas.MascotaPerdidaSinChapita;
 import domain.Mascotas.UbicacionDeDominio;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -51,7 +51,7 @@ public class ServicioRefugioDDS {
   }
 
   // TODO de alguna manera vamos a tener que conseguir la mascota para la cual se le va a buscar un hogar
-  public List<Hogar> filtrar(int radioDeCercania, MascotaPerdida mascotaPerdida, String ... caracteristicas) throws IOException {
+  public List<Hogar> filtrar(int radioDeCercania, MascotaPerdidaSinChapita mascotaPerdida, String ... caracteristicas) throws IOException {
     List<Hogar> hogaresBase = this.obtenerHogaresBase(radioDeCercania, mascotaPerdida);
 
     /* Necesitamos tres listas:
@@ -78,7 +78,7 @@ public class ServicioRefugioDDS {
     return hogares.stream().filter(hogar -> hogar.tiene(caracteristicasParaFiltrado)).collect(Collectors.toList());
   }
 
-  private List<Hogar> obtenerHogaresBase(int radioDeCercania, MascotaPerdida mascotaPerdida) throws IOException{
+  private List<Hogar> obtenerHogaresBase(int radioDeCercania, MascotaPerdidaSinChapita mascotaPerdida) throws IOException{
     // Retorna hogares a los que puede entrar por especie, tamaño y disponibilidad
     // TODO lo estamos hardcodeando pq no creemos que pueda ser implementable ahora
     UbicacionDeDominio mockUbicacion = new UbicacionDeDominio(12,13);

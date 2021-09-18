@@ -1,6 +1,6 @@
 package domain.services.RefugiosDDS.entities;
 
-import domain.Mascotas.MascotaPerdida;
+import domain.Mascotas.MascotaPerdidaSinChapita;
 import domain.Mascotas.Tamanio;
 import domain.Mascotas.TipoMascota;
 import domain.Mascotas.UbicacionDeDominio;
@@ -20,7 +20,7 @@ public class Hogar {
   public boolean patio;
   public List<String> caracteristicas;
 
-  public boolean puedeAdmitirMascota(MascotaPerdida mascotaPerdida) {
+  public boolean puedeAdmitirMascota(MascotaPerdidaSinChapita mascotaPerdida) {
     //especie tamanio y disponibilidad
     return this.hayCapacidad() && this.aceptaPorTamanio(mascotaPerdida) && this.aceptaPorTipo(mascotaPerdida);
   }
@@ -29,7 +29,7 @@ public class Hogar {
     return this.capacidad >= 1;
   }
 
-  private boolean aceptaPorTamanio(MascotaPerdida mascotaPerdida) {
+  private boolean aceptaPorTamanio(MascotaPerdidaSinChapita mascotaPerdida) {
     if (this.patio && this.tamanioParaPatio(mascotaPerdida)) {
       return true;
     } else {
@@ -42,11 +42,11 @@ public class Hogar {
     }
   }
 
-  private boolean tamanioParaPatio(MascotaPerdida mascotaPerdida) {
+  private boolean tamanioParaPatio(MascotaPerdidaSinChapita mascotaPerdida) {
     return mascotaPerdida.esDeTamanio(Tamanio.MEDIANO) || mascotaPerdida.esDeTamanio(Tamanio.GRANDE);
   }
 
-  private boolean aceptaPorTipo(MascotaPerdida mascotaPerdida) {
+  private boolean aceptaPorTipo(MascotaPerdidaSinChapita mascotaPerdida) {
     return mascotaPerdida.esDeTipo(TipoMascota.PERRO) && this.admisiones.perros() || mascotaPerdida.esDeTipo(TipoMascota.GATO) && this.admisiones.gatos();
   }
 

@@ -1,7 +1,6 @@
 package domain.Asociacion;
 
 import domain.Mascotas.Mascota;
-import domain.Mascotas.MascotaPerdida;
 import domain.Mascotas.UbicacionDeDominio;
 import domain.Roles.Duenio;
 

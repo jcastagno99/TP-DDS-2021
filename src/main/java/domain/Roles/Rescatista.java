@@ -2,8 +2,8 @@ package domain.Roles;
 
 import domain.Asociacion.Asociacion;
 import domain.Asociacion.RepositorioAsociaciones;
-import domain.Mail.Mail;
-import domain.Mail.MailSender;
+import domain.Notificadores.Mail.Mail;
+import domain.Notificadores.Mail.MailSender;
 import domain.Mascotas.*;
 import domain.Asociacion.RepositorioMascotasPerdidas;
 import domain.services.RefugiosDDS.ServicioRefugioDDS;
@@ -41,7 +41,7 @@ public class Rescatista {
   }
 
   public void informarMascotaPerdidaSinChapita(String fotos, String descripcion, UbicacionDeDominio ubicacion, TipoMascota tipoMascota, Tamanio tamanio) {
-    MascotaPerdida mascota = new MascotaPerdida(fotos, descripcion, ubicacion, this, tipoMascota, tamanio);
+    MascotaPerdidaSinChapita mascota = new MascotaPerdidaSinChapita(fotos, descripcion, ubicacion, this, tipoMascota, tamanio);
     RepositorioMascotasPerdidas.instance().agregarMascotaPerdida(mascota);
     Asociacion asociacionCercana = RepositorioAsociaciones.instance().obtenerAsociacionMasCercaA(ubicacion);
     asociacionCercana.crearPublicacion(mascota,contacto);

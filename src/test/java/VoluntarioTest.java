@@ -16,7 +16,7 @@ public class VoluntarioTest {
   private Asociacion callejeritos =  new Asociacion(ubiCallejeritos);
   private Contacto pepeContacto = new Contacto("Pepe Oscar",  "Mezar",540111587,"pepeMezar@pimientaNegra.com");
   private Rescatista shrek = new Rescatista("Shrek","Ogro", LocalDate.now(),"DNI",3,pepeContacto,"MuyMuyLejano");
-  private MascotaPerdida unaMascota = new MascotaPerdida("fotos","alto lindo",ubiCallejeritos,shrek, TipoMascota.PERRO, Tamanio.MEDIANO);
+  private MascotaPerdidaSinChapita unaMascota = new MascotaPerdidaSinChapita("fotos","alto lindo",ubiCallejeritos,shrek, TipoMascota.PERRO, Tamanio.MEDIANO);
   private Voluntario elPimientas = new Voluntario("MeGustaLaPimienta","SiEsRecienMolidaMejor987",callejeritos);
   private PublicacionMascotaPerdida publicacion1 = new PublicacionMascotaPerdida(unaMascota, pepeContacto, callejeritos);
   private PublicacionMascotaPerdida publicacion2 = new PublicacionMascotaPerdida(unaMascota, pepeContacto, callejeritos);

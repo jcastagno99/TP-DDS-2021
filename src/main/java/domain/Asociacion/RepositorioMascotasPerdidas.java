@@ -1,6 +1,6 @@
 package domain.Asociacion;
 
-import domain.Mascotas.MascotaPerdida;
+import domain.Mascotas.MascotaPerdidaSinChapita;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,17 +13,17 @@ public class RepositorioMascotasPerdidas {
 
   private static final RepositorioMascotasPerdidas INSTANCE = new RepositorioMascotasPerdidas();
 
-  private List<MascotaPerdida> mascotasPerdidas = new ArrayList<MascotaPerdida>();
+  private List<MascotaPerdidaSinChapita> mascotasPerdidas = new ArrayList<MascotaPerdidaSinChapita>();
 
   public static RepositorioMascotasPerdidas instance() {
     return INSTANCE;
   }
 
-  public void agregarMascotaPerdida(MascotaPerdida mascota) {
+  public void agregarMascotaPerdida(MascotaPerdidaSinChapita mascota) {
     this.mascotasPerdidas.add(mascota);
   }
 
-  public List<MascotaPerdida> mascotasEncontradasEnLosUltimos10Dias() {
+  public List<MascotaPerdidaSinChapita> mascotasEncontradasEnLosUltimos10Dias() {
     return this.mascotasPerdidas.stream().filter(mascota -> this.encontradaEnUltimos10Dias(mascota.getFechaEncuentro())).collect(Collectors.toList());
   }
 
@@ -32,7 +32,7 @@ public class RepositorioMascotasPerdidas {
     return dias <= 10;
   }
 
-  public List<MascotaPerdida> getMascotasPerdidas() {
+  public List<MascotaPerdidaSinChapita> getMascotasPerdidas() {
     return mascotasPerdidas;
   }
 }

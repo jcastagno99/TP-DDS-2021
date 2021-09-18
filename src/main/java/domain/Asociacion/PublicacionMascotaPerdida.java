@@ -1,23 +1,23 @@
 package domain.Asociacion;
 
-import domain.Mascotas.MascotaPerdida;
+import domain.Mascotas.MascotaPerdidaSinChapita;
 import domain.Roles.Contacto;
 
 public class PublicacionMascotaPerdida {
 
-  public MascotaPerdida mascota;
+  public MascotaPerdidaSinChapita mascota;
   public Contacto contactoRescatista;
   public Asociacion asociacion;
   public EstadoPublicacion estado;
 
-  public PublicacionMascotaPerdida(MascotaPerdida mascota, Contacto contactoRescatista, Asociacion asociacion) {
+  public PublicacionMascotaPerdida(MascotaPerdidaSinChapita mascota, Contacto contactoRescatista, Asociacion asociacion) {
     this.mascota = mascota;
     this.contactoRescatista = contactoRescatista;
     this.asociacion = asociacion;
     this.estado = EstadoPublicacion.PENDIENTE;
   }
 
-  public MascotaPerdida getMascota() {
+  public MascotaPerdidaSinChapita getMascota() {
     return mascota;
   }
 

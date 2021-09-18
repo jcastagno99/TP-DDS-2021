@@ -1,12 +1,11 @@
 package domain.Asociacion;
 
-import domain.Mail.Mail;
-import domain.Mail.MailSender;
+import domain.Notificadores.Mail.Mail;
+import domain.Notificadores.Mail.MailSender;
 import domain.Mascotas.Mascota;
 import domain.Roles.Contacto;
 import domain.Roles.Duenio;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class PublicacionAdopcion {

@@ -1,4 +1,4 @@
-package domain.Mail;
+package domain.Notificadores.Mail;
 
 public class Mail {
 

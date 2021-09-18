@@ -1,14 +1,13 @@
 package domain.Roles;
 
 import domain.Asociacion.*;
-import domain.Mail.Mail;
-import domain.Mail.MailSender;
+import domain.Notificadores.Mail.Mail;
+import domain.Notificadores.Mail.MailSender;
 import domain.Mascotas.DatosDeEncuentroDeMascota;
 import domain.Mascotas.Mascota;
-import domain.Mascotas.MascotaPerdida;
+import domain.Notificadores.MedioDeNotificacion;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Duenio extends Usuario {
@@ -18,6 +17,7 @@ public class Duenio extends Usuario {
     private String documento;
     private int numeroDocumento;
     private Contacto contacto;
+    private List<MedioDeNotificacion> mediosNotificacion; // observer
 
   public Duenio(String usuario, String contrasenia, Asociacion asociacion, String nombre, String apellido, LocalDate fechaNacimiento, String documento, int numeroDocumento, Contacto contacto) {
     super(usuario, contrasenia);
@@ -50,7 +50,8 @@ public class Duenio extends Usuario {
 
     String telefono = String.valueOf(contacto.getTelefono());
     Mail unMail = new Mail("Una de las mascotas que publico es mia", "Comuniquese con el siguiente numero: " + telefono, contacto.getEmail());
-    MailSender.instance().sendMail(unMail, rescatista.getContacto().getEmail());
+    //MailSender.instance().sendMail(unMail, rescatista.getContacto().getEmail());
+    // TODO
   }
 
 
@@ -65,12 +66,13 @@ public class Duenio extends Usuario {
   void quieroAdoptar(List<Caracteristica> preferencias, List<String> comodidades,Asociacion asociacion){
     PublicacionAdoptante publicacion = new PublicacionAdoptante(preferencias,comodidades);
     Mail unMail = new Mail("Su publicación fue creada, le enviamos el link para eliminarla","https://pelispedia.com","noreplay@Asociacion");
-    MailSender.instance().sendMail(unMail,contacto.getEmail());
+    //MailSender.instance().sendMail(unMail,contacto.getEmail());
+    // TODO
     asociacion.agregarPublicacionAdoptante(publicacion);
   }
 
-  public void mascotaFueEncontrada(Rescatista r,  DatosDeEncuentroDeMascota d) {
-
+  public void mascotaFueEncontrada(Rescatista rescatista,  DatosDeEncuentroDeMascota datos) {
+    this.mediosNotificacion.forEach(medio -> medio.notificar(rescatista, datos, this));
   }
 
   public Contacto getContacto() {

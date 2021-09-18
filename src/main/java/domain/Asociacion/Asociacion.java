@@ -1,9 +1,9 @@
 package domain.Asociacion;
 
-import domain.Mail.Mail;
-import domain.Mail.MailSender;
+import domain.Notificadores.Mail.Mail;
+import domain.Notificadores.Mail.MailSender;
 import domain.Mascotas.Mascota;
-import domain.Mascotas.MascotaPerdida;
+import domain.Mascotas.MascotaPerdidaSinChapita;
 import domain.Mascotas.MascotaPerdidaConChapita;
 import domain.Mascotas.UbicacionDeDominio;
 import domain.Roles.Contacto;
@@ -66,7 +66,7 @@ public class Asociacion {
     mascotasRegistradas.add(mascota);
   }
 
-  public void crearPublicacion(MascotaPerdida mascota, Contacto contacto) {
+  public void crearPublicacion(MascotaPerdidaSinChapita mascota, Contacto contacto) {
     PublicacionMascotaPerdida publicacion = new PublicacionMascotaPerdida(mascota, contacto, this);
     publicaciones.add(publicacion);
     RepositorioAsociaciones.instance().agregarPublicacion(publicacion);
@@ -100,8 +100,8 @@ public class Asociacion {
     List<String> links = new ArrayList<>();
     publicacionesAdopcion.forEach(publicacion -> {links.add(publicacion.getLink() + ", ");});
     //TODO usar map y join, repreguntar
-    Mail unMail = new Mail("Recomendaciones semanales", cuerpoMail.concat(links.toString()), "noreplay@Asociacion");
-    MailSender.instance().sendMail(unMail, adoptante.getContacto().getEmail());
+    //Mail unMail = new Mail("Recomendaciones semanales", cuerpoMail.concat(links.toString()), "noreplay@Asociacion");
+    //MailSender.instance().sendMail(unMail, adoptante.getContacto().getEmail());
   }
 
   public void agregarNuevoDuenio(Duenio unDuenio) {
