@@ -69,7 +69,6 @@ public class Asociacion {
   public void crearPublicacion(MascotaPerdidaSinChapita mascota, Contacto contacto) {
     PublicacionMascotaPerdida publicacion = new PublicacionMascotaPerdida(mascota, contacto, this);
     publicaciones.add(publicacion);
-    RepositorioAsociaciones.instance().agregarPublicacion(publicacion);
   }
 
   public void agregarPreguntaAdopcion(Pregunta pregunta) {

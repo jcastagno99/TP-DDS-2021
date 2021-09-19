@@ -16,10 +16,6 @@ public class RepositorioAsociaciones {
   private List<Asociacion> asociaciones = new ArrayList<>();
   private List<Pregunta> preguntasObligatorias; // Mover a un repo propio
 
-  // Esto después va a tener que pasarse a un repositorio general donde estén las asociaciones y las mascotas perdidas
-
-  private List<PublicacionMascotaPerdida> publicaciones = new ArrayList<>();
-
   public static RepositorioAsociaciones instance() {
     return INSTANCE;
   }
@@ -36,12 +32,10 @@ public class RepositorioAsociaciones {
     return this.asociaciones.stream().filter(asociacion -> asociacion.getDueniosRegistrados().contains(unDuenio)).collect(Collectors.toList()).get(0);
   }
 
-  public void agregarPublicacion(PublicacionMascotaPerdida unaPublicacion){
-    publicaciones.add(unaPublicacion);
-  }
 
   public List<PublicacionMascotaPerdida> getPublicaciones(){
-    return publicaciones;
+    //TODO aplanar lista de lista de publicaciones de asociaciones
+    return null;
   }
 
   public List<Asociacion> getAsociaciones() {

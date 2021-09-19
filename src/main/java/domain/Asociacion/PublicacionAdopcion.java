@@ -28,7 +28,7 @@ public class PublicacionAdopcion {
     String telefono = interesado.getContacto().getTelefono().toString();
     String email = interesado.getContacto().getEmail();
     Mail unMail = new Mail("Quiero adoptar a su mascota " + mascota.getNombre(), "Comuniquese con el siguiente numero: " + telefono, email);
-    MailSender.instance().sendMail(unMail, contactoDuenio.getEmail());
+    //MailSender.instance().sendMail(unMail, contactoDuenio.getEmail());
   } // tal vez un buildear/factory
 
   boolean seAdaptaA(PublicacionAdoptante unAdoptante) {
