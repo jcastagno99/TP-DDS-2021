@@ -14,16 +14,25 @@ public class AdministradorDeMascotasPerdidas {
   }
   //es una mascota porque al leer el QR va a dirigirme a algo que ya existe en mi sistema
 
-  public void informarMascotaPerdidaConChapita(Rescatista rescatista) {
-    // TODO Ver tema de testeo. Si poner el MailSender como un atributo del duenio y hacer ID
-    //MailSender.instance().sendMail(unMail, mascota.getMiDuenio().getContacto().getEmail());
+  private Mascota buscarMascota() {
+    return null;
+    // TODO
   }
 
-  public void informarMascotaPerdidaSinChapita(String fotos, String descripcion, UbicacionDeDominio ubicacion, TipoMascota tipoMascota, Tamanio tamanio, Rescatista rescatista) {
-    MascotaPerdidaSinChapita mascota = new MascotaPerdidaSinChapita(fotos, descripcion, ubicacion, rescatista, tipoMascota, tamanio);
-    RepositorioMascotasPerdidas.instance().agregarMascotaPerdida(mascota);
-    Asociacion asociacionCercana = RepositorioAsociaciones.instance().obtenerAsociacionMasCercaA(ubicacion);
-    asociacionCercana.crearPublicacion(mascota,contacto);
+  public void informarMascotaPerdidaConChapita(Rescatista rescatista, DatosDeEncuentroDeMascota datos) {
+    // TODO Ver tema de testeo. Si poner el MailSender como un atributo del duenio y hacer ID
+    Mascota mascota = this.buscarMascota();
+    MascotaPerdidaConChapita mascotaPerdidaConChapita = new MascotaPerdidaConChapita(rescatista, mascota, datos);
+    RepositorioMascotasPerdidas.instance().agregarMascotaPerdida(mascotaPerdidaConChapita);
+  }
+
+  public void informarMascotaPerdidaSinChapita(Rescatista rescatista, DatosDeEncuentroDeMascota datosEncuentro, TipoMascota tipoMascota, Tamanio tamanio) {
+    MascotaPerdidaSinChapita mascotaSinChapita = new MascotaPerdidaSinChapita(rescatista, datosEncuentro, tamanio, tipoMascota);
+    UbicacionDeDominio ubicacionEncuentro = datosEncuentro.getUbicacion();
+    Asociacion asociacionCercana = RepositorioAsociaciones.instance().obtenerAsociacionMasCercaA(ubicacionEncuentro);
+    Contacto contactoRescatista = rescatista.getContacto();
+
+    asociacionCercana.crearPublicacion(mascotaSinChapita,contactoRescatista);
   }
 
 }

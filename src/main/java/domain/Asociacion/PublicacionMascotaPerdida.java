@@ -3,7 +3,7 @@ package domain.Asociacion;
 import domain.Mascotas.MascotaPerdidaSinChapita;
 import domain.Roles.Contacto;
 
-public class PublicacionMascotaPerdida {
+public class PublicacionMascotaPerdida { // Deberia ser publicacionMascotaPerdidaSinChapita
 
   public MascotaPerdidaSinChapita mascota;
   public Contacto contactoRescatista;

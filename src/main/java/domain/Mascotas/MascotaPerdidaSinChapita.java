@@ -5,22 +5,20 @@ import domain.Roles.Rescatista;
 import java.time.LocalDate;
 
 public class MascotaPerdidaSinChapita {
-  private String fotos;
-  private String descripcion;
-  private UbicacionDeDominio ubicacion;
+  private DatosDeEncuentroDeMascota datosDeEncuentroDeMascota;
   private LocalDate fechaEncuentro;
   private Rescatista rescatista;
-  TipoMascota tipoMascota;
-  Tamanio tamanio;
+  private Tamanio tamanio;
+  private TipoMascota tipoMascota;
 
-  public MascotaPerdidaSinChapita(String fotos, String descripcion, UbicacionDeDominio ubicacion, Rescatista rescatista, TipoMascota tipoMascota, Tamanio tamanio) {
-    this.fotos = fotos;
-    this.descripcion = descripcion;
-    this.ubicacion = ubicacion;
+
+  public MascotaPerdidaSinChapita(Rescatista rescatista, DatosDeEncuentroDeMascota datos,
+                                  Tamanio tamanio, TipoMascota tipo) {
+    this.datosDeEncuentroDeMascota = datos;
     this.fechaEncuentro = LocalDate.now();
     this.rescatista = rescatista;
-    this.tipoMascota = tipoMascota;
     this.tamanio = tamanio;
+    this.tipoMascota = tipo;
   }
 
   public LocalDate getFechaEncuentro() {
@@ -28,7 +26,7 @@ public class MascotaPerdidaSinChapita {
   }
 
   public String getDescripcion() {
-    return descripcion;
+    return this.datosDeEncuentroDeMascota.getDescripcionEstadoEncuentro();
   }
 
   public Rescatista getRescatista() {

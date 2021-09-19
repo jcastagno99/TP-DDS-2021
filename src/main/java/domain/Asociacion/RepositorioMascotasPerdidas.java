@@ -1,5 +1,6 @@
 package domain.Asociacion;
 
+import domain.Mascotas.MascotaPerdidaConChapita;
 import domain.Mascotas.MascotaPerdidaSinChapita;
 
 import java.time.LocalDate;
@@ -13,18 +14,18 @@ public class RepositorioMascotasPerdidas {
 
   private static final RepositorioMascotasPerdidas INSTANCE = new RepositorioMascotasPerdidas();
 
-  private List<MascotaPerdidaSinChapita> mascotasPerdidas = new ArrayList<MascotaPerdidaSinChapita>();
+  private List<MascotaPerdidaConChapita> mascotasPerdidas = new ArrayList<>();
 
   public static RepositorioMascotasPerdidas instance() {
     return INSTANCE;
   }
 
-  public void agregarMascotaPerdida(MascotaPerdidaSinChapita mascota) {
+  public void agregarMascotaPerdida(MascotaPerdidaConChapita mascota) {
     this.mascotasPerdidas.add(mascota);
   }
 
-  public List<MascotaPerdidaSinChapita> mascotasEncontradasEnLosUltimos10Dias() {
-    return this.mascotasPerdidas.stream().filter(mascota -> this.encontradaEnUltimos10Dias(mascota.getFechaEncuentro())).collect(Collectors.toList());
+  public List<MascotaPerdidaConChapita> mascotasEncontradasEnLosUltimos10Dias() {
+    return this.mascotasPerdidas.stream().filter(mascota -> this.encontradaEnUltimos10Dias(mascota.getFechaDeEncuentro())).collect(Collectors.toList());
   }
 
   public boolean encontradaEnUltimos10Dias(LocalDate fecha) {
@@ -32,7 +33,7 @@ public class RepositorioMascotasPerdidas {
     return dias <= 10;
   }
 
-  public List<MascotaPerdidaSinChapita> getMascotasPerdidas() {
+  public List<MascotaPerdidaConChapita> getMascotasPerdidas() {
     return mascotasPerdidas;
   }
 }

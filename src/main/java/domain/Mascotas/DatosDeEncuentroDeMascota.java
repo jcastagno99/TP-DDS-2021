@@ -1,5 +1,6 @@
 package domain.Mascotas;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,11 +17,7 @@ public class DatosDeEncuentroDeMascota {
     this.fotos = new ArrayList<>();
    // TODO valdiacion de no nulo
     this.fotos.add(foto);
-    Collections.addAll(this.fotos, fotos);
-  }
 
-  public String getDescripcionEstadoEncuentro() {
-    return this.descripcionEstadoEncuentro;
   }
 
   public UbicacionDeDominio getUbicacion() {
@@ -29,6 +26,10 @@ public class DatosDeEncuentroDeMascota {
 
   public List<String> getFotos() {
     return this.fotos;
+  }
+
+  public String getDescripcionEstadoEncuentro() {
+    return this.descripcionEstadoEncuentro;
   }
 
 }

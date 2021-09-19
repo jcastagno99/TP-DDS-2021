@@ -40,7 +40,6 @@ public class Rescatista {
     return contacto;
   }
 
-
   public List<Hogar> solicitarHogares() throws  IOException {
     return ServicioRefugioDDS.instance().listarHogares();
   }
