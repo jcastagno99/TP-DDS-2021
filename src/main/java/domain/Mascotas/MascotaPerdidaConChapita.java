@@ -5,18 +5,17 @@ import domain.Asociacion.RepositorioAsociaciones;
 import domain.Roles.Rescatista;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class MascotaPerdidaConChapita {
   private Rescatista rescatista;
-  private Mascota mascotaPerdidaExistente;
+  private MascotaRegistrada mascotaPerdidaExistente;
   private DatosDeEncuentroDeMascota encuentro;
-  private List<String> fotos;
+  //private List<String> fotos;
   private LocalDate fechaEncuentro;
 
 
   // MascotaPerdidaExistente es una mascota registrada en una asociación
-  public MascotaPerdidaConChapita(Rescatista rescatista, Mascota mascotaPerdidaExistente, DatosDeEncuentroDeMascota encuentro) {
+  public MascotaPerdidaConChapita(Rescatista rescatista, MascotaRegistrada mascotaPerdidaExistente, DatosDeEncuentroDeMascota encuentro) {
     this.rescatista = rescatista;
     this.mascotaPerdidaExistente = mascotaPerdidaExistente;
     this.encuentro = encuentro;

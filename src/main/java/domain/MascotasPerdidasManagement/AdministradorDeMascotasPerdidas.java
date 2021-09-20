@@ -1,10 +1,10 @@
-package domain.Roles;
+package domain.MascotasPerdidasManagement;
 
 import domain.Asociacion.Asociacion;
 import domain.Asociacion.RepositorioAsociaciones;
-import domain.Asociacion.RepositorioMascotasPerdidas;
+import domain.Asociacion.UbicacionDeDominio;
 import domain.Mascotas.*;
-import domain.Notificadores.Mail.Mail;
+import domain.Roles.Rescatista;
 
 public class AdministradorDeMascotasPerdidas {
 
@@ -14,14 +14,14 @@ public class AdministradorDeMascotasPerdidas {
   }
   //es una mascota porque al leer el QR va a dirigirme a algo que ya existe en mi sistema
 
-  private Mascota buscarMascota() {
+  private MascotaRegistrada buscarMascota() {
     return null;
     // TODO
   }
 
   public void informarMascotaPerdidaConChapita(Rescatista rescatista, DatosDeEncuentroDeMascota datos) {
     // TODO Ver tema de testeo. Si poner el MailSender como un atributo del duenio y hacer ID
-    Mascota mascota = this.buscarMascota();
+    MascotaRegistrada mascota = this.buscarMascota();
     MascotaPerdidaConChapita mascotaPerdidaConChapita = new MascotaPerdidaConChapita(rescatista, mascota, datos);
     RepositorioMascotasPerdidas.instance().agregarMascotaPerdida(mascotaPerdidaConChapita);
   }
@@ -30,9 +30,7 @@ public class AdministradorDeMascotasPerdidas {
     MascotaPerdidaSinChapita mascotaSinChapita = new MascotaPerdidaSinChapita(rescatista, datosEncuentro, tamanio, tipoMascota);
     UbicacionDeDominio ubicacionEncuentro = datosEncuentro.getUbicacion();
     Asociacion asociacionCercana = RepositorioAsociaciones.instance().obtenerAsociacionMasCercaA(ubicacionEncuentro);
-    Contacto contactoRescatista = rescatista.getContacto();
-
-    asociacionCercana.crearPublicacion(mascotaSinChapita,contactoRescatista);
+    asociacionCercana.crearPublicacion(mascotaSinChapita,rescatista);
   }
 
 }

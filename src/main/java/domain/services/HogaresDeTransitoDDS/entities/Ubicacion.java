@@ -1,4 +1,4 @@
-package domain.services.RefugiosDDS.entities;
+package domain.services.HogaresDeTransitoDDS.entities;
 
 public class Ubicacion {
   public String direccion;

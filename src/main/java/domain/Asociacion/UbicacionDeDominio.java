@@ -1,4 +1,4 @@
-package domain.Mascotas;
+package domain.Asociacion;
 
 public class UbicacionDeDominio {
   double latitud;

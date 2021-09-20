@@ -1,13 +1,11 @@
 package domain.Asociacion;
 
-import domain.Notificadores.Mail.Mail;
-import domain.Notificadores.Mail.MailSender;
-import domain.Mascotas.Mascota;
+import domain.Mascotas.MascotaRegistrada;
 import domain.Mascotas.MascotaPerdidaSinChapita;
 import domain.Mascotas.MascotaPerdidaConChapita;
-import domain.Mascotas.UbicacionDeDominio;
-import domain.Roles.Contacto;
+import domain.Publicaciones.PublicacionMascotaPerdida;
 import domain.Roles.Duenio;
+import domain.Roles.Rescatista;
 import exception.CaracteristicaExistenteException;
 import exception.CaracteristicaNoEncontradaException;
 
@@ -16,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Asociacion {
-  private List<Mascota> mascotasRegistradas;
+  private List<MascotaRegistrada> mascotasRegistradas;
   private List<Duenio> dueniosRegistrados;
   private List<Caracteristica> caracteristicasPedidas;
   private UbicacionDeDominio ubicacion;
@@ -62,12 +60,12 @@ public class Asociacion {
     return caracteristicasPedidas.stream().anyMatch(caracteristica -> caracteristica.getTipo().equals(tipoCaracteristica));
   }
 
-  public void agregarMascota(Mascota mascota) {
+  public void agregarMascota(MascotaRegistrada mascota) {
     mascotasRegistradas.add(mascota);
   }
 
-  public void crearPublicacion(MascotaPerdidaSinChapita mascota, Contacto contacto) {
-    PublicacionMascotaPerdida publicacion = new PublicacionMascotaPerdida(mascota, contacto, this);
+  public void crearPublicacion(MascotaPerdidaSinChapita mascota, Rescatista rescatista) {
+    PublicacionMascotaPerdida publicacion = new PublicacionMascotaPerdida(mascota, rescatista, this);
     publicaciones.add(publicacion);
   }
 
@@ -119,12 +117,13 @@ public class Asociacion {
     return ubicacion;
   }
 
-  public List<Mascota> getMascotasRegistradas(){return mascotasRegistradas;}
+  public List<MascotaRegistrada> getMascotasRegistradas() {
+    return mascotasRegistradas;
+  }
 
   public ArrayList<PublicacionMascotaPerdida> getPublicaciones() {
     return publicaciones;
   }
-
 
   public void agregarNuevaMascotaPerdidaConChapita(MascotaPerdidaConChapita mascotaPerdidaConChapita) {
     this.mascotasPerdidasConChapita.add(mascotaPerdidaConChapita);

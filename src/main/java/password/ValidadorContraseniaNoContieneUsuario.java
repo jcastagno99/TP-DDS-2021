@@ -3,14 +3,14 @@ package password;
 import domain.Roles.Usuario;
 import exception.ContraseniaInvalidaException;
 
-public class ValidadorLongitudContrasenia extends ValidadorContrasenia {
+public class ValidadorContraseniaNoContieneUsuario extends ValidadorContrasenia {
 
-  public ValidadorLongitudContrasenia(String mensaje) {
+  public ValidadorContraseniaNoContieneUsuario(String mensaje) {
     super(mensaje);
   }
 
   boolean condicionInvalidez(String usuario, String contrasenia) {
-    return contrasenia.length() < 8;
+    return contrasenia.contains(usuario);
   }
-  
+
 }

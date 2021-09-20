@@ -1,13 +1,12 @@
 package domain.Roles;
 
-import domain.Asociacion.Asociacion;
-import password.ValidarTodasLasMetricas;
+import password.ValidadorDeMetricas;
 
 public class Usuario {
 
   private String usuario;
   private String contrasenia;
-  public ValidarTodasLasMetricas miValidador = new ValidarTodasLasMetricas();
+  public ValidadorDeMetricas miValidador = new ValidadorDeMetricas();
 
   public Usuario(String usuario, String contrasenia) {
     miValidador.validar(usuario, contrasenia);
@@ -17,6 +16,10 @@ public class Usuario {
 
   public String getContrasenia() {
     return contrasenia;
+  }
+
+  public String getUsuario() {
+    return this.usuario;
   }
 
 }

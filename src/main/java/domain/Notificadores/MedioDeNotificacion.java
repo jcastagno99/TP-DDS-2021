@@ -5,5 +5,5 @@ import domain.Roles.Duenio;
 import domain.Roles.Rescatista;
 
 public interface MedioDeNotificacion {
-  public void notificar(Rescatista rescatista, DatosDeEncuentroDeMascota datos, Duenio duenio);
+  void notificarADuenio(Rescatista rescatista, DatosDeEncuentroDeMascota datos, Duenio duenio);
 }

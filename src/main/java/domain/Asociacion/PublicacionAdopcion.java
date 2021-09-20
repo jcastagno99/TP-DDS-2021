@@ -1,8 +1,7 @@
 package domain.Asociacion;
 
 import domain.Notificadores.Mail.Mail;
-import domain.Notificadores.Mail.MailSender;
-import domain.Mascotas.Mascota;
+import domain.Mascotas.MascotaRegistrada;
 import domain.Roles.Contacto;
 import domain.Roles.Duenio;
 
@@ -10,12 +9,12 @@ import java.util.List;
 
 public class PublicacionAdopcion {
 
-  Mascota mascota;
+  MascotaRegistrada mascota;
   Contacto contactoDuenio;
   private List<Pregunta> preguntas = RepositorioAsociaciones.instance().getPreguntasObligatorias();
   String link; // Se genera con interfaz web, de momento lo dejo aca para hacer la lógica del envio de mail
 
-  public PublicacionAdopcion(Mascota mascota, Contacto contactoDuenio) {
+  public PublicacionAdopcion(MascotaRegistrada mascota, Contacto contactoDuenio) {
     this.mascota = mascota;
     this.contactoDuenio = contactoDuenio;
   }
@@ -40,7 +39,7 @@ public class PublicacionAdopcion {
     return link;
   }
 
-  public Mascota getMascota() {
+  public MascotaRegistrada getMascota() {
     return mascota;
   }
 

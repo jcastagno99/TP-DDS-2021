@@ -1,8 +1,8 @@
 import domain.Asociacion.Asociacion;
-import domain.Mascotas.Mascota;
+import domain.Mascotas.MascotaRegistrada;
 import domain.Mascotas.Sexo;
 import domain.Mascotas.TipoMascota;
-import domain.Mascotas.UbicacionDeDominio;
+import domain.Asociacion.UbicacionDeDominio;
 import domain.Roles.Contacto;
 import domain.Roles.Duenio;
 import org.junit.jupiter.api.Test;
@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DuenioTest {
 
-  private Mascota bernardo = new Mascota(TipoMascota.PERRO,"Bernardo","Pitoto",5, Sexo.MASCULINO,"Gordo, bajito y tricolor","URL");
-  private Mascota miguelito = new Mascota(TipoMascota.GATO,"Miguelito","Gato",1,Sexo.MASCULINO,"Gordo y naranja","URL");
+  private MascotaRegistrada bernardo = new MascotaRegistrada(TipoMascota.PERRO,"Bernardo","Pitoto",5, Sexo.MASCULINO,"Gordo, bajito y tricolor","URL");
+  private MascotaRegistrada miguelito = new MascotaRegistrada(TipoMascota.GATO,"Miguelito","Gato",1,Sexo.MASCULINO,"Gordo y naranja","URL");
 
   private UbicacionDeDominio ubicacionCallejeritos = new UbicacionDeDominio(34, 65);
   private Asociacion callejeritos = new Asociacion(ubicacionCallejeritos);

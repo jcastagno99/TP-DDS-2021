@@ -1,6 +1,7 @@
 import domain.Asociacion.Asociacion;
-import domain.Asociacion.EstadoPublicacion;
-import domain.Asociacion.PublicacionMascotaPerdida;
+import domain.Publicaciones.EstadoPublicacion;
+import domain.Publicaciones.PublicacionMascotaPerdida;
+import domain.Asociacion.UbicacionDeDominio;
 import domain.Mascotas.*;
 import domain.Roles.Contacto;
 import domain.Roles.Rescatista;
@@ -17,22 +18,24 @@ public class VoluntarioTest {
   private Asociacion callejeritos =  new Asociacion(ubiCallejeritos);
   private Contacto pepeContacto = new Contacto("Pepe Oscar",  "Mezar",540111587,"pepeMezar@pimientaNegra.com");
   private Rescatista shrek = new Rescatista("Shrek","Ogro", LocalDate.now(),"DNI",3, pepeContacto,"MuyMuyLejano");
-  //instanciar datos de encuentro
-  // private MascotaPerdidaSinChapita unaMascota = new MascotaPerdidaSinChapita(shrek,"alto lindo",ubiCallejeritos,shrek, TipoMascota.PERRO, Tamanio.MEDIANO);
+  private DatosDeEncuentroDeMascota datos = new DatosDeEncuentroDeMascota("bBueno", ubicacionEncuentro,"foto.png");
+  private MascotaPerdidaSinChapita unaMascota = new MascotaPerdidaSinChapita(shrek, datos, Tamanio.MEDIANO, TipoMascota.PERRO);
   private DatosDeEncuentroDeMascota datosDeEncuentro = new DatosDeEncuentroDeMascota("Bueno", ubicacionEncuentro, "foto.png");
   private Voluntario elPimientas = new Voluntario("MeGustaLaPimienta","SiEsRecienMolidaMejor987",callejeritos);
-  private PublicacionMascotaPerdida publicacion1 = new PublicacionMascotaPerdida(unaMascota, pepeContacto, callejeritos);
-  private PublicacionMascotaPerdida publicacion2 = new PublicacionMascotaPerdida(unaMascota, pepeContacto, callejeritos);
+  private PublicacionMascotaPerdida publicacion1 = new PublicacionMascotaPerdida(unaMascota, shrek, callejeritos);
+  private PublicacionMascotaPerdida publicacion2 = new PublicacionMascotaPerdida(unaMascota, shrek, callejeritos);
 
   @Test
   public void unVoluntarioPuedeAprobarUnaPublicacion() {
-    elPimientas.aprobarPublicacion(publicacion1);
+    //elPimientas.aprobarPublicacion(publicacion1);
+    publicacion1.aprobar();
     assertEquals(EstadoPublicacion.APROBADA, publicacion1.getEstado());
   }
 
   @Test
   public void unVoluntarioPuedeRechazarUnaPublicacion() {
-    elPimientas.rechazarPublicacion(publicacion2);
+    //elPimientas.rechazarPublicacion(publicacion2);
+    publicacion2.rechazar();
     assertEquals(EstadoPublicacion.RECHAZADA, publicacion2.getEstado());
   }
 }

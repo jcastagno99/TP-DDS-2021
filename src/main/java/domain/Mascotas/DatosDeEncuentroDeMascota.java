@@ -1,8 +1,8 @@
 package domain.Mascotas;
 
-import java.time.LocalDate;
+import domain.Asociacion.UbicacionDeDominio;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class DatosDeEncuentroDeMascota {

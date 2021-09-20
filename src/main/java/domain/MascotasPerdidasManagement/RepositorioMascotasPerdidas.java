@@ -1,7 +1,6 @@
-package domain.Asociacion;
+package domain.MascotasPerdidasManagement;
 
 import domain.Mascotas.MascotaPerdidaConChapita;
-import domain.Mascotas.MascotaPerdidaSinChapita;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

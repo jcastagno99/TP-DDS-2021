@@ -1,9 +1,9 @@
-package domain.services.RefugiosDDS.entities;
+package domain.services.HogaresDeTransitoDDS.entities;
 
 import domain.Mascotas.MascotaPerdidaSinChapita;
 import domain.Mascotas.Tamanio;
 import domain.Mascotas.TipoMascota;
-import domain.Mascotas.UbicacionDeDominio;
+import domain.Asociacion.UbicacionDeDominio;
 
 import java.util.List;
 

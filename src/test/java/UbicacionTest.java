@@ -1,4 +1,4 @@
-import domain.Mascotas.*;
+import domain.Asociacion.UbicacionDeDominio;
 import org.junit.jupiter.api.Test;
 
 

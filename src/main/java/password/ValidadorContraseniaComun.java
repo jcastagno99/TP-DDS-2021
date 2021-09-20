@@ -18,7 +18,7 @@ public class ValidadorContraseniaComun extends ValidadorContrasenia {
     super(mensaje);
   }
 
-  boolean condicion(String usuario, String contrasenia) {
+  boolean condicionInvalidez(String usuario, String contrasenia) {
     Path path = Paths.get("src/main/resources/10k-most-common.txt");
     Stream<String> stream;
     try {

@@ -1,4 +1,4 @@
-import domain.Mascotas.UbicacionDeDominio;
+import domain.Asociacion.UbicacionDeDominio;
 import domain.Roles.Usuario;
 import exception.ContraseniaInvalidaException;
 import org.junit.jupiter.api.Test;

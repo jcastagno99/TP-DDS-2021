@@ -3,18 +3,18 @@ package password;
 import exception.ContraseniaInvalidaException;
 
 public abstract class ValidadorContrasenia {
-  String mensaje;
+  private String mensaje;
 
   public ValidadorContrasenia(String mensaje) {
     this.mensaje = mensaje;
   }
 
   void validar(String usuario, String contrasenia) {
-    if(this.condicion(usuario, contrasenia)) {
-      throw new ContraseniaInvalidaException(mensaje);
+    if (this.condicionInvalidez(usuario, contrasenia)) {
+      throw new ContraseniaInvalidaException(this.mensaje);
     }
   }
 
-  abstract boolean condicion(String usuario, String contrasenia);
+  abstract boolean condicionInvalidez(String usuario, String contrasenia);
 
 }

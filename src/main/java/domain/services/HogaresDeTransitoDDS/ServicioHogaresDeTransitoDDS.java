@@ -1,12 +1,12 @@
-package domain.services.RefugiosDDS;
+package domain.services.HogaresDeTransitoDDS;
 
 import domain.Mascotas.MascotaPerdidaSinChapita;
-import domain.Mascotas.UbicacionDeDominio;
+import domain.Asociacion.UbicacionDeDominio;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import domain.services.RefugiosDDS.entities.*;
+import domain.services.HogaresDeTransitoDDS.entities.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,14 +14,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ServicioRefugioDDS {
-  private static final ServicioRefugioDDS INSTANCE = new ServicioRefugioDDS();
+public class ServicioHogaresDeTransitoDDS {
+  private static final ServicioHogaresDeTransitoDDS INSTANCE = new ServicioHogaresDeTransitoDDS();
   private static final String urlApi = "https://api.refugiosdds.com.ar/api";
   private Retrofit retrofit;
   //private ListadoDeHogares ultimaConsulta;
 
 
-  private ServicioRefugioDDS() {
+  private ServicioHogaresDeTransitoDDS() {
     this.retrofit = new Retrofit.Builder()
         .baseUrl(urlApi)
         .addConverterFactory(GsonConverterFactory.create())
@@ -29,13 +29,13 @@ public class ServicioRefugioDDS {
   //  ultimaConsulta = null;
   }
 
-  public static ServicioRefugioDDS instance() {
+  public static ServicioHogaresDeTransitoDDS instance() {
     return INSTANCE;
   }
 
   private ListadoDeHogares listadoDeHogares() throws IOException {
-    RefugioDDSService refugioDDSService = this.retrofit.create(RefugioDDSService.class);
-    Call<ListadoDeHogares> requestHogares = refugioDDSService.hogares();
+    HogarDeTransitoDDSService hogarDeTransitoDDSService = this.retrofit.create(HogarDeTransitoDDSService.class);
+    Call<ListadoDeHogares> requestHogares = hogarDeTransitoDDSService.hogares();
     Response<ListadoDeHogares> responseHogares = requestHogares.execute();
     return responseHogares.body();
   }
@@ -64,8 +64,7 @@ public class ServicioRefugioDDS {
     Collections.addAll(caracteristicasParaFiltrado, caracteristicas);
     if(!caracteristicasParaFiltrado.isEmpty())
       return this.filtrarPorCaracteristicasAdicionales(caracteristicasParaFiltrado, hogaresBase);
-    else
-    {
+    else {
       return this.filtrarSinRequerimientosExtras(hogaresBase);
     }
   }
@@ -74,14 +73,14 @@ public class ServicioRefugioDDS {
     return hogares.stream().filter(hogar -> !hogar.tieneRequerimientosExtras()).collect(Collectors.toList());
   }
 
-  private List<Hogar> filtrarPorCaracteristicasAdicionales(List<String> caracteristicasParaFiltrado, List<Hogar> hogares){
+  private List<Hogar> filtrarPorCaracteristicasAdicionales(List<String> caracteristicasParaFiltrado, List<Hogar> hogares) {
     return hogares.stream().filter(hogar -> hogar.tiene(caracteristicasParaFiltrado)).collect(Collectors.toList());
   }
 
-  private List<Hogar> obtenerHogaresBase(int radioDeCercania, MascotaPerdidaSinChapita mascotaPerdida) throws IOException{
+  private List<Hogar> obtenerHogaresBase(int radioDeCercania, MascotaPerdidaSinChapita mascotaPerdida) throws IOException {
     // Retorna hogares a los que puede entrar por especie, tamaño y disponibilidad
     // TODO lo estamos hardcodeando pq no creemos que pueda ser implementable ahora
     UbicacionDeDominio mockUbicacion = new UbicacionDeDominio(12,13);
     return this.listarHogares().stream().filter(hogar -> hogar.estaDentroDelRadio(mockUbicacion, radioDeCercania) && hogar.puedeAdmitirMascota(mascotaPerdida)).collect(Collectors.toList());
-}
+  }
 }
