@@ -1,5 +1,6 @@
-package domain.Asociacion;
+package domain.Publicaciones;
 
+import domain.Asociacion.Caracteristica;
 import domain.Roles.Contacto;
 import domain.Roles.Duenio;
 

@@ -3,6 +3,8 @@ package domain.Asociacion;
 import domain.Mascotas.MascotaRegistrada;
 import domain.Mascotas.MascotaPerdidaSinChapita;
 import domain.Mascotas.MascotaPerdidaConChapita;
+import domain.Publicaciones.PublicacionAdopcion;
+import domain.Publicaciones.PublicacionAdoptante;
 import domain.Publicaciones.PublicacionMascotaPerdida;
 import domain.Roles.Duenio;
 import domain.Roles.Rescatista;

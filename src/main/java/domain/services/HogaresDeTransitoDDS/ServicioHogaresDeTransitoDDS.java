@@ -2,6 +2,7 @@ package domain.services.HogaresDeTransitoDDS;
 
 import domain.Mascotas.MascotaPerdidaSinChapita;
 import domain.Asociacion.UbicacionDeDominio;
+import exception.ConsultaDeHogaresDeTransitoException;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -20,7 +21,6 @@ public class ServicioHogaresDeTransitoDDS {
   private Retrofit retrofit;
   //private ListadoDeHogares ultimaConsulta;
 
-
   private ServicioHogaresDeTransitoDDS() {
     this.retrofit = new Retrofit.Builder()
         .baseUrl(urlApi)
@@ -33,11 +33,20 @@ public class ServicioHogaresDeTransitoDDS {
     return INSTANCE;
   }
 
-  private ListadoDeHogares listadoDeHogares() throws IOException {
+  // Este método queda por si implementáramos un caché de consultas
+  private ListadoDeHogares listadoDeHogares() {
     HogarDeTransitoDDSService hogarDeTransitoDDSService = this.retrofit.create(HogarDeTransitoDDSService.class);
     Call<ListadoDeHogares> requestHogares = hogarDeTransitoDDSService.hogares();
-    Response<ListadoDeHogares> responseHogares = requestHogares.execute();
-    return responseHogares.body();
+    Response<ListadoDeHogares> responseHogares;
+
+    try {
+      responseHogares = requestHogares.execute();
+      return responseHogares.body();
+    } catch (IOException e) {
+      //e.printStackTrace();
+      throw new ConsultaDeHogaresDeTransitoException("Se ha producido un error en la consulta a los hogares de tránsito disponibles");
+    }
+
   }
 
   //este método serviria para cachear, se agregaria condicion allado del null
@@ -46,12 +55,12 @@ public class ServicioHogaresDeTransitoDDS {
     return ultimaConsulta.hogares;
   }*/
 
-  public List<Hogar> listarHogares() throws IOException {
+  public List<Hogar> listarHogares() {
     return listadoDeHogares().getHogares();
   }
 
   // TODO de alguna manera vamos a tener que conseguir la mascota para la cual se le va a buscar un hogar
-  public List<Hogar> filtrar(int radioDeCercania, MascotaPerdidaSinChapita mascotaPerdida, String ... caracteristicas) throws IOException {
+  public List<Hogar> filtrar(int radioDeCercania, MascotaPerdidaSinChapita mascotaPerdida, String ... caracteristicas) {
     List<Hogar> hogaresBase = this.obtenerHogaresBase(radioDeCercania, mascotaPerdida);
 
     /* Necesitamos tres listas:
@@ -77,7 +86,7 @@ public class ServicioHogaresDeTransitoDDS {
     return hogares.stream().filter(hogar -> hogar.tiene(caracteristicasParaFiltrado)).collect(Collectors.toList());
   }
 
-  private List<Hogar> obtenerHogaresBase(int radioDeCercania, MascotaPerdidaSinChapita mascotaPerdida) throws IOException {
+  private List<Hogar> obtenerHogaresBase(int radioDeCercania, MascotaPerdidaSinChapita mascotaPerdida) {
     // Retorna hogares a los que puede entrar por especie, tamaño y disponibilidad
     // TODO lo estamos hardcodeando pq no creemos que pueda ser implementable ahora
     UbicacionDeDominio mockUbicacion = new UbicacionDeDominio(12,13);

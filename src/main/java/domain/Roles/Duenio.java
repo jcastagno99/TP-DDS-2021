@@ -5,6 +5,8 @@ import domain.Notificadores.Mail.Mail;
 import domain.Mascotas.DatosDeEncuentroDeMascota;
 import domain.Mascotas.MascotaRegistrada;
 import domain.Notificadores.MedioDeNotificacion;
+import domain.Publicaciones.PublicacionAdopcion;
+import domain.Publicaciones.PublicacionAdoptante;
 import domain.Publicaciones.PublicacionMascotaPerdida;
 
 import java.time.LocalDate;

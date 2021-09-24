@@ -12,7 +12,7 @@ public class SMSSender implements MedioDeNotificacion {
     String cuerpo = "¡Hola! Este mail es para informate que tu mascota fue encontrada. El "
         + "rescatista que la encontró nos dio la siguiente información acerca de su estado al "
         + "momento de encontrarla: " + datos.getDescripcionEstadoEncuentro() + ". Su contacto es: "
-        + rescatista.getContacto() + ". Nos aportó las siguientes fotos"
+        + rescatista.getDatosFormulario().getContacto() + ". Nos aportó las siguientes fotos"
         + "datos.getFotos()" + datos.getUbicacion() + "el contacto de quien la encontro es: ";
     this.enviarSMS(cuerpo, telefono);
   }

@@ -7,4 +7,6 @@ import retrofit2.http.GET;
 public interface HogarDeTransitoDDSService {
   @GET("hogares")
   Call<ListadoDeHogares> hogares();
+  //TODO resolver consulta total de hogares
+
 }

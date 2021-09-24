@@ -1,5 +1,7 @@
-package domain.Asociacion;
+package domain.Publicaciones;
 
+import domain.Asociacion.Pregunta;
+import domain.Asociacion.RepositorioAsociaciones;
 import domain.Notificadores.Mail.Mail;
 import domain.Mascotas.MascotaRegistrada;
 import domain.Roles.Contacto;
@@ -19,7 +21,7 @@ public class PublicacionAdopcion {
     this.contactoDuenio = contactoDuenio;
   }
 
-  void agregarPreguntas(List<Pregunta> preguntasNuevas) {
+  public void agregarPreguntas(List<Pregunta> preguntasNuevas) {
     preguntas.addAll(preguntasNuevas);
   }
 
@@ -30,7 +32,7 @@ public class PublicacionAdopcion {
     //MailSender.instance().sendMail(unMail, contactoDuenio.getEmail());
   } // tal vez un buildear/factory
 
-  boolean seAdaptaA(PublicacionAdoptante unAdoptante) {
+  public boolean seAdaptaA(PublicacionAdoptante unAdoptante) {
     return mascota.getCaracteristicas().containsAll(unAdoptante.getPreferencias()) &&
         unAdoptante.getComodidades().containsAll(mascota.getNecesidades());
   }
