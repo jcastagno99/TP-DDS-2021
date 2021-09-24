@@ -2,11 +2,7 @@ package domain.Roles;
 
 import java.time.LocalDate;
 
-// Si bien esta clase queda como un data class, es una de las formas posibles para unificar los
-// datos del formulario del rescatista y del duenio NO REGISTRADO en el sistema. Otra opción sería
-// crear una abstracción DatosFormulario
-
-public class PersonaNoRegistrada {
+public class DatosFormulario {
   protected String nombre;
   protected String apellido;
   protected LocalDate fechaNacimiento;
@@ -15,7 +11,7 @@ public class PersonaNoRegistrada {
   protected Contacto contacto;
   protected String direccion;
 
-  public PersonaNoRegistrada(String nombre, String apellido, LocalDate fechaNacimiento, String tipoDocumento, int numeroDocumento, Contacto contacto, String direccion) {
+  public DatosFormulario(String nombre, String apellido, LocalDate fechaNacimiento, String tipoDocumento, int numeroDocumento, Contacto contacto, String direccion) {
     this.nombre = nombre;
     this.apellido = apellido;
     this.fechaNacimiento = fechaNacimiento;

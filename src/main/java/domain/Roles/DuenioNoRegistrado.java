@@ -1,10 +1,15 @@
 package domain.Roles;
 
-import java.time.LocalDate;
+public class DuenioNoRegistrado {
 
-public class DuenioNoRegistrado extends PersonaNoRegistrada {
+  DatosFormulario datos;
 
-  public DuenioNoRegistrado(String nombre, String apellido, LocalDate fechaNacimiento, String tipoDocumento, int numeroDocumento, Contacto contacto, String direccion) {
-    super(nombre, apellido, fechaNacimiento, tipoDocumento, numeroDocumento, contacto, direccion);
+  public DuenioNoRegistrado(DatosFormulario datos) {
+    this.datos = datos;
   }
+
+  public DatosFormulario getDatos() {
+    return datos;
+  }
+
 }

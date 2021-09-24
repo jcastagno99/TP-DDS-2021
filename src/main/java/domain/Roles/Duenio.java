@@ -45,16 +45,6 @@ public class Duenio extends Usuario {
     return RepositorioAsociaciones.instance().getPublicaciones();
   }
 
-  public void contactarRescatista(PublicacionMascotaPerdida unaPublicacion) {
-    Rescatista rescatista = unaPublicacion.getMascota().getRescatista();
-
-    String telefono = String.valueOf(contacto.getTelefono());
-    Mail unMail = new Mail("Una de las mascotas que publico es mia", "Comuniquese con el siguiente numero: " + telefono, contacto.getEmail());
-    //MailSender.instance().sendMail(unMail, rescatista.getContacto().getEmail());
-    // TODO
-  }
-
-
   //La asociacion llega cuando el usuario la selecciona por UI
   void darEnAdopcion(MascotaRegistrada unaMascota) {
     Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionALaQuePertenece(this);
