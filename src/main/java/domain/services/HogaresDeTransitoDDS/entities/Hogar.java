@@ -4,7 +4,12 @@ import domain.Mascotas.MascotaPerdidaSinChapita;
 import domain.Mascotas.Tamanio;
 import domain.Mascotas.TipoMascota;
 import domain.Asociacion.UbicacionDeDominio;
+import domain.services.HogaresDeTransitoDDS.CriteriosDeAdmision.CriterioAdmision;
+import domain.services.HogaresDeTransitoDDS.CriteriosDeAdmision.CriterioCaracteristicaAdicionales;
+import domain.services.HogaresDeTransitoDDS.CriteriosDeAdmision.CriterioTamanio;
+import domain.services.HogaresDeTransitoDDS.CriteriosDeAdmision.CriterioTipo;
 
+import java.util.Arrays;
 import java.util.List;
 
 // Clase molde
@@ -19,16 +24,22 @@ public class Hogar {
   public int lugaresDisponibles;
   public boolean patio;
   public List<String> caracteristicas;
+  private List<CriterioAdmision> criteriosAdmision = Arrays.asList(new CriterioTamanio(patio), new CriterioTipo(admisiones), new CriterioCaracteristicaAdicionales(caracteristicas));
 
+  public boolean admitePorCriterios(MascotaPerdidaSinChapita mascota, List<String> caracteristicas) {
+    return criteriosAdmision.stream().allMatch(criterio -> criterio.admite(mascota, caracteristicas));
+  }
+
+/*
   public boolean puedeAdmitirMascota(MascotaPerdidaSinChapita mascotaPerdida) {
     //especie tamanio y disponibilidad
     return this.hayCapacidad() && this.aceptaPorTamanio(mascotaPerdida) && this.aceptaPorTipo(mascotaPerdida);
-  }
+  }*/
 
-  private boolean hayCapacidad() {
+  public boolean hayCapacidad() {
     return this.capacidad >= 1;
   }
-
+/*
   private boolean aceptaPorTamanio(MascotaPerdidaSinChapita mascotaPerdida) {
     if (this.patio && this.tamanioParaPatio(mascotaPerdida)) {
       return true;
@@ -40,8 +51,8 @@ public class Hogar {
         // tiene patio pero la mascota es pequeña
       }
     }
-  }
-
+  }*/
+/*
   private boolean tamanioParaPatio(MascotaPerdidaSinChapita mascotaPerdida) {
     return mascotaPerdida.esDeTamanio(Tamanio.MEDIANO) || mascotaPerdida.esDeTamanio(Tamanio.GRANDE);
   }
@@ -52,7 +63,7 @@ public class Hogar {
 
   public boolean tieneRequerimientosExtras() {
     return !this.caracteristicas.isEmpty();
-  }
+  }*/
 
   public boolean tiene(List<String> caracteristicasMascota) {
     return caracteristicasMascota.containsAll(this.caracteristicas);
