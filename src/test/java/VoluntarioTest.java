@@ -8,9 +8,7 @@ import domain.Roles.DatosFormulario;
 import domain.Roles.Rescatista;
 import domain.Roles.Voluntario;
 import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class VoluntarioTest {

@@ -3,7 +3,6 @@ package domain.Publicaciones;
 import domain.Asociacion.Caracteristica;
 import domain.Roles.Contacto;
 import domain.Roles.Duenio;
-
 import java.util.List;
 
 public class PublicacionAdoptante {

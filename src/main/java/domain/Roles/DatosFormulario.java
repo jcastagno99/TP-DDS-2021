@@ -11,7 +11,8 @@ public class DatosFormulario {
   protected Contacto contacto;
   protected String direccion;
 
-  public DatosFormulario(String nombre, String apellido, LocalDate fechaNacimiento, String tipoDocumento, int numeroDocumento, Contacto contacto, String direccion) {
+  public DatosFormulario(String nombre, String apellido, LocalDate fechaNacimiento,
+      String tipoDocumento, int numeroDocumento, Contacto contacto, String direccion) {
     this.nombre = nombre;
     this.apellido = apellido;
     this.fechaNacimiento = fechaNacimiento;

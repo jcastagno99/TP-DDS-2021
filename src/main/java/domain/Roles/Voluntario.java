@@ -1,8 +1,6 @@
 package domain.Roles;
 
 import domain.Asociacion.Asociacion;
-import domain.Publicaciones.PublicacionMascotaPerdida;
-import domain.Mascotas.MascotaPerdidaConChapita;
 
 /* Si bien por ahora esta clase queda como un data class, no hay responsabilidades determiandas en
 * el voluntario; sólo parueba o rechaza publicaciones de mascotas perdidas sin chapita y habilita
@@ -18,5 +16,4 @@ public class Voluntario extends Usuario {
     super(usuario, contrasenia);
     this.asociacion = asociacion;
   }
-
 }

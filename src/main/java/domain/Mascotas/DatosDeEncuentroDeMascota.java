@@ -1,7 +1,6 @@
 package domain.Mascotas;
 
 import domain.Asociacion.UbicacionDeDominio;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +10,12 @@ public class DatosDeEncuentroDeMascota {
   private UbicacionDeDominio ubicacion;
   private List<String> fotos;
 
-  public DatosDeEncuentroDeMascota(String descripcionEstadoEncuentro, UbicacionDeDominio ubicacion, String foto, String ... fotos) {
+  public DatosDeEncuentroDeMascota(String descripcionEstadoEncuentro, UbicacionDeDominio ubicacion,
+      String foto, String ... fotos) {
     this.descripcionEstadoEncuentro = descripcionEstadoEncuentro;
     this.ubicacion = ubicacion;
     this.fotos = new ArrayList<>();
-   // TODO valdiacion de no nulo
+    // TODO valdiacion de no nulo
     this.fotos.add(foto);
 
   }

@@ -1,8 +1,5 @@
 package password;
 
-import domain.Roles.Usuario;
-import exception.ContraseniaInvalidaException;
-
 public class ValidadorLongitudContrasenia extends ValidadorContrasenia {
 
   public ValidadorLongitudContrasenia(String mensaje) {

@@ -3,7 +3,6 @@ package domain.Asociacion;
 import domain.Mascotas.MascotaRegistrada;
 import domain.Publicaciones.PublicacionMascotaPerdida;
 import domain.Roles.Duenio;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -25,17 +24,20 @@ public class RepositorioAsociaciones {
   }
 
   public Asociacion obtenerAsociacionMasCercaA(UbicacionDeDominio unaUbicacion) {
-    return this.asociaciones.stream().min(Comparator.comparing(asociacion -> asociacion.getUbicacion().calcularDistanciaA(unaUbicacion))).get();
+    return this.asociaciones.stream().min(Comparator.comparing(asociacion -> asociacion
+        .getUbicacion().calcularDistanciaA(unaUbicacion))).get();
   }
 
-  public Asociacion obtenerAsociacionALaQuePertenece(Duenio unDuenio) {
-    return this.asociaciones.stream().filter(asociacion -> asociacion.getDueniosRegistrados().contains(unDuenio)).collect(Collectors.toList()).get(0);
+  public Asociacion obtenerAsociacionA_LaQuePertenece(Duenio unDuenio) {
+    return this.asociaciones.stream().filter(asociacion -> asociacion.getDueniosRegistrados()
+        .contains(unDuenio)).collect(Collectors.toList()).get(0);
   }
 
 
   public List<PublicacionMascotaPerdida> getPublicaciones() {
     //TODO aplanar lista de lista de publicaciones de asociaciones
-    // Sólo deberian msotrarse los datos no sensibles del rescatista. luego, cuando alguien decida entrar en contacto con el, ahi si enviarle los datos por privado
+    // Sólo deberian mostrarse los datos no sensibles del rescatista. Luego, cuando alguien
+    // decida entrar en contacto con el,ahí sí enviarle los datos por privado
     return null;
   }
 
@@ -47,7 +49,8 @@ public class RepositorioAsociaciones {
     return preguntasObligatorias;
   }
 
-  public Asociacion obtenerAsociacionALaQuePerteneceMascota(MascotaRegistrada mascota){
-    return this.asociaciones.stream().filter(asociacion -> asociacion.getMascotasRegistradas().contains(mascota)).collect(Collectors.toList()).get(0);
+  public Asociacion obtenerAsociacionA_LaQuePerteneceMascota(MascotaRegistrada mascota) {
+    return this.asociaciones.stream().filter(asociacion -> asociacion.getMascotasRegistradas()
+        .contains(mascota)).collect(Collectors.toList()).get(0);
   }
 }

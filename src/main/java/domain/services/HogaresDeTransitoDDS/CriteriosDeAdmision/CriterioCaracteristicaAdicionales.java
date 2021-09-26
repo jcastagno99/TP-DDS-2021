@@ -1,10 +1,9 @@
 package domain.services.HogaresDeTransitoDDS.CriteriosDeAdmision;
 
 import domain.Mascotas.MascotaPerdidaSinChapita;
-
 import java.util.List;
 
-public class CriterioCaracteristicaAdicionales implements CriterioAdmision{
+public class CriterioCaracteristicaAdicionales implements CriterioAdmision {
   public List<String> caracteristicasHogar;
 
   public CriterioCaracteristicaAdicionales(List<String> caracteristicasHogar) {
@@ -12,7 +11,8 @@ public class CriterioCaracteristicaAdicionales implements CriterioAdmision{
   }
 
   @Override
-  public boolean admite(MascotaPerdidaSinChapita mascotaPerdida, List<String> caracteristicasMascota) {
+  public boolean admite(MascotaPerdidaSinChapita mascotaPerdida, List<String>
+      caracteristicasMascota) {
     return caracteristicasMascota.containsAll(this.caracteristicasHogar);
   }
 }

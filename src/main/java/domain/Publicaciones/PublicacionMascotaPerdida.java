@@ -3,7 +3,6 @@ package domain.Publicaciones;
 import domain.Asociacion.Asociacion;
 import domain.Mascotas.MascotaPerdidaSinChapita;
 import domain.Notificadores.Mail.MailSender;
-import domain.Publicaciones.EstadoPublicacion;
 import domain.Roles.DuenioNoRegistrado;
 import domain.Roles.Rescatista;
 
@@ -15,7 +14,8 @@ public class PublicacionMascotaPerdida { // Deberia ser publicacionMascotaPerdid
   private EstadoPublicacion estado;
   String link;
 
-  public PublicacionMascotaPerdida(MascotaPerdidaSinChapita mascota, Rescatista rescatista, Asociacion asociacion) {
+  public PublicacionMascotaPerdida(MascotaPerdidaSinChapita mascota, Rescatista rescatista,
+       Asociacion asociacion) {
     this.mascota = mascota;
     this.rescatista = rescatista;
     this.asociacion = asociacion;
@@ -49,6 +49,7 @@ public class PublicacionMascotaPerdida { // Deberia ser publicacionMascotaPerdid
 
   // Cuando el duenio encuentre en una publicación a su mascota, se llamará a este método
   // ("bindeado" a un onClick en la pblicación)
+
   public void notificarQueDuenioEncontroMascota(DuenioNoRegistrado duenioNoRegistrado) {
     // Elegimos que se le envíe la notificación por email
     MailSender mailSender = new MailSender();

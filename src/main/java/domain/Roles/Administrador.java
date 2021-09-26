@@ -4,21 +4,18 @@ import domain.Asociacion.Asociacion;
 
 public class Administrador extends Usuario {
 
-  Asociacion asociacionACargo;
+  Asociacion asociacionA_Cargo;
 
   public Administrador(String nombreAdm, String contrasenia, Asociacion asociacionACargo) {
     super(nombreAdm, contrasenia);
-    this.asociacionACargo = asociacionACargo;
+    this.asociacionA_Cargo = asociacionACargo;
   }
 
   public void agregarNuevaCaracteristica(String caracteristicaNueva) {
-    asociacionACargo.agregarCaracteristicasAMascotas(caracteristicaNueva);
+    asociacionA_Cargo.agregarCaracteristicasA_Mascotas(caracteristicaNueva);
   }
+
   public void eliminarCaracteristicaExistente(String caracteristicaExistente) {
-    asociacionACargo.eliminarCaracteristicaExistente(caracteristicaExistente);
+    asociacionA_Cargo.eliminarCaracteristicaExistente(caracteristicaExistente);
   }
-
-
-
-
 }

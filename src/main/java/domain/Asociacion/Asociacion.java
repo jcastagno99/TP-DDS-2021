@@ -38,9 +38,10 @@ public class Asociacion {
     this.mascotasPerdidasConChapita = new ArrayList<>();
   }
 
-  public void agregarCaracteristicasAMascotas(String caracteristicaNueva) {
+  public void agregarCaracteristicasA_Mascotas(String caracteristicaNueva) {
     if (this.caracteristicaExistente(caracteristicaNueva)) {
-      throw new CaracteristicaExistenteException("La caracteristica que se quiere agregar ya existe");
+      throw new CaracteristicaExistenteException("La caracteristica que se quiere agregar "
+          + "ya existe");
     }
     caracteristicasPedidas.add(new Caracteristica(caracteristicaNueva));
   }
@@ -48,18 +49,21 @@ public class Asociacion {
   public void eliminarCaracteristicaExistente(String caracteristicaExistente) {
 
     if (!this.caracteristicaExistente(caracteristicaExistente)) {
-      throw new CaracteristicaNoEncontradaException("La característica solicitada no se puede eliminar porque no existe");
+      throw new CaracteristicaNoEncontradaException("La característica solicitada no se puede "
+          + "eliminar porque no existe");
     }
     this.removerCaracteristica(caracteristicaExistente);
   }
 
-  public void removerCaracteristica(String tipoCaracteristica){
-    Caracteristica temporal = caracteristicasPedidas.stream().filter(caracteristica -> caracteristica.esTipo(tipoCaracteristica)).collect(Collectors.toList()).get(0);
+  public void removerCaracteristica(String tipoCaracteristica) {
+    Caracteristica temporal = caracteristicasPedidas.stream().filter(caracteristica ->
+        caracteristica.esTipo(tipoCaracteristica)).collect(Collectors.toList()).get(0);
     caracteristicasPedidas.remove(temporal);
   }
 
   public boolean caracteristicaExistente(String tipoCaracteristica) {
-    return caracteristicasPedidas.stream().anyMatch(caracteristica -> caracteristica.getTipo().equals(tipoCaracteristica));
+    return caracteristicasPedidas.stream().anyMatch(caracteristica ->
+        caracteristica.getTipo().equals(tipoCaracteristica));
   }
 
   public void agregarMascota(MascotaRegistrada mascota) {
@@ -67,7 +71,8 @@ public class Asociacion {
   }
 
   public void crearPublicacion(MascotaPerdidaSinChapita mascota, Rescatista rescatista) {
-    PublicacionMascotaPerdida publicacion = new PublicacionMascotaPerdida(mascota, rescatista, this);
+    PublicacionMascotaPerdida publicacion = new PublicacionMascotaPerdida(mascota,
+        rescatista, this);
     publicaciones.add(publicacion);
   }
 
@@ -90,14 +95,19 @@ public class Asociacion {
             this.matchearPublicaciones(publicacionAdoptante, publicacionesAdopcion)));
   }
 
-  List<PublicacionAdopcion> matchearPublicaciones(PublicacionAdoptante persona, List<PublicacionAdopcion> lista) {
-    return lista.stream().filter(publicacionAdopcion -> publicacionAdopcion.seAdaptaA(persona)).collect(Collectors.toList());
+  List<PublicacionAdopcion> matchearPublicaciones(PublicacionAdoptante persona,
+      List<PublicacionAdopcion> lista) {
+    return lista.stream().filter(publicacionAdopcion ->
+        publicacionAdopcion.seAdaptaA(persona)).collect(Collectors.toList());
   }
 
-  void enviarMailRecomendacion(PublicacionAdoptante adoptante, List<PublicacionAdopcion> publicacionesAdopcion) {
+  void enviarMailRecomendacion(PublicacionAdoptante adoptante, List<PublicacionAdopcion>
+      publicacionesAdopcion) {
     String cuerpoMail = "Links a las publicaciones: ";
     List<String> links = new ArrayList<>();
-    publicacionesAdopcion.forEach(publicacion -> {links.add(publicacion.getLink() + ", ");});
+    publicacionesAdopcion.forEach(publicacion -> {
+      links.add(publicacion.getLink() + ", "); }
+    );
     //TODO usar map y join, repreguntar
     //Mail unMail = new Mail("Recomendaciones semanales", cuerpoMail.concat(links.toString()), "noreplay@Asociacion");
     //MailSender.instance().sendMail(unMail, adoptante.getContacto().getEmail());
@@ -127,7 +137,8 @@ public class Asociacion {
     return publicaciones;
   }
 
-  public void agregarNuevaMascotaPerdidaConChapita(MascotaPerdidaConChapita mascotaPerdidaConChapita) {
+  public void agregarNuevaMascotaPerdidaConChapita(MascotaPerdidaConChapita
+      mascotaPerdidaConChapita) {
     this.mascotasPerdidasConChapita.add(mascotaPerdidaConChapita);
   }
 }

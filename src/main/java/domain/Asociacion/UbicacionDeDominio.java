@@ -18,7 +18,8 @@ public class UbicacionDeDominio {
   }
 
   public double calcularDistanciaA(UbicacionDeDominio otraUbicacion) {
-    return Math.hypot((latitud - otraUbicacion.getLatitud()),longitud - otraUbicacion.getLongitud());
+    return Math.hypot((latitud - otraUbicacion.getLatitud()), longitud
+        - otraUbicacion.getLongitud());
   }
 
 }

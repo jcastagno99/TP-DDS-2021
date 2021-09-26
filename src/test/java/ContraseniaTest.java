@@ -4,7 +4,6 @@ import exception.ContraseniaInvalidaException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-
 public class ContraseniaTest {
   private UbicacionDeDominio ubiCallejeritos = new UbicacionDeDominio(-35, -45);
   private Usuario pepito = new Usuario("Pepe","753951pepe");

@@ -1,14 +1,15 @@
 package domain.Roles;
 
-import domain.Asociacion.*;
-import domain.Notificadores.Mail.Mail;
+import domain.Asociacion.Asociacion;
+import domain.Asociacion.Caracteristica;
+import domain.Asociacion.RepositorioAsociaciones;
 import domain.Mascotas.DatosDeEncuentroDeMascota;
 import domain.Mascotas.MascotaRegistrada;
+import domain.Notificadores.Mail.Mail;
 import domain.Notificadores.MedioDeNotificacion;
 import domain.Publicaciones.PublicacionAdopcion;
 import domain.Publicaciones.PublicacionAdoptante;
 import domain.Publicaciones.PublicacionMascotaPerdida;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,7 +22,9 @@ public class Duenio extends Usuario {
     private Contacto contacto;
     private List<MedioDeNotificacion> mediosNotificacion; // observer
 
-  public Duenio(String usuario, String contrasenia, Asociacion asociacion, String nombre, String apellido, LocalDate fechaNacimiento, String tipoDocumento, int numeroDocumento, Contacto contacto) {
+  public Duenio(String usuario, String contrasenia, Asociacion asociacion, String nombre,
+       String apellido, LocalDate fechaNacimiento, String tipoDocumento, int numeroDocumento,
+       Contacto contacto) {
     super(usuario, contrasenia);
     this.nombre = nombre;
     this.apellido = apellido;
@@ -49,15 +52,21 @@ public class Duenio extends Usuario {
 
   //La asociacion llega cuando el usuario la selecciona por UI
   void darEnAdopcion(MascotaRegistrada unaMascota) {
-    Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionALaQuePertenece(this);
-    PublicacionAdopcion publicacion = new PublicacionAdopcion(unaMascota,contacto);
+    Asociacion asociacion = RepositorioAsociaciones.instance()
+        .obtenerAsociacionA_LaQuePertenece(this);
+    PublicacionAdopcion publicacion = new PublicacionAdopcion(unaMascota, contacto);
     asociacion.agregarPublicacionAdopcion(publicacion);
   }
 
-  //Similar al metodo de arriba, si el Usuario puede elegir la asociacion esta deberia llegar por parametro, tal vez por UI
-  void quieroAdoptar(List<Caracteristica> preferencias, List<String> comodidades, Asociacion asociacion) {
+  //Similar al metodo de arriba, si el Usuario puede elegir la asociacion esta deberia llegar
+  // por parametro, tal vez por UI
+
+  void quieroAdoptar(List<Caracteristica> preferencias, List<String> comodidades,
+      Asociacion asociacion) {
     PublicacionAdoptante publicacion = new PublicacionAdoptante(preferencias, comodidades);
-    Mail unMail = new Mail("Su publicación fue creada, le enviamos el link para eliminarla","https://pelispedia.com","noreplay@Asociacion");
+    Mail unMail = new Mail("Su publicación fue creada, le enviamos el link para eliminarla",
+        "https://pelispedia.com","noreplay@Asociacion")
+        ;
     //MailSender.instance().sendMail(unMail,contacto.getEmail());
     // TODO
     asociacion.agregarPublicacionAdoptante(publicacion);

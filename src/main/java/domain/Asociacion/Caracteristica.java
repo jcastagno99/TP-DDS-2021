@@ -9,7 +9,7 @@ public class Caracteristica {
     this.tipo = tipo;
   }
 
-  public boolean esTipo(String unTipo){
+  public boolean esTipo(String unTipo) {
     return unTipo.equals(tipo);
   }
 

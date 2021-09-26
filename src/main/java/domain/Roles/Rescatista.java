@@ -1,12 +1,12 @@
 package domain.Roles;
 
-import domain.services.HogaresDeTransitoDDS.ServicioHogaresDeTransitoDDS;
+import domain.services.HogaresDeTransitoDDS.ServicioHogaresDeTransitoDds;
 import domain.services.HogaresDeTransitoDDS.entities.Hogar;
 import java.io.IOException;
 import java.util.List;
 
 
-public class Rescatista{
+public class Rescatista {
 
   DatosFormulario datosFormulario;
 
@@ -15,10 +15,10 @@ public class Rescatista{
   }
 
   public List<Hogar> solicitarHogares() throws  IOException {
-    return ServicioHogaresDeTransitoDDS.instance().listarHogares();
+    return ServicioHogaresDeTransitoDds.instance().listarHogares();
   }
 
-  public DatosFormulario getDatosFormulario(){
+  public DatosFormulario getDatosFormulario() {
     return datosFormulario;
   }
 }

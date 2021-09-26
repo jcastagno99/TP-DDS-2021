@@ -16,4 +16,5 @@ public class Pregunta {
     this.respuesta = respuesta;
     //Este metodo se llama cuando selecciona la respuesta dentro de la pool de respuestas posibles
   }
+
 }

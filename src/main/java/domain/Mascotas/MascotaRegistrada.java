@@ -3,7 +3,6 @@ package domain.Mascotas;
 import domain.Asociacion.Asociacion;
 import domain.Asociacion.Caracteristica;
 import domain.Roles.Duenio;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +19,8 @@ public class MascotaRegistrada {
   private List<Caracteristica> caracteristicas;
   private List<String> necesidades;
 
-  public MascotaRegistrada(TipoMascota tipoMascota, String nombre, String apodo, int edadAproximada, Sexo sexo, String descripcionFisica, String fotos) {
+  public MascotaRegistrada(TipoMascota tipoMascota, String nombre, String apodo, int
+      edadAproximada, Sexo sexo, String descripcionFisica, String fotos) {
     this.tipoMascota = tipoMascota;
     this.nombre = nombre;
     this.apodo = apodo;
@@ -42,6 +42,7 @@ public class MascotaRegistrada {
   //TODO esto funciona solamente si no se agregan varias caracteristicas con un misto tipo EJ: 2 alturas
   // para caracteristicas con sentido como el color, se pueden usar respuestas compuestas o 2 tipos diferentes, EJ:
   // COLORPRIMARIO, COLORSECUNDARIO
+  
   public Caracteristica buscarCaracteristica(String tipoCaracteristica) {
     return caracteristicas.stream().filter(caracteristica -> caracteristica.esTipo(tipoCaracteristica)).collect(Collectors.toList()).get(0);
   }

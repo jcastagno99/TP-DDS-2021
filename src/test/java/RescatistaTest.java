@@ -3,7 +3,6 @@ import domain.MascotasPerdidasManagement.RepositorioMascotasPerdidas;
 import domain.Roles.Contacto;
 import domain.Roles.DatosFormulario;
 import domain.Roles.Rescatista;
-
 import java.time.LocalDate;
 
 public class RescatistaTest {

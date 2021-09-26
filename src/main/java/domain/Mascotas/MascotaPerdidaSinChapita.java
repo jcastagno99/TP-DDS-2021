@@ -13,7 +13,7 @@ public class MascotaPerdidaSinChapita {
 
 
   public MascotaPerdidaSinChapita(Rescatista rescatista, DatosDeEncuentroDeMascota datos,
-                                  Tamanio tamanio, TipoMascota tipo) {
+      Tamanio tamanio, TipoMascota tipo) {
     this.datosDeEncuentroDeMascota = datos;
     this.fechaEncuentro = LocalDate.now();
     this.rescatista = rescatista;
