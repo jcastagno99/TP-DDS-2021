@@ -6,19 +6,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ContraseniaTest {
   private UbicacionDeDominio ubiCallejeritos = new UbicacionDeDominio(-35, -45);
-  private Usuario pepito = new Usuario("Pepe","753951pepe");
+  private Usuario pepito = new Usuario("Pepe","753951pepe", "Pepito", "Cibrian");
 
 
   @Test
   public void unaContraseniaEsDemasiadoComun(){
-    Throwable exception = assertThrows(ContraseniaInvalidaException.class,()->new Usuario("Juan","password"));
-    assertEquals("La contrasenia pertenece a las 10k mas usadas",exception.getMessage());
+    Throwable exception = assertThrows(ContraseniaInvalidaException.class,() -> new Usuario("Juan","password", "Juancito", "Perez"));
+    assertEquals("La contrasenia pertenece a las 10k mas usadas", exception.getMessage());
   }
 
   @Test
   public void unaContraseniaEsDemasiadoCorta(){
-    Throwable exception = assertThrows(ContraseniaInvalidaException.class,()->new Usuario("Pablo","1"));
-    assertEquals("La contrasenia es demasiado corta",exception.getMessage());
+    Throwable exception = assertThrows(ContraseniaInvalidaException.class,() -> new Usuario("Pablo","1", "Pablo", "Fernandez"));
+    assertEquals("La contrasenia es demasiado corta", exception.getMessage());
   }
 
   @Test
@@ -28,7 +28,7 @@ public class ContraseniaTest {
 
   @Test
   public void unaContraseniaContieneAlUsuario(){
-    Throwable exception = assertThrows(ContraseniaInvalidaException.class,()->new Usuario("Juan","1233123123Juan"));
-    assertEquals("La contrasenia contiene al usuario",exception.getMessage());
+    Throwable exception = assertThrows(ContraseniaInvalidaException.class, () -> new Usuario("Juan","1233123123Juan", "Harry", "Styles"));
+    assertEquals("La contrasenia contiene al usuario", exception.getMessage());
   }
 }

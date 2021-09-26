@@ -42,9 +42,10 @@ public class MascotaRegistrada {
   //TODO esto funciona solamente si no se agregan varias caracteristicas con un misto tipo EJ: 2 alturas
   // para caracteristicas con sentido como el color, se pueden usar respuestas compuestas o 2 tipos diferentes, EJ:
   // COLORPRIMARIO, COLORSECUNDARIO
-  
+
   public Caracteristica buscarCaracteristica(String tipoCaracteristica) {
-    return caracteristicas.stream().filter(caracteristica -> caracteristica.esTipo(tipoCaracteristica)).collect(Collectors.toList()).get(0);
+    return caracteristicas.stream().filter(caracteristica -> caracteristica
+    .esTipo(tipoCaracteristica)).collect(Collectors.toList()).get(0);
   }
 
   public void setDuenio(Duenio duenio) {

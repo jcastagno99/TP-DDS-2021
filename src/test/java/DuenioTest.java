@@ -17,7 +17,7 @@ public class DuenioTest {
   private UbicacionDeDominio ubicacionCallejeritos = new UbicacionDeDominio(34, 65);
   private Asociacion callejeritos = new Asociacion(ubicacionCallejeritos);
 
-  private Contacto pepeContacto = new Contacto("Pepe Oscar",  "Mezar",540111587,"pepeMezar@pimientaNegra.com");
+  private Contacto pepeContacto = new Contacto(540111587,"pepeMezar@pimientaNegra.com");
   private Duenio pepe = new Duenio("PepeOscar",  "Mezar1234567", callejeritos,"Pepe","Chavez",LocalDate.now(),"DNI",19875698,pepeContacto);
 
 

@@ -9,7 +9,7 @@ public class RescatistaTest {
 
   private RepositorioMascotasPerdidas repo = RepositorioMascotasPerdidas.instance();
   private UbicacionDeDominio ubicacion = new UbicacionDeDominio(2474,21334);
-  private Contacto burroContacto = new Contacto("Burro","Rodriguez",540111587,"burroMezar@pimientaNegra.com");
+  private Contacto burroContacto = new Contacto(540111587,"burroMezar@pimientaNegra.com");
   private DatosFormulario datosFormulario = new DatosFormulario("Shrek","Ogro", LocalDate.now(),"DNI",3,burroContacto,"MuyMuyLejano");
   private Rescatista shrek = new Rescatista(datosFormulario);
 

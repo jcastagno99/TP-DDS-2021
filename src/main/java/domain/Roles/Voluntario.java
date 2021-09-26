@@ -12,8 +12,9 @@ public class Voluntario extends Usuario {
 
   Asociacion asociacion;
 
-  public Voluntario(String usuario, String contrasenia, Asociacion asociacion) {
-    super(usuario, contrasenia);
+  public Voluntario(String usuario, String contrasenia, Asociacion asociacion,
+                    String nombre, String apellido) {
+    super(usuario, contrasenia, nombre, apellido);
     this.asociacion = asociacion;
   }
 }

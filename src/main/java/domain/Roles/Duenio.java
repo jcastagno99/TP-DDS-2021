@@ -14,20 +14,17 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Duenio extends Usuario {
-    private String nombre;
-    private String apellido;
-    private LocalDate fechaNacimiento;
-    private String tipoDocumento;
-    private int numeroDocumento;
-    private Contacto contacto;
-    private List<MedioDeNotificacion> mediosNotificacion; // observer
+
+  private LocalDate fechaNacimiento;
+  private String tipoDocumento;
+  private int numeroDocumento;
+  private Contacto contacto;
+  private List<MedioDeNotificacion> mediosNotificacion; // observer
 
   public Duenio(String usuario, String contrasenia, Asociacion asociacion, String nombre,
        String apellido, LocalDate fechaNacimiento, String tipoDocumento, int numeroDocumento,
        Contacto contacto) {
-    super(usuario, contrasenia);
-    this.nombre = nombre;
-    this.apellido = apellido;
+    super(usuario, contrasenia, nombre, apellido);
     this.fechaNacimiento = fechaNacimiento;
     this.tipoDocumento = tipoDocumento;
     this.numeroDocumento = numeroDocumento;
@@ -40,10 +37,6 @@ public class Duenio extends Usuario {
     mascota.copiarCaracteristicas(unaAsoc);
     unaAsoc.agregarMascota(mascota);
     mascota.setDuenio(this);
-  }
-
-  public String getApellido() {
-    return apellido;
   }
 
   public List<PublicacionMascotaPerdida> verPublicaciones() {

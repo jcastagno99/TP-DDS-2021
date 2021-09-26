@@ -10,7 +10,7 @@ public class AsociacionTest {
 
   private UbicacionDeDominio ubiCallejeritos = new UbicacionDeDominio(-35, -45);
   private Asociacion callejeritos =  new Asociacion(ubiCallejeritos);
-  private Contacto pepeContacto = new Contacto("Pepe Oscar",  "Mezar",540111587,"pepeMezar@pimientaNegra.com");
+  private Contacto pepeContacto = new Contacto(540111587,"pepeMezar@pimientaNegra.com");
   private Duenio pepe = new Duenio("PepeOscar",  "Mezar1234567", callejeritos,"Pepe","Chavez", LocalDate.now(),"DNI",19875698, pepeContacto);
 
   @Test
