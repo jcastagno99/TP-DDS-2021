@@ -7,19 +7,30 @@ import domain.Mascotas.MascotaRegistrada;
 import domain.Roles.Contacto;
 import domain.Roles.Duenio;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class PublicacionAdopcion {
 
+  @OneToOne
   MascotaRegistrada mascota;
+  @ManyToOne
   Contacto contactoDuenio;
+  @OneToMany
   private List<Pregunta> preguntas = RepositorioAsociaciones.instance().getPreguntasObligatorias();
   String link; // Se genera con interfaz web, de momento lo dejo aca para hacer la lógica del envio de mail
+
+  @Id
+  @GeneratedValue
+  private long id;
 
   public PublicacionAdopcion(MascotaRegistrada mascota, Contacto contactoDuenio) {
     this.mascota = mascota;
     this.contactoDuenio = contactoDuenio;
   }
+
+  public PublicacionAdopcion(){}
 
   public void agregarPreguntas(List<Pregunta> preguntasNuevas) {
     preguntas.addAll(preguntasNuevas);

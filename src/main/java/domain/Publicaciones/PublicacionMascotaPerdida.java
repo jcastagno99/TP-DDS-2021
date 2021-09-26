@@ -6,13 +6,23 @@ import domain.Notificadores.Mail.MailSender;
 import domain.Roles.DuenioNoRegistrado;
 import domain.Roles.Rescatista;
 
+import javax.persistence.*;
+
+@Entity
 public class PublicacionMascotaPerdida { // Deberia ser publicacionMascotaPerdidaSinChapita
 
+  @OneToOne
   private MascotaPerdidaSinChapita mascota;
+  @OneToOne
   private Rescatista rescatista;
+  @ManyToOne
   private Asociacion asociacion;
   private EstadoPublicacion estado;
   String link;
+
+  @Id
+  @GeneratedValue
+  private long id;
 
   public PublicacionMascotaPerdida(MascotaPerdidaSinChapita mascota, Rescatista rescatista,
        Asociacion asociacion) {
@@ -22,6 +32,8 @@ public class PublicacionMascotaPerdida { // Deberia ser publicacionMascotaPerdid
     this.estado = EstadoPublicacion.PENDIENTE;
     this.link = "unLinkGenerado...";
   }
+
+  public PublicacionMascotaPerdida(){}
 
   public MascotaPerdidaSinChapita getMascota() {
     return mascota;

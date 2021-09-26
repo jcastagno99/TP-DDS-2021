@@ -3,10 +3,13 @@ package domain.Mascotas;
 import domain.Asociacion.Asociacion;
 import domain.Asociacion.Caracteristica;
 import domain.Roles.Duenio;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Entity
 public class MascotaRegistrada {
   private TipoMascota tipoMascota;
   private String nombre;
@@ -15,9 +18,16 @@ public class MascotaRegistrada {
   private Sexo sexo;
   private String descripcionFisica;
   private String fotos;
+  @ManyToOne
   private Duenio miDuenio;
+  @ManyToMany
   private List<Caracteristica> caracteristicas;
+  @ElementCollection
   private List<String> necesidades;
+
+  @Id
+  @GeneratedValue
+  private long id;
 
   public MascotaRegistrada(TipoMascota tipoMascota, String nombre, String apodo, int
       edadAproximada, Sexo sexo, String descripcionFisica, String fotos) {
@@ -30,6 +40,8 @@ public class MascotaRegistrada {
     this.fotos = fotos;
     this.caracteristicas = new ArrayList<>();
   }
+
+  public MascotaRegistrada(){}
 
   public void copiarCaracteristicas(Asociacion unaAsoc) {
     this.caracteristicas = unaAsoc.getCaracteristicasPedidas();

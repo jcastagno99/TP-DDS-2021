@@ -1,14 +1,25 @@
 package domain.Mascotas;
 
 import domain.Asociacion.UbicacionDeDominio;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class DatosDeEncuentroDeMascota {
 
   private String descripcionEstadoEncuentro;
+
+  @OneToOne
   private UbicacionDeDominio ubicacion;
+
+  @ElementCollection
   private List<String> fotos;
+
+  @Id
+  @GeneratedValue
+  private long id;
 
   public DatosDeEncuentroDeMascota(String descripcionEstadoEncuentro, UbicacionDeDominio ubicacion,
       String foto, String ... fotos) {
@@ -19,6 +30,8 @@ public class DatosDeEncuentroDeMascota {
     this.fotos.add(foto);
 
   }
+
+  public DatosDeEncuentroDeMascota(){}
 
   public UbicacionDeDominio getUbicacion() {
     return this.ubicacion;

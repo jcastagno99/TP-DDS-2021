@@ -1,15 +1,23 @@
 package domain.Roles;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
 public class DatosFormulario {
   protected String nombre;
   protected String apellido;
   protected LocalDate fechaNacimiento;
   protected String tipoDocumento;
   protected int numeroDocumento;
+
+  @OneToOne
   protected Contacto contacto;
   protected String direccion;
+
+  @Id
+  @GeneratedValue
+  private long id;
 
   public DatosFormulario(String nombre, String apellido, LocalDate fechaNacimiento,
       String tipoDocumento, int numeroDocumento, Contacto contacto, String direccion) {
@@ -21,6 +29,8 @@ public class DatosFormulario {
     this.contacto = contacto;
     this.direccion = direccion;
   }
+
+  public DatosFormulario(){}
 
   public String getNombre() {
     return nombre;

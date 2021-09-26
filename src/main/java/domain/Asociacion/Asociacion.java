@@ -11,20 +11,38 @@ import domain.Roles.Rescatista;
 import exception.CaracteristicaExistenteException;
 import exception.CaracteristicaNoEncontradaException;
 
+import javax.annotation.Generated;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Entity
+@Table(name = "Asociaciones")
 public class Asociacion {
-  private List<MascotaRegistrada> mascotasRegistradas;
-  private List<Duenio> dueniosRegistrados;
-  private List<Caracteristica> caracteristicasPedidas;
-  private UbicacionDeDominio ubicacion;
-  private ArrayList<PublicacionMascotaPerdida> publicaciones;
-  private ArrayList<PublicacionAdopcion> publicacionesAdopcion;
-  private ArrayList<PublicacionAdoptante> publicacionesAdoptante;
+
+  @OneToMany
+  public List<MascotaRegistrada> mascotasRegistradas;
+  @OneToMany
+  public List<Duenio> dueniosRegistrados;
+  @ManyToMany
+  public List<Caracteristica> caracteristicasPedidas;
+  @OneToOne
+  public UbicacionDeDominio ubicacion;
+  @OneToMany //Puede ser un ManyToMany????
+  private List<PublicacionMascotaPerdida> publicaciones;
+  @OneToMany
+  private List<PublicacionAdopcion> publicacionesAdopcion;
+  @OneToMany
+  private List<PublicacionAdoptante> publicacionesAdoptante;
+  @ManyToMany
   private List<Pregunta> preguntasAdopcion;
+  @OneToMany
   private List<MascotaPerdidaConChapita> mascotasPerdidasConChapita;
+
+  @Id
+  @GeneratedValue
+  private long id;
 
 
   public Asociacion(UbicacionDeDominio ubicacion) {
@@ -37,6 +55,8 @@ public class Asociacion {
     RepositorioAsociaciones.instance().agregarAsociacion(this);
     this.mascotasPerdidasConChapita = new ArrayList<>();
   }
+
+  public Asociacion(){}
 
   public void agregarCaracteristicasA_Mascotas(String caracteristicaNueva) {
     if (this.caracteristicaExistente(caracteristicaNueva)) {
@@ -133,7 +153,7 @@ public class Asociacion {
     return mascotasRegistradas;
   }
 
-  public ArrayList<PublicacionMascotaPerdida> getPublicaciones() {
+  public List<PublicacionMascotaPerdida> getPublicaciones() {
     return publicaciones;
   }
 

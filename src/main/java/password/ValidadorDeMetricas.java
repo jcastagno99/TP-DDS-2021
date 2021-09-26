@@ -3,7 +3,8 @@ package password;
 import java.util.Arrays;
 import java.util.List;
 
-public class ValidadorDeMetricas {
+public class ValidadorDeMetricas{
+
   private final List<ValidadorContrasenia> validadores;
 
   public ValidadorDeMetricas() {
@@ -12,6 +13,7 @@ public class ValidadorDeMetricas {
         + "contrasenia es demasiado corta"), new ValidadorContraseniaNoContieneUsuario(
  "La contrasenia contiene al usuario"));
   }
+
 
   public void validar(String usuario, String contrasenia) {
     validadores.forEach(validador -> validador.validar(usuario, contrasenia));

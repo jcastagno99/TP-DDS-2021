@@ -3,14 +3,31 @@ package domain.Mascotas;
 import domain.Asociacion.Asociacion;
 import domain.Asociacion.RepositorioAsociaciones;
 import domain.Roles.Rescatista;
-import java.time.LocalDate;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+@Entity
 public class MascotaPerdidaConChapita {
+
+  @ManyToOne
   private Rescatista rescatista;
+
+  @OneToOne
   private MascotaRegistrada mascotaPerdidaExistente;
+
+  @OneToOne
   private DatosDeEncuentroDeMascota encuentro;
+
+
   private LocalDate fechaEncuentro;
 
+
+  public MascotaPerdidaConChapita(){
+  }
+
+  @Id
+  @GeneratedValue
+  private long id;
 
   // MascotaPerdidaExistente es una mascota registrada en una asociación
   public MascotaPerdidaConChapita(Rescatista rescatista, MascotaRegistrada mascotaPerdidaExistente,
