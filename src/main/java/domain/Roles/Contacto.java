@@ -1,9 +1,11 @@
 package domain.Roles;
 
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Entity;
 
+@Embeddable
 @Entity
 public class Contacto {
 

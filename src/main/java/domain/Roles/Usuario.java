@@ -1,12 +1,13 @@
 package domain.Roles;
 
+import org.hibernate.annotations.GenericGenerator;
 import password.ValidadorDeMetricas;
 
 import javax.persistence.*;
 
 
 @Entity
-public class Usuario {
+public abstract class Usuario {
 
   private String usuario;
   private String contrasenia;
@@ -25,7 +26,8 @@ public class Usuario {
   }
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   private long id;
 
   public Usuario() {}

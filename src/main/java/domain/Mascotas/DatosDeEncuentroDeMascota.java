@@ -11,7 +11,7 @@ public class DatosDeEncuentroDeMascota {
 
   private String descripcionEstadoEncuentro;
 
-  @OneToOne
+  @Embedded
   private UbicacionDeDominio ubicacion;
 
   @ElementCollection

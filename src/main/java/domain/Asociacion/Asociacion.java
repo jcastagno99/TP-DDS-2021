@@ -10,7 +10,6 @@ import domain.Roles.Duenio;
 import domain.Roles.Rescatista;
 import exception.CaracteristicaExistenteException;
 import exception.CaracteristicaNoEncontradaException;
-
 import javax.annotation.Generated;
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,9 +26,9 @@ public class Asociacion {
   public List<Duenio> dueniosRegistrados;
   @ManyToMany
   public List<Caracteristica> caracteristicasPedidas;
-  @OneToOne
+  @Embedded
   public UbicacionDeDominio ubicacion;
-  @OneToMany //Puede ser un ManyToMany????
+  @OneToMany
   private List<PublicacionMascotaPerdida> publicaciones;
   @OneToMany
   private List<PublicacionAdopcion> publicacionesAdopcion;

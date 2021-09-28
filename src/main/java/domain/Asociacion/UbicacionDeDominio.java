@@ -1,10 +1,10 @@
 package domain.Asociacion;
 
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+@Embeddable
 public class UbicacionDeDominio {
   double latitud;
   double longitud;

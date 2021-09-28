@@ -22,7 +22,7 @@ public class Duenio extends Usuario {
   private String tipoDocumento;
   private int numeroDocumento;
 
-  @OneToOne
+  @Embedded
   private Contacto contacto;
 
   @Transient

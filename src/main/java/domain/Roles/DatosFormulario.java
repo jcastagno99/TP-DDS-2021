@@ -11,7 +11,7 @@ public class DatosFormulario {
   protected String tipoDocumento;
   protected int numeroDocumento;
 
-  @OneToOne
+  @Embedded
   protected Contacto contacto;
   protected String direccion;
 
