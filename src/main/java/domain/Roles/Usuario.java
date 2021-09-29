@@ -25,8 +25,9 @@ public abstract class Usuario {
   }
 
   @Id
+  @GeneratedValue(strategy = GenerationType.TABLE)
   //@GeneratedValue(generator = "UUID")
-  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDDGenerator")
+  //@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDDGenerator")
   private long id;
 
   public Usuario() {}

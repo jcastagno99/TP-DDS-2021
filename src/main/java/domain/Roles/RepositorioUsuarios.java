@@ -1,11 +1,9 @@
 package domain.Roles;
 
-import domain.Asociacion.RepositorioAsociaciones;
+import exception.BusquedaEnBaseDeDatosException;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
-
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.NoResultException;
 
 public class RepositorioUsuarios implements WithGlobalEntityManager {
 
@@ -15,36 +13,43 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
     return INSTANCE;
   }
 
-  /*public Administrador buscarAdministrador(String usuario, String contrasenia) {
-      EntityManager entityManager = this.entityManager();
-      return (Administrador) entityManager.createQuery("from Administrador").getSingleResult();
-  }*/
-
-  private List<Administrador> administradores = new ArrayList<>();
-  private List<Duenio> duenios = new ArrayList<>();
-  private List<Voluntario> voluntarios = new ArrayList<>();
-
-  public List<Administrador> getAdministradores() {
-    return administradores;
+  public Administrador buscarAdministrador(String nombreUsuario, String contrasenia) {
+    EntityManager entityManager = this.entityManager();
+    try {
+      Administrador admin = (Administrador) entityManager.createQuery("from Administrador a where a.usuario = :nombreDeUsuario and a.contrasenia = :contrasenia")
+          .setParameter("nombreDeUsuario", nombreUsuario)
+          .setParameter("contrasenia", contrasenia)
+          .getSingleResult();
+      return admin;
+    }  catch(NoResultException e) {
+      throw new BusquedaEnBaseDeDatosException("No se ha encontrado un usuario registrado con los datos de inicio de sesión aportados");
+    }
   }
 
-  public void setAdministradores(List<Administrador> administradores) {
-    this.administradores = administradores;
+  public Duenio buscarDuenio(String nombreUsuario, String contrasenia) {
+    EntityManager entityManager = this.entityManager();
+    try {
+      Duenio duenio = (Duenio) entityManager.createQuery("from Duenio a where a.usuario = :nombreDeUsuario and a.contrasenia = :contrasenia")
+          .setParameter("nombreDeUsuario", nombreUsuario)
+          .setParameter("contrasenia", contrasenia)
+          .getSingleResult();
+      return duenio;
+    }  catch(NoResultException e) {
+      throw new BusquedaEnBaseDeDatosException("No se ha encontrado un usuario registrado con los datos de inicio de sesión aportados");
+    }
   }
 
-  public List<Duenio> getDuenios() {
-    return duenios;
+  public Voluntario buscarVoluntario(String nombreUsuario, String contrasenia) {
+    EntityManager entityManager = this.entityManager();
+    try {
+      Voluntario voluntario = (Voluntario) entityManager.createQuery("from Voluntario a where a.usuario = :nombreDeUsuario and a.contrasenia = :contrasenia")
+          .setParameter("nombreDeUsuario", nombreUsuario)
+          .setParameter("contrasenia", contrasenia)
+          .getSingleResult();
+      return voluntario;
+    }  catch(NoResultException e) {
+      throw new BusquedaEnBaseDeDatosException("No se ha encontrado un usuario registrado con los datos de inicio de sesión aportados");
+    }
   }
 
-  public void setDuenios(List<Duenio> duenios) {
-    this.duenios = duenios;
-  }
-
-  public List<Voluntario> getVoluntarios() {
-    return voluntarios;
-  }
-
-  public void setVoluntarios(List<Voluntario> voluntarios) {
-    this.voluntarios = voluntarios;
-  }
 }
