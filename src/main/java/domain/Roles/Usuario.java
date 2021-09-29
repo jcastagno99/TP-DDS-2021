@@ -6,7 +6,7 @@ import password.ValidadorDeMetricas;
 import javax.persistence.*;
 
 
-@Entity
+//@Entity
 public abstract class Usuario {
 
   private String usuario;
@@ -25,9 +25,9 @@ public abstract class Usuario {
     this.apellido = apellido;
   }
 
-  @Id
-  @GeneratedValue(generator = "UUID")
-  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  //@Id
+  //@GeneratedValue(generator = "UUID")
+  //@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   private long id;
 
   public Usuario() {}

@@ -9,11 +9,6 @@ public class UbicacionDeDominio {
   double latitud;
   double longitud;
 
-  @Id
-  @GeneratedValue
-  private long id;
-
-
   public UbicacionDeDominio(double latitud, double longitud) {
     this.latitud = latitud;
     this.longitud = longitud;

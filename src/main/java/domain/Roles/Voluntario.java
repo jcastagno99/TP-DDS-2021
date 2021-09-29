@@ -3,6 +3,8 @@ package domain.Roles;
 import domain.Asociacion.Asociacion;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 /* Si bien por ahora esta clase queda como un data class, no hay responsabilidades determiandas en
@@ -13,6 +15,11 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Voluntario extends Usuario {
+
+  // TODO este campo se pone para poder persistir el Administrador, pero sin mapear la herencia por el error que aparece
+  @Id
+  @GeneratedValue
+  private long id;
 
   @OneToOne
   Asociacion asociacion;
