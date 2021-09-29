@@ -22,11 +22,6 @@ public class Duenio extends Usuario {
   private String tipoDocumento;
   private int numeroDocumento;
 
-  // TODO este campo se pone para poder persistir el Administrador, pero sin mapear la herencia por el error que aparece
-  @Id
-  @GeneratedValue
-  private long id;
-
   @OneToOne
   private Contacto contacto;
 

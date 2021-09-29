@@ -2,11 +2,10 @@ package domain.Roles;
 
 import org.hibernate.annotations.GenericGenerator;
 import password.ValidadorDeMetricas;
-
 import javax.persistence.*;
 
-
-//@Entity
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Usuario {
 
   private String usuario;
@@ -25,9 +24,9 @@ public abstract class Usuario {
     this.apellido = apellido;
   }
 
-  //@Id
+  @Id
   //@GeneratedValue(generator = "UUID")
-  //@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDDGenerator")
   private long id;
 
   public Usuario() {}

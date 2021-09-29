@@ -16,11 +16,6 @@ import javax.persistence.OneToOne;
 @Entity
 public class Voluntario extends Usuario {
 
-  // TODO este campo se pone para poder persistir el Administrador, pero sin mapear la herencia por el error que aparece
-  @Id
-  @GeneratedValue
-  private long id;
-
   @OneToOne
   Asociacion asociacion;
 
