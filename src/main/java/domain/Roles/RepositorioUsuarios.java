@@ -4,7 +4,6 @@ import exception.BusquedaEnBaseDeDatosException;
 import exception.UsuarioYaRegistradoException;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 
 /* Para el tercer argumento de las búsquedas,se obtiene el nombre de la tabla

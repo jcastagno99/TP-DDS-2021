@@ -10,9 +10,9 @@ import domain.Notificadores.MedioDeNotificacion;
 import domain.Publicaciones.PublicacionAdopcion;
 import domain.Publicaciones.PublicacionAdoptante;
 import domain.Publicaciones.PublicacionMascotaPerdida;
-
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,8 +25,7 @@ public class Duenio extends Usuario {
   @OneToOne
   private Contacto contacto;
 
-  @Transient
-  //TODO Ver si es necesario persistir esta interfaz
+  @OneToMany
   private List<MedioDeNotificacion> mediosNotificacion;
 
   public Duenio(String usuario, String contrasenia, Asociacion asociacion, String nombre,
@@ -37,12 +36,21 @@ public class Duenio extends Usuario {
     this.tipoDocumento = tipoDocumento;
     this.numeroDocumento = numeroDocumento;
     this.contacto = contacto;
+    this.mediosNotificacion = new ArrayList<>();
 
     asociacion.agregarNuevoDuenio(this);
   }
 
   public Duenio(){
     super();
+  }
+
+  public void agregarMedioDeNotificacion(MedioDeNotificacion medioDeNotificacion) {
+    this.mediosNotificacion.add(medioDeNotificacion);
+  }
+
+  public void quitarMedioNotificacion(MedioDeNotificacion medioDeNotificacion) {
+    this.mediosNotificacion.remove(medioDeNotificacion);
   }
 
   public void registrarMascota(MascotaRegistrada mascota, Asociacion unaAsoc) {

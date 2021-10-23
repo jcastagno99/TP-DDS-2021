@@ -4,8 +4,12 @@ import domain.Mascotas.DatosDeEncuentroDeMascota;
 import domain.Notificadores.MedioDeNotificacion;
 import domain.Roles.Duenio;
 import domain.Roles.Rescatista;
+import javax.persistence.Entity;
 
-public class SMSSender implements MedioDeNotificacion {
+@Entity
+public class SMSSender extends MedioDeNotificacion {
+
+  @Override
   public void notificarADuenio(Rescatista rescatista, DatosDeEncuentroDeMascota datos, Duenio
       duenio) {
     Integer telefono = duenio.getContacto().getTelefono();

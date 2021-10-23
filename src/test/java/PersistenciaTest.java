@@ -32,4 +32,4 @@ public class PersistenciaTest extends AbstractPersistenceTest implements WithGlo
     assertEquals("Perez", RepositorioUsuarios.instance().buscarAdministrador("mabelp", "afsfa656").getApellido());
     assertEquals("Mabel", RepositorioUsuarios.instance().buscarAdministrador("mabelp", "afsfa656").getNombre());
   }
-}
+ }

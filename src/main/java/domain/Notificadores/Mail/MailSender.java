@@ -15,9 +15,18 @@ import domain.Notificadores.MedioDeNotificacion;
 import domain.Roles.Duenio;
 import domain.Roles.DuenioNoRegistrado;
 import domain.Roles.Rescatista;
+import javax.persistence.Entity;
 
-public class MailSender implements MedioDeNotificacion {
+//@Entity
+public class MailSender extends MedioDeNotificacion {
 
+  private static final MailSender INSTANCE = new MailSender();
+
+  public static MailSender instance() {
+    return INSTANCE;
+  }
+
+  @Override
   public void notificarADuenio(Rescatista rescatista, DatosDeEncuentroDeMascota datos, Duenio
       duenio) {
     String direccionEmail = duenio.getContacto().getEmail();

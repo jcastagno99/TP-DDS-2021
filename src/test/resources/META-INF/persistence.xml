@@ -32,6 +32,10 @@
         <class>domain.Roles.Voluntario</class>
         <class>domain.Roles.DuenioNoRegistrado</class>
 
+        <class>domain.Notificadores.MedioDeNotificacion</class>
+        <class>domain.Notificadores.Mail.MailSender</class>
+        <class>domain.Notificadores.SMS.SMSSender</class>
+
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
