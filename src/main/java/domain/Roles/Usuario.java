@@ -1,11 +1,9 @@
 package domain.Roles;
 
-import org.hibernate.annotations.GenericGenerator;
 import password.ValidadorDeMetricas;
 import javax.persistence.*;
 
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 public abstract class Usuario {
 
   private String usuario;
@@ -42,6 +40,10 @@ public abstract class Usuario {
 
   public String getUsuario() {
     return this.usuario;
+  }
+
+  public String getNombre() {
+    return this.nombre;
   }
 
 }

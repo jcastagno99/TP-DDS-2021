@@ -13,8 +13,8 @@ public class Administrador extends Usuario {
   @OneToOne
   Asociacion asociacionA_Cargo;
 
-  public Administrador(String nombreAdm, String contrasenia, Asociacion asociacionACargo, String nombre, String apellido) {
-    super(nombreAdm, contrasenia, nombre, apellido);
+  public Administrador(String nombreUsuario, String contrasenia, Asociacion asociacionACargo, String nombre, String apellido) {
+    super(nombreUsuario, contrasenia, nombre, apellido);
     this.asociacionA_Cargo = asociacionACargo;
   }
 
