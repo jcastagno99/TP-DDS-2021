@@ -30,11 +30,13 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
     }  catch (NoResultException e) {
       throw new BusquedaEnBaseDeDatosException("No se ha encontrado un usuario registrado con los "
           + "datos de inicio de sesión aportados");
+      //Por cuestiones de seguridad, no se especifica qué dato (usuario o contraseña) fue incorrecto
     }
   }
 
   public Administrador buscarAdministrador(String nombreUsuario, String contrasenia) {
-    return (Administrador) this.buscar(nombreUsuario, contrasenia, Administrador.class.getTypeName());
+    return (Administrador) this.buscar(nombreUsuario, contrasenia, Administrador.class
+        .getTypeName());
   }
 
   public Duenio buscarDuenio(String nombreUsuario, String contrasenia) {
@@ -45,15 +47,15 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
     return (Voluntario) this.buscar(nombreUsuario, contrasenia, Voluntario.class.getTypeName());
   }
 
-  // TODO VER CÓMO HACER GENÉRICO EL GUARDADO DE OBJETOS
-
-  public void guardarAdministrador(Administrador administrador) {
-    if (!this.nombreDeUsuarioExistente(administrador.getUsuario(), Administrador.class.getTypeName())) {
+  public void guardarUsuario(Usuario usuario) {
+    if (!this.nombreDeUsuarioExistente(usuario.getUsuario(), usuario.getClass().getTypeName())) {
       EntityManager entityManager = this.entityManager();
-      entityManager.persist(administrador);
+      entityManager.persist(usuario);
     } else {
       throw new UsuarioYaRegistradoException("Ya existe una persona registrada con el mismo nombre "
           + "de usuario");
+      /*No se permitirán nombres de usuarios idénticos en la totalidad del sistema sin importar
+      * los roles*/
     }
   }
 
@@ -69,4 +71,6 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
       return false;
     }
   }
+
+
 }
