@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PersistenciaTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
-  EntityManager entityManager = this.entityManager();
   private Administrador administrador = new Administrador("mabelp", "afsfa656", null, "Mabel", "Perez");
   private Administrador administrador2 = new Administrador("pedroAbelardo", "pepeabel89522", null, "Pedro", "Fernandez");
 

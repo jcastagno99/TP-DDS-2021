@@ -4,10 +4,8 @@ import domain.Mascotas.DatosDeEncuentroDeMascota;
 import domain.Notificadores.MedioDeNotificacion;
 import domain.Roles.Duenio;
 import domain.Roles.Rescatista;
-import javax.persistence.Entity;
 
-@Entity
-public class SMSSender extends MedioDeNotificacion {
+public class SMSSender implements MedioDeNotificacion {
 
   @Override
   public void notificarADuenio(Rescatista rescatista, DatosDeEncuentroDeMascota datos, Duenio

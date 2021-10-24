@@ -15,10 +15,10 @@ import domain.Notificadores.MedioDeNotificacion;
 import domain.Roles.Duenio;
 import domain.Roles.DuenioNoRegistrado;
 import domain.Roles.Rescatista;
-import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-//@Entity
-public class MailSender extends MedioDeNotificacion {
+public class MailSender implements MedioDeNotificacion {
 
   private static final MailSender INSTANCE = new MailSender();
 

@@ -25,7 +25,7 @@ public class Duenio extends Usuario {
   @OneToOne
   private Contacto contacto;
 
-  @OneToMany
+  @Transient
   private List<MedioDeNotificacion> mediosNotificacion;
 
   public Duenio(String usuario, String contrasenia, Asociacion asociacion, String nombre,
