@@ -15,8 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PersistenciaTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
   private UbicacionDeDominio ubiCallejeritos = new UbicacionDeDominio(-35, -45);
-  private UbicacionDeDominio ubiAsociacion = new UbicacionDeDominio(-39, -55);
+  private UbicacionDeDominio ubiCallejeritosCerca = new UbicacionDeDominio(-39, -49);
+  private UbicacionDeDominio ubiAsociacion = new UbicacionDeDominio(-60, -70);
   private Asociacion callejeritos =  new Asociacion(ubiCallejeritos);
+  private Asociacion callejeritosCerca =  new Asociacion(ubiCallejeritosCerca);
   private Asociacion asociacion = new Asociacion(ubiAsociacion);
   private Administrador administrador = new Administrador("mabelp", "afsfa656", null, "Mabel", "Perez");
   private Administrador administrador2 = new Administrador("pedroAbelardo", "pepeabel89522", null, "Pedro", "Fernandez");
@@ -56,6 +58,15 @@ public class PersistenciaTest extends AbstractPersistenceTest implements WithGlo
     RepositorioAsociaciones.instance().agregarAsociacion(asociacion);
 
     assertEquals(2,RepositorioAsociaciones.instance().obtenerAsociaciones().size());
+  }
+
+  @Test void obtengoLaAsociacionMasCercana(){
+    RepositorioAsociaciones.instance().agregarAsociacion(callejeritos);
+    RepositorioAsociaciones.instance().agregarAsociacion(asociacion);
+    RepositorioAsociaciones.instance().agregarAsociacion(callejeritosCerca);
+
+    assertEquals(callejeritosCerca,RepositorioAsociaciones.instance().obtenerAsociacionMasCercaA(ubiCallejeritosCerca));
+
   }
 
 

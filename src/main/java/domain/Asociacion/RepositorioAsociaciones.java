@@ -41,10 +41,6 @@ public class RepositorioAsociaciones implements WithGlobalEntityManager {
         .getUbicacion().calcularDistanciaA(unaUbicacion))).get();
   }
 
-  /*public Asociacion obtenerAsociacionMasCercaA(UbicacionDeDominio unaUbicacion) {
-    EntityManager entityManager = this.entityManager();
-    return (Asociacion) entityManager.createQuery("from Asociacion ")
-  }*/
 
   public Asociacion obtenerAsociacionA_LaQuePertenece(Duenio unDuenio) {
     return this.obtenerAsociaciones().stream().filter(asociacion -> asociacion.getDueniosRegistrados()
