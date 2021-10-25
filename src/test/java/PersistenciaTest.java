@@ -1,4 +1,6 @@
 import domain.Asociacion.Asociacion;
+import domain.Asociacion.RepositorioAsociaciones;
+import domain.Asociacion.UbicacionDeDominio;
 import domain.Roles.Administrador;
 import domain.Roles.Duenio;
 import domain.Roles.RepositorioUsuarios;
@@ -12,7 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PersistenciaTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
-  private Asociacion asociacion = new Asociacion(null);
+  private UbicacionDeDominio ubiCallejeritos = new UbicacionDeDominio(-35, -45);
+  private UbicacionDeDominio ubiAsociacion = new UbicacionDeDominio(-39, -55);
+  private Asociacion callejeritos =  new Asociacion(ubiCallejeritos);
+  private Asociacion asociacion = new Asociacion(ubiAsociacion);
   private Administrador administrador = new Administrador("mabelp", "afsfa656", null, "Mabel", "Perez");
   private Administrador administrador2 = new Administrador("pedroAbelardo", "pepeabel89522", null, "Pedro", "Fernandez");
   private Duenio duenio = new Duenio("josefern", "jose123599", asociacion, "José", "Fernández", null, null, 3212346, null);
@@ -45,4 +50,13 @@ public class PersistenciaTest extends AbstractPersistenceTest implements WithGlo
     assertEquals("José", jose.getNombre());
     assertEquals("Fernández", jose.getApellido());
   }
+
+  @Test void lasAsociacionesSePersistenYPuedoObtenerlas(){
+    RepositorioAsociaciones.instance().agregarAsociacion(callejeritos);
+    RepositorioAsociaciones.instance().agregarAsociacion(asociacion);
+
+    assertEquals(2,RepositorioAsociaciones.instance().obtenerAsociaciones().size());
+  }
+
+
  }

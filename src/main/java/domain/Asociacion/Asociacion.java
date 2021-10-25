@@ -10,7 +10,6 @@ import domain.Roles.Duenio;
 import domain.Roles.Rescatista;
 import exception.CaracteristicaExistenteException;
 import exception.CaracteristicaNoEncontradaException;
-import javax.annotation.Generated;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,23 +19,23 @@ import java.util.stream.Collectors;
 @Table(name = "Asociaciones")
 public class Asociacion {
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
   public List<MascotaRegistrada> mascotasRegistradas;
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
   public List<Duenio> dueniosRegistrados;
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.PERSIST)
   public List<Caracteristica> caracteristicasPedidas;
   @Embedded
   public UbicacionDeDominio ubicacion;
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
   private List<PublicacionMascotaPerdida> publicaciones;
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
   private List<PublicacionAdopcion> publicacionesAdopcion;
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
   private List<PublicacionAdoptante> publicacionesAdoptante;
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.PERSIST)
   private List<Pregunta> preguntasAdopcion;
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
   private List<MascotaPerdidaConChapita> mascotasPerdidasConChapita;
 
   @Id
