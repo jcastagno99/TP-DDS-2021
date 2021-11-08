@@ -9,11 +9,9 @@ public class Server {
     DebugScreen.enableDebugScreen();
     //Bootstrap.INSTANCE.init();
     Spark.port(9000);
+
     Router.INSTANCE.configure();
+
     Spark.init();
-
   }
-
-
-
 }
