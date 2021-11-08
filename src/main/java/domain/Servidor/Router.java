@@ -22,6 +22,9 @@ public class Router {
 
     Spark.get("/ingreso", ingresoController::controlarIngreso, templateEngine);
 
+    Spark.get("/yaTengoUnUsuario", ingresoController::ingreseUsuarioYContrasenia, templateEngine);
+
+    Spark.get("/buscarUsuario", ingresoController::buscarUsuarioYContrasenia, templateEngine);
   }
 
 }
