@@ -4,6 +4,8 @@ import domain.Asociacion.UbicacionDeDominio;
 import domain.Roles.Administrador;
 import domain.Roles.Duenio;
 import domain.Roles.RepositorioUsuarios;
+import domain.Servidor.Server;
+import org.hibernate.mapping.Array;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -67,6 +69,10 @@ public class PersistenciaTest extends AbstractPersistenceTest implements WithGlo
 
     assertEquals(callejeritosCerca,RepositorioAsociaciones.instance().obtenerAsociacionMasCercaA(ubiCallejeritosCerca));
 
+  }
+
+  @Test void testDeSpark(){
+    Server.main(new String[]{});
   }
 
 

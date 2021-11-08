@@ -50,7 +50,7 @@ public class Asociacion {
     this.publicaciones = new ArrayList<>();
     this.ubicacion = ubicacion;
     this.preguntasAdopcion = new ArrayList<>();
-    RepositorioAsociaciones.instance().agregarAsociacion(this);
+    //RepositorioAsociaciones.instance().agregarAsociacion(this);
     this.mascotasPerdidasConChapita = new ArrayList<>();
   }
 

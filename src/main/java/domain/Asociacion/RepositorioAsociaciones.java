@@ -16,7 +16,7 @@ public class RepositorioAsociaciones implements WithGlobalEntityManager {
 
   private static final RepositorioAsociaciones INSTANCE = new RepositorioAsociaciones();
 
-  private List<Pregunta> preguntasObligatorias; // Mover a un repo propio
+  private List<Pregunta> preguntasObligatorias;
 
   public static RepositorioAsociaciones instance() {
     return INSTANCE;
