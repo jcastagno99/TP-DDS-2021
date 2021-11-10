@@ -12,7 +12,7 @@ public class IngresoController {
 
 
   public static ModelAndView controlarIngreso(Request request, Response response) {
-    return new ModelAndView(null, "yaTeRegistraste.hbs");
+    return new ModelAndView(null, "yaTeRegistraste1.hbs");
   }
 
   public static ModelAndView ingreseUsuarioYContrasenia(Request request, Response response) {
@@ -24,7 +24,7 @@ public class IngresoController {
 
   public static ModelAndView preIngreso(Request request, Response response) {
 
-    return new ModelAndView(LocalDate.now(), "yaTeRegistraste.hbs");
+    return new ModelAndView(LocalDate.now(), "yaTeRegistraste1.hbs");
   }
 
   public static ModelAndView ingresarUsuarioYContrasenia(Request request, Response response) {

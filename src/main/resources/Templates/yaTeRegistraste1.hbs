@@ -1,3 +1,97 @@
+VanHelsing96
+#1252
+
+VanHelsing96 — 09/09/2021
+yes
+we can see that after
+Matías Otermín — 09/09/2021
+Tomorrow si no
+Matías Otermín — 10/04/2021
+JUAAAN
+a VOS TE ANDA WPP?
+VanHelsing96 — 10/04/2021
+JAJJAJ
+nopo
+Matías Otermín — 10/04/2021
+JASJAJAS
+C CAYO
+VanHelsing96 — 10/04/2021
+se murio zukerberg o como mrd se llame JAJAJA
+Matías Otermín — 10/04/2021
+maldita sea
+VanHelsing96 — 10/04/2021
+y se nota en sus redes :v
+Matías Otermín — 10/04/2021
+ajdjajdjaajs
+VanHelsing96 — 10/04/2021
+wpp instagram fb
+Matías Otermín — 10/04/2021
+Me jods
+VanHelsing96 — 10/04/2021
+todo sefue al tuje
+Matías Otermín — 10/04/2021
+Tambien?
+no lpm
+VanHelsing96 — 10/04/2021
+creo, ees lo que recien me dijo mechi xd
+Matías Otermín — 10/04/2021
+Busque noticias pero no encontre nada
+Creo que wpp web andaba mal
+VanHelsing96 — 10/04/2021
+
+Matías Otermín — 10/04/2021
+AJJAJAJAJAJ
+VanHelsing96 — 10/04/2021
+JAJAJAJ
+asi estas mas tranquilo
+Matías Otermín — 10/04/2021
+Igual no tengo tw pero siempre hacen lo mismo
+Yo sije ay no,otro corte de fibra optica
+Los estaba ranjando aputeadas ya
+VanHelsing96 — 10/04/2021
+neither do I, pero tengo a mi contacto mecha_laTwittera que me pasa la chusma :v
+JAJAJJ
+Matías Otermín — 10/04/2021
+jajadsjadsjadsjadsjjads
+VanHelsing96 — 10/04/2021
+nono, este no sos vos maty
+Matías Otermín — 10/04/2021
+Amé
+VanHelsing96 — 10/04/2021
+es la compania que se esta prendiendo fuego sus servidores
+igual muestra que tener todo monopolizado en una empresa hace que todos se desconecten , por los mediso mainstream xd
+Matías Otermín — 10/04/2021
+Emepce a usar sqlo server, capaz borre una fila ahre
+Mal, pero anda a decirselo al queridisimo mark
+Mientras no nos vendan nuestros daots...
+VanHelsing96 — 10/04/2021
+este me encanto xd
+
+VanHelsing96 — 10/04/2021
+no lo hiciste dentro de una consulta rollbackeable no?
+porque si hiciste eso
+el profe le dijo a mecha que la unica forma de arreglarlo es borrar todo y volver a cargar las cosas
+siguiendo los pasos que hiciste la primera vez
+Matías Otermín — 10/04/2021
+ajajajaj es mortal
+Matías Otermín — 10/04/2021
+JAJAJAJAJA testee con la bd de produccion madlita sea
+El repo anda como el culo
+VanHelsing96 — 10/04/2021
+ajajajajja
+niceee
+lpm
+Matías Otermín — Today at 11:10 AM
+<html>
+
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+Expand
+message.txt
+8 KB
+﻿
 <html>
 
 <head>
@@ -27,7 +121,7 @@
  	max-width:525px;
  	min-height:670px;
  	position:relative;
- 	background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
+ 	background:url('https://imagenes.milenio.com/eM4CE31XydbRUKKq_wLW7NclzYY=/958x596/https://www.milenio.com/uploads/media/2020/11/11/seguro-brinda-proteccion-perros-gatos.jpg') no-repeat center;
  	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
  }
  .login-html{
@@ -36,7 +130,8 @@
  	position:absolute;
  	padding:90px 70px 50px 70px;
  	background:rgba(40,57,101,.9);
- }
+
+}
  .login-html .sign-in-htm,
  .login-html .sign-up-htm{
  	top:0;
@@ -47,7 +142,11 @@
  	transform:rotateY(180deg);
  	backface-visibility:hidden;
  	transition:all .4s linear;
+
  }
+ .sign-up-htm{
+ overflow-y: scroll;}
+
  .login-html .sign-in,
  .login-html .sign-up,
  .login-form .group .check{
@@ -177,11 +276,11 @@
 			<div class="sign-in-htm">
 				<div class="group">
 					<label for="user" class="label">Nombre de usuario</label>
-					<input id="user" type="text" class="input" name = "nombreDeUsuario">
+					<input id="user" type="text" class="input" name = "nombreDeUsuario" required>
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Contraseña</label>
-					<input id="pass" type="password" class="input" data-type="password" name = "contrasenia" >
+					<input id="pass" type="password" class="input" data-type="password" name = "contrasenia" required>
 				</div>
 				<!--<div class="group">
 					<input id="check" type="checkbox" class="check" checked>
@@ -198,31 +297,49 @@
 
 			</form>
 
-			<form>
 	<form action = "/registrarme" method = "POST">
 			<div class="sign-up-htm">
 				<div class="group">
-					<label for="user" class="label">Nombre de usuario</label>
-					<input id="user" type="text" class="input">
+                     <label for="pass" class="label">Nombre</label>
+					 <input id="user" type="text" class="input" name = "nombre" required>
 				</div>
 				<div class="group">
-					<label for="pass" class="label">Password</label>
-					<input id="pass" type="password" class="input" data-type="password">
+                      <label for="pass" class="label">Apellido</label>
+                	  <input id="user" type="text" class="input" name = "apellido" required>
+                </div>
+                <div class="group">
+                         <label for="pass" class="label">Nombre de usuario</label>
+                         <input id="user" type="text" class="input" name = "nombreDeUsuario" required>
+                <ss="group">
+					<label for="pass" class="label">Contraseña</label>
+					<input id="pass" type="password" class="input" data-type="password" name = "contrasenia" required minlength = "8">
 				</div>
 				<div class="group">
-					<label for="pass" class="label">Repeat Password</label>
-					<input id="pass" type="password" class="input" data-type="password">
+					<label for="pass" class="label">Fecha de nacimiento</label>
+					<input id="pass" type="date" class="input" min = "1900-01-01" max = {{this}} name = "fechaDeNacimiento" required>
 				</div>
 				<div class="group">
-					<label for="pass" class="label">Email Address</label>
-					<input id="pass" type="text" class="input">
-				</div>
+                     <label for="pass" class="label">Tipo de documento</label>
+                	 <input id="user" type="text" class="input" name = "tipoDeDocumento" required>
+                </div>
 				<div class="group">
-					<input type="submit" class="button" value="Sign Up">
+                     <label for="pass" class="label">Numero de documento</label>
+                     <input id="user" type="number" class="input" name = "numeroDeDocumento" required>
+                </div>
+                <div class="group">
+                     <label for="pass" class="label">Email</label>
+                	<input id="user" type="email" class="input" name = "email" required>
+                </div>
+                <div class="group">
+                     <label for="pass" class="label">Teléfono</label>
+                     <input id="user" type="number" class="input" name = "telefono" required>
+                </div>
+				<div class="group">
+					<input type="submit" class="button" value="Registrarme">
 				</div>
 				<div class="hr"></div>
 				<div class="foot-lnk">
-					<label for="tab-1">Already Member?</a>
+					<label for="tab-1">¿Ya tenés un usuario?</a>
 				</div>
 			</div>
 		</div>
