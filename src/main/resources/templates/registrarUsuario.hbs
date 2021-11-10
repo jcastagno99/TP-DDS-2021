@@ -16,17 +16,17 @@
     <body>
         <div class="contenedor">
             <h2>UNETE A NOSOTROS</h2>
-            <form action="/registrarme" method="post">
+            <form action="/registrarme" method="POST">
                 <div>
                     <div class="form-group col-lg-6">
                         <div class="elemento">
                             <label for="nombreUsuario">Nombre de Usuario</label>
-                            <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre de Usuario" class="form-control" required>
+                            <input type="text" id="nombreUsuario" name="nombreDeUsuario" placeholder="Nombre de Usuario" class="form-control" required>
                         </div>
 
                         <div class="elemento">
                             <label for="contraseña">Contraseña</label>
-                            <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" class="form-control" required>
+                            <input type="password" id="contraseña" name="contrasenia" placeholder="Contraseña" class="form-control" required>
                         </div>
 
                        <!-- <label for="confirmarContraseña">Confirmar Contraseña</label>
@@ -34,7 +34,7 @@
 
                         <div class="elemento">
                             <label for="nombreReal">Nombre</label>
-                            <input type="text" id="nombreReal" name="nombreReal" placeholder="Nombre" class="form-control" required>
+                            <input type="text" id="nombreReal" name="nombre" placeholder="Nombre" class="form-control" required>
                         </div>
 
                         <div class="elemento">
@@ -44,7 +44,7 @@
 
                         <div class="elemento">
                             <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento" class="form-control" required>
+                            <input type="date" id="fechaNacimiento" name="fechaDeNacimiento" min="2018-01-01" max= {{this}} placeholder="Fecha de Nacimiento" class="form-control" required>
                         </div>
 
                         <div class="elemento">
@@ -52,9 +52,26 @@
                             <input type="text" id="tipoDocumento" name="tipoDocumento" placeholder="Tipo de Documento" class="form-control" required>
                         </div>
 
+ <div>
+                        <label for="tipodeDocumento">Tipo de documento</label>
+                        <select name="tipodeDocumento" id="tipodeDocumento" class="form-control">
+                          <option value="DNI">DNI</option>
+                        </select>
+ </div>
+
+
                         <div class="elemento">
                             <label for="numeroDocumento">Numero de Documento</label>
-                            <input type="number" id="numeroDocumento" name="numeroDocumento" placeholder="Numero de Documento" class="form-control" required>
+                            <input type="number" id="numeroDocumento" name="numeroDeDocumento" placeholder="Numero de Documento" class="form-control" required>
+                        </div>
+
+                        <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tipo de documento
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li><button class="dropdown-item" type="button">DNI</button></li>
+                          </ul>
                         </div>
 
                         <div class="elemento">

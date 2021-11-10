@@ -29,7 +29,7 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
           .getSingleResult();
     }  catch (NoResultException e) {
       throw new BusquedaEnBaseDeDatosException("No se ha encontrado un usuario registrado con los "
-          + "datos de inicio de sesión aportados");
+          + "datos de inicio de sesión aportados. Por favor, ingrese un usuario y contraseña válidos");
       //Por cuestiones de seguridad, no se especifica qué dato (usuario o contraseña) fue incorrecto
     }
   }

@@ -15,10 +15,10 @@ public class Router {
     HandlebarsTemplateEngine engineTemplate = new HandlebarsTemplateEngine();
     Spark.staticFileLocation("public");
 
-    Spark.get("/", HomeController::index,engineTemplate);
+    Spark.get("/", HomeController::index, engineTemplate);
 
-    Spark.get("/registrarme", RegistroController::registrarUsuario,engineTemplate);
-    Spark.post("/registrarme",RegistroController::crearUsuario,engineTemplate);
+    Spark.get("/registrarme", RegistroController::registrarUsuario, engineTemplate);
+    Spark.post("/registrarme", RegistroController::crearUsuario, engineTemplate);
 
 
     // TODO
@@ -30,7 +30,7 @@ public class Router {
 
     Spark.get("/usuarioYaExistente", IngresoController::ingresarUsuarioYContrasenia, engineTemplate);
 
-    Spark.get("/ingresarParaRegistrarMascota", IngresoController::ingresarParaRegistrarMascota, engineTemplate); // No usamos post porque tira 404
+    Spark.post("/ingresarParaRegistrarMascota", IngresoController::ingresarParaRegistrarMascota, engineTemplate); // No usamos post porque tira 404
 
     Spark.get("/ingresar", IngresoController::ingresarComunmente, engineTemplate);
 
