@@ -44,3 +44,7 @@ body {
     padding: 15px;
     width: 200px;
 }
+
+.nombre-usuario{
+    text-transform: uppercase;
+}

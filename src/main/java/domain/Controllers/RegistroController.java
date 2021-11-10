@@ -56,8 +56,6 @@ public class RegistroController implements WithGlobalEntityManager {
         RepositorioUsuarios.instance().guardarUsuario(nuevoDuenio);
         transaction.commit();
 
-        //TODO: Mensaje: "Usted se registro satisfactoriamente"
-        //TODO: Mandarlo a una nueva pantalla home con el usuario registrado, por ahora lo mando al home.
         return new ModelAndView(nuevoDuenio, "homeLogueado.hbs");
 
     } catch (UsuarioYaRegistradoException a) {
