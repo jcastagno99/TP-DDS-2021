@@ -28,30 +28,23 @@ public class Router {
 
     Spark.get("/",homeController::index, engineTemplate);
 
-    Spark.get("/registrarme", RegistroController::registrarUsuario, engineTemplate);
-    Spark.post("/registrarme", registroController::crearUsuario, engineTemplate);
-
-
-    // TODO
-    /*Spark.get("/",((request, response) -> HomeController.index(request,response), templateEngine));*/
-
-    //Spark.get("/rutaDePrueba", (request, response) -> "Hola mundo");
-
-    Spark.get("/ingreso", ingresoController::preIngreso, engineTemplate);
-
-    Spark.get("/usuarioYaExistente", ingresoController::ingresarUsuarioYContrasenia, engineTemplate);
-
-    Spark.post("/ingresarParaRegistrarMascota", ingresoController::ingresarParaRegistrarMascota, engineTemplate); // No usamos post porque tira 404
-
     Spark.get("/ingresar", ingresoController::ingresarComunmente, engineTemplate);
 
     Spark.post("/ingresar", ingresoController::mostrarPerfil, engineTemplate);
+
+    Spark.get("/registrarme", RegistroController::registrarUsuario, engineTemplate);
+
+    Spark.post("/registrarme", registroController::crearUsuario, engineTemplate);
+
+    Spark.get("/ingresarParaRegistrarMascota", ingresoController::preIngreso, engineTemplate);
+
+    Spark.post("/ingresarParaRegistrarMascota", ingresoController::ingresarParaRegistrarMascota, engineTemplate); // No usamos post porque tira
 
     Spark.get("/registrarMascota", mascotasController::mostrarFormDeRegistro, engineTemplate);
 
     Spark.post("/registrarMascota", mascotasController::registrarMascota, engineTemplate);
 
-    Spark.get("/cerrarSesion", ingresoController::cerrarSesion);
+    Spark.get("/cerrarSesion", ingresoController::cerrarSesion, engineTemplate);
 
     //Spark.get("/miPerfil", ingresoController::mostrarPerfil, templateEngine);
 

@@ -11,6 +11,12 @@ public class MascotasController {
   }
 
   public ModelAndView registrarMascota(Request request, Response response) {
-    return new ModelAndView(null, null);
+    /*
+    *
+    * ACÁ SE HARÁ LA PERSISTENCIA
+    *
+    *
+    * */
+    return new ModelAndView(null, null); // redirigir a segundo hbs imprimiento mensaje de registro corecto
   }
 }

@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-public class RegistroController implements WithGlobalEntityManager {
+public class RegistroController{
 
   public static ModelAndView registrarUsuario(Request request, Response response) {
     return new ModelAndView(LocalDate.now(), "registrarUsuario.hbs");
@@ -64,6 +64,7 @@ public class RegistroController implements WithGlobalEntityManager {
         RepositorioUsuarios.instance().guardarUsuario(nuevoDuenio);
         transaction.commit();
 
+        response.redirect("/me");
         return new ModelAndView(nuevoDuenio, "homeLogueado.hbs");
 
     } catch (UsuarioYaRegistradoException a) {

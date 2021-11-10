@@ -8,43 +8,28 @@ import spark.Request;
 import spark.Response;
 import java.time.LocalDate;
 
-public class IngresoController {
+public class IngresoController extends Controller{
 
-
-  public ModelAndView controlarIngreso(Request request, Response response) {
-    return new ModelAndView(null, "yaTeRegistraste.hbs");
-  }
-
-  public ModelAndView ingreseUsuarioYContrasenia(Request request, Response response) {
-
-    return new ModelAndView(null, "ingreseSusDatos.hbs");
-
-
-  }
 
   public ModelAndView preIngreso(Request request, Response response) {
 
     return new ModelAndView(LocalDate.now(), "yaTeRegistraste.hbs");
   }
 
-  public ModelAndView ingresarUsuarioYContrasenia(Request request, Response response) {
-
-    return new ModelAndView(null, "ingresarParaRegistrarMascota.hbs");
-  }
 
   private Duenio buscarDuenio(Request request, Response response) {
     String nombreUsuario = request.cookie("nombreDeUsuario");
-    String contrasenia = request.cookie("contrasenia");
+    //String contrasenia = request.cookie("contrasenia");
+    String contrasenia = request.queryParams("contrasenia");
 
     if(nombreUsuario == null) {
       nombreUsuario = request.queryParams("nombreDeUsuario");
-      contrasenia = request.queryParams("contrasenia");
     }
 
     Duenio duenio = RepositorioUsuarios.instance().buscarDuenio(nombreUsuario, contrasenia);
 
     response.cookie("nombreDeUsuario", nombreUsuario);
-    response.cookie("contrasenia", contrasenia);
+    //response.cookie("contrasenia", contrasenia);
 
     return duenio;
   }
@@ -52,14 +37,15 @@ public class IngresoController {
   public ModelAndView ingresarParaRegistrarMascota(Request request, Response response) {
     try {
       Duenio duenio = this.buscarDuenio(request, response);
-      return new ModelAndView(duenio, "pantallaRegistrarMascota.hbs");
+      response.redirect("/registrarMascota");
+      return null;
     } catch (BusquedaEnBaseDeDatosException e) {
       return new ModelAndView(e, "usuarioNoEncontradoRegistroMascota.hbs");
     }
   }
 
   public ModelAndView ingresarComunmente(Request request, Response response) {
-    return new ModelAndView(null, "pantallaDeLogueo.hbs");// formularioDeIngresoComun.hbs
+    return new ModelAndView(null, "pantallaDeLogueo.hbs");
   }
 
   public ModelAndView mostrarPerfil(Request request, Response response) {
@@ -67,7 +53,7 @@ public class IngresoController {
       Duenio duenio = this.buscarDuenio(request, response);
       return new ModelAndView(duenio, "homeLogueado.hbs");
     } catch (BusquedaEnBaseDeDatosException e) {
-      return new ModelAndView(e, "logueoComunUsuarioNoEncontrado.hbs");//usuarioNoEncontradoComunmente.hbs"
+      return new ModelAndView(e, "logueoComunUsuarioNoEncontrado.hbs");
     }
   }
 
@@ -78,6 +64,7 @@ public class IngresoController {
   public ModelAndView cerrarSesion(Request request, Response response) {
     response.removeCookie("nombreDeUsuario");
     response.removeCookie("contrasenia");
-    return new ModelAndView(null,"home.hbs");
+    response.redirect("/");
+    return null;
   }
 }
