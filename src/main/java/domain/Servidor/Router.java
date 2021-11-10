@@ -25,7 +25,6 @@ public class Router {
 
     Spark.get("/buscarUsuario", IngresoController::buscarUsuarioYContrasenia, engineTemplate);
 
-    Spark.get("/prueba",RegistroController::prueba,engineTemplate);
   }
 
 }

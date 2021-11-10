@@ -25,10 +25,6 @@ import java.util.List;
 
 public class RegistroController implements WithGlobalEntityManager {
 
-  public static ModelAndView prueba(Request request, Response response){
-    return new ModelAndView(null,"homeLogueado.hbs");
-  }
-
   public static ModelAndView registrarUsuario(Request request, Response response) {
     return new ModelAndView(null, "registrarUsuario.hbs");
   }
