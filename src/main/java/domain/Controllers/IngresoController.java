@@ -52,7 +52,7 @@ public class IngresoController {
   public ModelAndView ingresarParaRegistrarMascota(Request request, Response response) {
     try {
       Duenio duenio = this.buscarDuenio(request, response);
-      return new ModelAndView(duenio, "registrarMascota.hbs");
+      return new ModelAndView(duenio, "pantallaRegistrarMascota.hbs");
     } catch (BusquedaEnBaseDeDatosException e) {
       return new ModelAndView(e, "usuarioNoEncontradoRegistroMascota.hbs");
     }
@@ -71,8 +71,10 @@ public class IngresoController {
     }
   }
 
-  public ModelAndView registrarMascota(Request request, Response response){
-    return new ModelAndView(null, "registrarMascota");
-  }
 
+  public ModelAndView cerrarSesion(Request request, Response response) {
+    response.removeCookie("nombreDeUsuario");
+    response.removeCookie("contrasenia");
+    return new ModelAndView(null,"home.hbs");
+  }
 }

@@ -3,6 +3,7 @@ package domain.Servidor;
 
 import domain.Controllers.HomeController;
 import domain.Controllers.IngresoController;
+import domain.Controllers.MascotasController;
 import domain.Controllers.RegistroController;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -11,8 +12,8 @@ public class Router {
 
   public static Router INSTANCE = new Router();
 
-  public Router getInstance() {
-    return this.INSTANCE;
+  public static Router getInstance() {
+    return INSTANCE;
   }
 
   public void configure(){
@@ -23,6 +24,7 @@ public class Router {
     HomeController homeController = new HomeController();
     RegistroController registroController = new RegistroController();
     IngresoController ingresoController = new IngresoController();
+    MascotasController mascotasController = new MascotasController();
 
     Spark.get("/",homeController::index, engineTemplate);
 
@@ -45,7 +47,11 @@ public class Router {
 
     Spark.post("/ingresar", ingresoController::mostrarPerfil, engineTemplate);
 
-    Spark.get("/registrarMascota", ingresoController::registrarMascota, engineTemplate);
+    Spark.get("/registrarMascota", mascotasController::mostrarFormDeRegistro, engineTemplate);
+
+    Spark.post("/registrarMascota", mascotasController::registrarMascota, engineTemplate);
+
+    Spark.get("/cerrarSesion", ingresoController::cerrarSesion);
 
     //Spark.get("/miPerfil", ingresoController::mostrarPerfil, templateEngine);
 
