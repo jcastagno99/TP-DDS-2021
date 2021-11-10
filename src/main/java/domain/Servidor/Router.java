@@ -11,14 +11,23 @@ public class Router {
 
   public static Router INSTANCE = new Router();
 
+  public Router getInstance() {
+    return this.INSTANCE;
+  }
+
   public void configure(){
+
     HandlebarsTemplateEngine engineTemplate = new HandlebarsTemplateEngine();
     Spark.staticFileLocation("public");
 
-    Spark.get("/", HomeController::index, engineTemplate);
+    HomeController homeController = new HomeController();
+    RegistroController registroController = new RegistroController();
+    IngresoController ingresoController = new IngresoController();
+
+    Spark.get("/",homeController::index, engineTemplate);
 
     Spark.get("/registrarme", RegistroController::registrarUsuario, engineTemplate);
-    Spark.post("/registrarme", RegistroController::crearUsuario, engineTemplate);
+    Spark.post("/registrarme", registroController::crearUsuario, engineTemplate);
 
 
     // TODO
@@ -26,15 +35,17 @@ public class Router {
 
     //Spark.get("/rutaDePrueba", (request, response) -> "Hola mundo");
 
-    Spark.get("/ingreso", IngresoController::preIngreso, engineTemplate);
+    Spark.get("/ingreso", ingresoController::preIngreso, engineTemplate);
 
-    Spark.get("/usuarioYaExistente", IngresoController::ingresarUsuarioYContrasenia, engineTemplate);
+    Spark.get("/usuarioYaExistente", ingresoController::ingresarUsuarioYContrasenia, engineTemplate);
 
-    Spark.post("/ingresarParaRegistrarMascota", IngresoController::ingresarParaRegistrarMascota, engineTemplate); // No usamos post porque tira 404
+    Spark.post("/ingresarParaRegistrarMascota", ingresoController::ingresarParaRegistrarMascota, engineTemplate); // No usamos post porque tira 404
 
-    Spark.get("/ingresar", IngresoController::ingresarComunmente, engineTemplate);
+    Spark.get("/ingresar", ingresoController::ingresarComunmente, engineTemplate);
 
-    Spark.post("/ingresar", IngresoController::mostrarPerfil, engineTemplate);
+    Spark.post("/ingresar", ingresoController::mostrarPerfil, engineTemplate);
+
+    Spark.get("/registrarMascota", ingresoController::registrarMascota, engineTemplate);
 
     //Spark.get("/miPerfil", ingresoController::mostrarPerfil, templateEngine);
 

@@ -26,7 +26,7 @@ public class RegistroController implements WithGlobalEntityManager {
     return new ModelAndView(LocalDate.now(), "registrarUsuario.hbs");
   }
 
-  public static ModelAndView crearUsuario(Request request, Response response) {
+  public ModelAndView crearUsuario(Request request, Response response) {
 
 //    List<NameValuePair> pairs = URLEncodedUtils.parse(request.body(), Charset.defaultCharset());
     EntityManager entityManager = PerThreadEntityManagers.getEntityManager();

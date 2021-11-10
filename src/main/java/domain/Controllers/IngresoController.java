@@ -11,28 +11,28 @@ import java.time.LocalDate;
 public class IngresoController {
 
 
-  public static ModelAndView controlarIngreso(Request request, Response response) {
+  public ModelAndView controlarIngreso(Request request, Response response) {
     return new ModelAndView(null, "yaTeRegistraste.hbs");
   }
 
-  public static ModelAndView ingreseUsuarioYContrasenia(Request request, Response response) {
+  public ModelAndView ingreseUsuarioYContrasenia(Request request, Response response) {
 
     return new ModelAndView(null, "ingreseSusDatos.hbs");
 
 
   }
 
-  public static ModelAndView preIngreso(Request request, Response response) {
+  public ModelAndView preIngreso(Request request, Response response) {
 
     return new ModelAndView(LocalDate.now(), "yaTeRegistraste.hbs");
   }
 
-  public static ModelAndView ingresarUsuarioYContrasenia(Request request, Response response) {
+  public ModelAndView ingresarUsuarioYContrasenia(Request request, Response response) {
 
     return new ModelAndView(null, "ingresarParaRegistrarMascota.hbs");
   }
 
-  private static Duenio buscarDuenio(Request request, Response response) {
+  private Duenio buscarDuenio(Request request, Response response) {
     String nombreUsuario = request.cookie("nombreDeUsuario");
     String contrasenia = request.cookie("contrasenia");
 
@@ -49,26 +49,30 @@ public class IngresoController {
     return duenio;
   }
 
-  public static ModelAndView ingresarParaRegistrarMascota(Request request, Response response) {
+  public ModelAndView ingresarParaRegistrarMascota(Request request, Response response) {
     try {
-      Duenio duenio = IngresoController.buscarDuenio(request, response);
+      Duenio duenio = this.buscarDuenio(request, response);
       return new ModelAndView(duenio, "registrarMascota.hbs");
     } catch (BusquedaEnBaseDeDatosException e) {
       return new ModelAndView(e, "usuarioNoEncontradoRegistroMascota.hbs");
     }
   }
 
-  public static ModelAndView ingresarComunmente(Request request, Response response) {
+  public ModelAndView ingresarComunmente(Request request, Response response) {
     return new ModelAndView(null, "pantallaDeLogueo.hbs");// formularioDeIngresoComun.hbs
   }
 
-  public static ModelAndView mostrarPerfil(Request request, Response response) {
+  public ModelAndView mostrarPerfil(Request request, Response response) {
     try {
-      Duenio duenio = IngresoController.buscarDuenio(request, response);
+      Duenio duenio = this.buscarDuenio(request, response);
       return new ModelAndView(duenio, "homeLogueado.hbs");
     } catch (BusquedaEnBaseDeDatosException e) {
       return new ModelAndView(e, "logueoComunUsuarioNoEncontrado.hbs");//usuarioNoEncontradoComunmente.hbs"
     }
+  }
+
+  public ModelAndView registrarMascota(Request request, Response response){
+    return new ModelAndView(null, "registrarMascota");
   }
 
 }

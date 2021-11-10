@@ -17,7 +17,7 @@ public class Server {
     //Bootstrap.INSTANCE.init();
     Spark.port(9000);
 
-    Router.INSTANCE.configure();
+    Router.getInstance().configure();
 
     Spark.init();
   }
