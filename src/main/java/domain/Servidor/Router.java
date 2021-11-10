@@ -1,5 +1,6 @@
 package domain.Servidor;
 
+
 import domain.Controllers.HomeController;
 import domain.Controllers.IngresoController;
 import domain.Controllers.RegistroController;
@@ -19,11 +20,23 @@ public class Router {
     Spark.get("/registrarme", RegistroController::registrarUsuario,engineTemplate);
     Spark.post("/registrarme",RegistroController::crearUsuario,engineTemplate);
 
-    Spark.get("/ingreso",IngresoController::controlarIngreso, engineTemplate);
 
-    Spark.get("/yaTengoUnUsuario", IngresoController::ingreseUsuarioYContrasenia, engineTemplate);
+    // TODO
+    /*Spark.get("/",((request, response) -> HomeController.index(request,response), templateEngine));*/
 
-    Spark.get("/buscarUsuario", IngresoController::buscarUsuarioYContrasenia, engineTemplate);
+    //Spark.get("/rutaDePrueba", (request, response) -> "Hola mundo");
+
+    Spark.get("/ingreso", IngresoController::preIngreso, engineTemplate);
+
+    Spark.get("/usuarioYaExistente", IngresoController::ingresarUsuarioYContrasenia, engineTemplate);
+
+    Spark.get("/ingresarParaRegistrarMascota", IngresoController::ingresarParaRegistrarMascota, engineTemplate); // No usamos post porque tira 404
+
+    Spark.get("/ingresar", IngresoController::ingresarComunmente, engineTemplate);
+
+    Spark.post("/ingresar", IngresoController::mostrarPerfil, engineTemplate);
+
+    //Spark.get("/miPerfil", ingresoController::mostrarPerfil, templateEngine);
 
   }
 
