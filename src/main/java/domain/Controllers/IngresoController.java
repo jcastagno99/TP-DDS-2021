@@ -71,6 +71,9 @@ public class IngresoController {
     }
   }
 
+  public ModelAndView registrarMascota(Request request, Response response){
+    return new ModelAndView(null, "registrarMascota.hbs");
+  }
 
   public ModelAndView cerrarSesion(Request request, Response response) {
     response.removeCookie("nombreDeUsuario");
