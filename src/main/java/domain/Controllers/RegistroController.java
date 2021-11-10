@@ -35,6 +35,7 @@ public class RegistroController implements WithGlobalEntityManager {
     String contrasenia = request.queryParams("contrasenia");
     String nombre = request.queryParams("nombre");
     String apellido = request.queryParams("apellido");
+    //LocalDate fechaNacimiento = LocalDate.parse(request.queryParams("fechaDeNacimiento"));
     LocalDate fechaNacimiento = LocalDate.parse(request.queryParams("fechaDeNacimiento"));
     String tipoDeDocumento = request.queryParams("tipoDocumento");
     int numeroDeDocumento = Integer.parseInt(request.queryParams("numeroDeDocumento"));

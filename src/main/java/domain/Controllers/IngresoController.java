@@ -6,8 +6,10 @@ import exception.BusquedaEnBaseDeDatosException;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import java.time.LocalDate;
 
 public class IngresoController {
+
 
   public static ModelAndView controlarIngreso(Request request, Response response) {
     return new ModelAndView(null, "yaTeRegistraste.hbs");
@@ -16,12 +18,13 @@ public class IngresoController {
   public static ModelAndView ingreseUsuarioYContrasenia(Request request, Response response) {
 
     return new ModelAndView(null, "ingreseSusDatos.hbs");
-  }
 
+
+  }
 
   public static ModelAndView preIngreso(Request request, Response response) {
 
-    return new ModelAndView(null, "yaTeRegistraste.hbs");
+    return new ModelAndView(LocalDate.now(), "yaTeRegistraste.hbs");
   }
 
   public static ModelAndView ingresarUsuarioYContrasenia(Request request, Response response) {
@@ -30,8 +33,14 @@ public class IngresoController {
   }
 
   private static Duenio buscarDuenio(Request request, Response response) {
-    String nombreUsuario = request.queryParams("nombreDeUsuario");
-    String contrasenia = request.queryParams("contrasenia");
+    String nombreUsuario = request.cookie("nombreDeUsuario");
+    String contrasenia = request.cookie("contrasenia");
+
+    if(nombreUsuario == null) {
+      nombreUsuario = request.queryParams("nombreDeUsuario");
+      contrasenia = request.queryParams("contrasenia");
+    }
+
     Duenio duenio = RepositorioUsuarios.instance().buscarDuenio(nombreUsuario, contrasenia);
 
     response.cookie("nombreDeUsuario", nombreUsuario);
