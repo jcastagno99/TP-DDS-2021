@@ -72,7 +72,7 @@ public class IngresoController {
   }
 
   public ModelAndView registrarMascota(Request request, Response response){
-    return new ModelAndView(null, "registrarMascota");
+    return new ModelAndView(null, "registrarMascota.hbs");
   }
 
 }

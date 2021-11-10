@@ -11,8 +11,8 @@ public class Router {
 
   public static Router INSTANCE = new Router();
 
-  public Router getInstance() {
-    return this.INSTANCE;
+  public static Router getInstance() {
+    return INSTANCE;
   }
 
   public void configure(){
