@@ -28,7 +28,10 @@ public class Router {
 
     Spark.get("/ingresar", ingresoController::ingresarComunmente, templateEngine);
 
-    Spark.get("/miPerfil", ingresoController::mostrarPerfil, templateEngine);
+    Spark.post("/ingresar", ingresoController::mostrarPerfil, templateEngine);
+
+    //Spark.get("/miPerfil", ingresoController::mostrarPerfil, templateEngine);
+
   }
 
 }

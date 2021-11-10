@@ -31,6 +31,7 @@ public class IngresoController{
     Duenio duenio = RepositorioUsuarios.instance().buscarDuenio(nombreUsuario, contrasenia);
 
     response.cookie("nombreDeUsuario", nombreUsuario);
+    response.cookie("contrasenia", contrasenia);
 
     return duenio;
   }
