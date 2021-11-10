@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: url(fondo-home.jpg) no-repeat center top;
+    background: #e4e8f3 url(fondo-home.jpg) no-repeat center top;
     background-size: cover;
     font-family: sans-serif;
     height: 100vh;
@@ -42,7 +42,7 @@ body {
     text-transform: uppercase;
     cursor: pointer;
     padding: 15px;
-    width: 200px;
+    width: 300px;
 }
 
 .nombre-usuario{
@@ -57,4 +57,38 @@ body {
     border: none;
     border-bottom: 1px solid #fff;
     margin-bottom: 20px;
+}
+
+.contenedor .boton button[type="submit"]{
+    background-color: #000000;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 15px;
+    width: 370px;
+}
+
+.contenedor .boton button[type="submit"]:hover{
+    background-color: #aaaaaa;
+}
+
+.contenedor h4 , h5{
+    margin: 0 0 15px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    width: 300px;
+}
+
+.opcion{
+    color: black;
+}
+
+.body2{
+    margin: 0;
+    padding: 0;
+    background: #c8b9b4 url(fondo-encontreMascota.jpg) no-repeat center top;
+    background-size: cover;
+    font-family: sans-serif;
+    height: 100vh;
 }

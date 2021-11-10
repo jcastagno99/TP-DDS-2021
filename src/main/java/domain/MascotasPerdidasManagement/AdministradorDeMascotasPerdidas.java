@@ -6,6 +6,8 @@ import domain.Asociacion.UbicacionDeDominio;
 import domain.Mascotas.*;
 import domain.Roles.Rescatista;
 
+import java.time.LocalDate;
+
 public class AdministradorDeMascotasPerdidas {
 
   private static final AdministradorDeMascotasPerdidas INSTANCE = new AdministradorDeMascotasPerdidas();
@@ -27,7 +29,7 @@ public class AdministradorDeMascotasPerdidas {
   }
 
   public void informarMascotaPerdidaSinChapita(Rescatista rescatista, DatosDeEncuentroDeMascota datosEncuentro, TipoMascota tipoMascota, Tamanio tamanio) {
-    MascotaPerdidaSinChapita mascotaSinChapita = new MascotaPerdidaSinChapita(rescatista, datosEncuentro, tamanio, tipoMascota);
+    MascotaPerdidaSinChapita mascotaSinChapita = new MascotaPerdidaSinChapita(rescatista, datosEncuentro, tamanio, tipoMascota, LocalDate.now());
     UbicacionDeDominio ubicacionEncuentro = datosEncuentro.getUbicacion();
     Asociacion asociacionCercana = RepositorioAsociaciones.instance().obtenerAsociacionMasCercaA(ubicacionEncuentro);
     asociacionCercana.crearPublicacion(mascotaSinChapita,rescatista);

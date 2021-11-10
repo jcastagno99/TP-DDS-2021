@@ -11,11 +11,11 @@ import javax.persistence.*;
 @Entity
 public class PublicacionMascotaPerdida { // Deberia ser publicacionMascotaPerdidaSinChapita
 
-  @OneToOne
+  @OneToOne(cascade = {CascadeType.ALL})
   private MascotaPerdidaSinChapita mascota;
-  @OneToOne
+  @OneToOne(cascade = {CascadeType.ALL})
   private Rescatista rescatista;
-  @ManyToOne
+  @ManyToOne(cascade = {CascadeType.ALL})
   private Asociacion asociacion;
   private EstadoPublicacion estado;
   String link;

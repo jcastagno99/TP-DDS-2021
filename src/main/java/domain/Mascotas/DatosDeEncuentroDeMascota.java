@@ -22,13 +22,17 @@ public class DatosDeEncuentroDeMascota {
   private long id;
 
   public DatosDeEncuentroDeMascota(String descripcionEstadoEncuentro, UbicacionDeDominio ubicacion,
-      String foto, String ... fotos) {
+      String foto) {
     this.descripcionEstadoEncuentro = descripcionEstadoEncuentro;
     this.ubicacion = ubicacion;
     this.fotos = new ArrayList<>();
     // TODO valdiacion de no nulo
     this.fotos.add(foto);
 
+  }
+
+  public DatosDeEncuentroDeMascota(String descripcionEstadoEncuentro){
+    this.descripcionEstadoEncuentro = descripcionEstadoEncuentro;
   }
 
   public DatosDeEncuentroDeMascota(){}

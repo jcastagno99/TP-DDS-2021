@@ -2,18 +2,15 @@ package domain.Mascotas;
 
 import domain.Roles.Rescatista;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 public class MascotaPerdidaSinChapita {
-  @OneToOne
+  @OneToOne(cascade = {CascadeType.ALL})
   private DatosDeEncuentroDeMascota datosDeEncuentroDeMascota;
   private LocalDate fechaEncuentro;
-  @OneToOne
+  @OneToOne(cascade = {CascadeType.ALL})
   private Rescatista rescatista;
   private Tamanio tamanio;
   private TipoMascota tipoMascota;
@@ -23,9 +20,9 @@ public class MascotaPerdidaSinChapita {
   private long id;
 
   public MascotaPerdidaSinChapita(Rescatista rescatista, DatosDeEncuentroDeMascota datos,
-      Tamanio tamanio, TipoMascota tipo) {
+      Tamanio tamanio, TipoMascota tipo, LocalDate fechaEncuentro) {
     this.datosDeEncuentroDeMascota = datos;
-    this.fechaEncuentro = LocalDate.now();
+    this.fechaEncuentro = fechaEncuentro;
     this.rescatista = rescatista;
     this.tamanio = tamanio;
     this.tipoMascota = tipo;

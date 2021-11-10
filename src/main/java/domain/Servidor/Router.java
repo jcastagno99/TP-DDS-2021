@@ -1,10 +1,7 @@
 package domain.Servidor;
 
 
-import domain.Controllers.HomeController;
-import domain.Controllers.IngresoController;
-import domain.Controllers.MascotasController;
-import domain.Controllers.RegistroController;
+import domain.Controllers.*;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -25,6 +22,7 @@ public class Router {
     RegistroController registroController = new RegistroController();
     IngresoController ingresoController = new IngresoController();
     MascotasController mascotasController = new MascotasController();
+    EncontreMascotaController encontreMascotaController = new EncontreMascotaController();
 
     Spark.get("/",homeController::index, engineTemplate);
 
@@ -47,6 +45,12 @@ public class Router {
     Spark.get("/cerrarSesion", ingresoController::cerrarSesion, engineTemplate);
 
     //Spark.get("/miPerfil", ingresoController::mostrarPerfil, templateEngine);
+
+    Spark.get("/encontreUnaMascota",encontreMascotaController::encontreUnaMascota,engineTemplate);
+
+    Spark.get("/formularioSinChapita",encontreMascotaController::registrarMascotaSinChapita, engineTemplate);
+
+    Spark.post("/formularioSinChapita",encontreMascotaController::crearPublicacionMascotaPerdida, engineTemplate);
 
   }
 
