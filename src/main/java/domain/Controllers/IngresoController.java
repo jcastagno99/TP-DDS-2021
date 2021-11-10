@@ -10,7 +10,7 @@ import spark.Response;
 public class IngresoController {
 
   public static ModelAndView controlarIngreso(Request request, Response response) {
-    return new ModelAndView(null, "YaTeRegistraste.hbs");
+    return new ModelAndView(null, "yaTeRegistraste.hbs");
   }
 
   public static ModelAndView ingreseUsuarioYContrasenia(Request request, Response response) {

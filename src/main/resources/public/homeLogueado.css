@@ -1,0 +1,137 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url(fondo-home.jpg) no-repeat center top;
+    background-size: cover;
+    font-family: sans-serif;
+    height: 100vh;
+}
+
+.nav-link {
+    text-decoration: none !important;
+    color: #050505;
+}
+
+.nav-link:hover {
+    color: #ffa900;
+}
+
+.btn-lg{
+    background-color: #050505;
+    border-color: #000000;
+}
+
+.btn-lg:hover{
+    background-color: #ffa900;
+    border-color: #ffa900;
+}
+
+.home-box {
+    width: 600px;
+    height: 600px;
+    background: rgba(0,0,0,0);
+    color: #6c757d;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+}
+
+.home-box h1 {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.home-box .boton_1 {
+    border: 1px solid  #000000;
+    padding: 10px;
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: sans-serif;
+}
+
+.home-box .boton_1:hover {
+    cursor: pointer;
+    background-color: #ffa900;
+    border-color: #ffa900;
+}
+
+/* menu */
+
+#menu ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+/* items del menu */
+
+#menu ul li {
+    background-color: rgb(0, 0, 0);
+}
+
+/* enlaces del menu */
+
+#menu ul a {
+    display:block;
+    color:#fff;
+    text-decoration:none;
+    font-weight:400;
+    font-size:15px;
+    padding:10px;
+    font-family:"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+/* items del menu */
+
+#menu ul li {
+    position:relative;
+    float:right;
+    margin:0;
+    padding:0;
+}
+
+/* efecto al pasar el ratón por los items del menu */
+
+#menu ul li:hover {
+    cursor: pointer;
+    background-color: #ffa900;
+    border-color: #ffa900;
+}
+
+#menu ul ul {
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    background: rgba(238, 238, 238, 0);
+    padding:0;
+}
+
+/* items del menu desplegable */
+
+#menu ul ul li {
+    float:right;
+    width:200px
+}
+
+/* enlaces de los items del menu desplegable */
+
+#menu ul ul a {
+    line-height:120%;
+    padding:10px 15px;
+}
+
+/* items del menu desplegable al pasar el ratón */
+
+#menu ul li:hover > ul {
+    display:block;
+}

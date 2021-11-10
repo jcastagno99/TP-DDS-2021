@@ -22,7 +22,7 @@ public class Duenio extends Usuario {
   private String tipoDocumento;
   private int numeroDocumento;
 
-  @OneToOne
+  @OneToOne(cascade = {CascadeType.ALL})
   private Contacto contacto;
 
   @Transient
@@ -92,5 +92,6 @@ public class Duenio extends Usuario {
   public Contacto getContacto() {
     return contacto;
   }
+
 }
 

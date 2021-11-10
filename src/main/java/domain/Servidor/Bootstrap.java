@@ -3,10 +3,14 @@ package domain.Servidor;
 import domain.Asociacion.Asociacion;
 import domain.Asociacion.RepositorioAsociaciones;
 import domain.Asociacion.UbicacionDeDominio;
+import domain.Roles.Contacto;
+import domain.Roles.Duenio;
+import domain.Roles.RepositorioUsuarios;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,6 +22,7 @@ public class Bootstrap implements WithGlobalEntityManager {
   public void init(){
 
     List<Asociacion> asociaciones = asociaciones();
+    List<Duenio> usuariosRegistrados = duenios();
     EntityManager entityManager = this.entityManager();
     EntityTransaction transaction = entityManager.getTransaction();
 
@@ -25,8 +30,9 @@ public class Bootstrap implements WithGlobalEntityManager {
     asociaciones.forEach((asociacion) -> RepositorioAsociaciones.instance().agregarAsociacion(asociacion));
     transaction.commit();
 
-    System.out.println("Asociaciones persistidas: ");
-    RepositorioAsociaciones.instance().obtenerAsociaciones().forEach(unaAsociacion -> System.out.println(unaAsociacion.toString()));
+    transaction.begin();
+    usuariosRegistrados.forEach((duenio -> RepositorioUsuarios.instance().guardarUsuario(duenio)));
+    transaction.commit();
 
   }
 
@@ -38,6 +44,15 @@ public class Bootstrap implements WithGlobalEntityManager {
     Asociacion patitas =  new Asociacion(ubiPatitas);
     Asociacion vidaAnimal = new Asociacion(ubiVidaAnimal);
     return Arrays.asList(elCampito,patitas,vidaAnimal);
+  }
+
+  private static List<Duenio> duenios(){
+
+    Duenio pablo = new Duenio("pablito27","qsxesz00",asociaciones().get(0),
+        "Pablo","Perez", LocalDate.now(),"DNI",111111,new Contacto(15472289,"pablitoPerez@gmail.com"));
+    Duenio martin = new Duenio("martinkpo90","753951asd",asociaciones().get(1),
+        "Martin","Perez",LocalDate.now(),"DNI",222222,new Contacto(1598874,"MartinPp@gmail.com"));
+    return Arrays.asList(pablo,martin);
   }
 
 }
