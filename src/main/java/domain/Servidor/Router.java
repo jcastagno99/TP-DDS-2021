@@ -46,7 +46,7 @@ public class Router {
 
     Spark.get("/cerrarSesion", ingresoController::cerrarSesion, engineTemplate);
 
-    //Spark.get("/miPerfil", ingresoController::mostrarPerfil, templateEngine);
+    Spark.post("/miPerfil", ingresoController::mostrarPerfil, engineTemplate);
 
   }
 

@@ -6,9 +6,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-
-
 
 <style>
 
@@ -197,31 +194,31 @@ width:15px;
     border: 1px solid #fff
 }
 
-
-
 </style>
+
+</head>
 
 
 <body>
 
 <div class="login-wrap">
-<form action = "/ingresarParaRegistrarMascota" method = "POST">
+<form action = "/registrarMascota" method = "POST">
 	<div class="login-html">
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Registra tu mascota</label>
 		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
 		<div class="login-form">
           <div class="group">
-					<label for="nombre" class="label">Nombre</label>
-					<input id="nombre" class="input" data-type="text" name = "nombreMascota" required>
-				</div>
-
-                  <label>Tipo de Mascota</label>
+			<label for="nombre" class="label">Nombre</label>
+			<input id="nombre" class="input" data-type="text" name = "nombreMascota" required>
+	      </div>
+            <div>
+            <label>Tipo de Mascota</label>
           	<select class="input">
             <option value="" disabled selected> </option>
-            <option class = "input" data-type = "text" name = "tipo" value="1">Gato</option>
-            <option class = "input" data-type = "text" name = "tipo"value="2">Perro</option>
-
-		</select>
+            <option class = "input" data-type = "text" name = "tipo" value="GATO">Gato</option>
+            <option class = "input" data-type = "text" name = "tipo" value="PERRO">Perro</option>
+		    </select>
+		    </div>
 
 
 				<div class="group">
@@ -241,46 +238,46 @@ width:15px;
                 	<input id="descipcion" class="input" data-type="text" name = "descripcionFisica" required>
                 </div>
          		<form>
-				<div class="group">
-                	<label for="foto" class="label">Foto</label>
-                	<input type="file" class="form-control-file" id="foto" name = "foto" required>
-           </div>
+                	<div class="group">
+                         <label for="foto" class="label">Foto</label>
+                        <input type="file" class="form-control-file" id="foto" name = "foto" >
+                      </div>
 
-				</form>
+                </form>
+
+                <div class="group">
+                	<input type="submit" class="button" value="Registrar" data-toggle="modal" data-target="#popUpMascotaRegistrada">
+                </div>
 
 
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Registrar</button>
+                    <div class="hr"></div>
+                	</div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+                </form>
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">¡Bienvenido!</h4>
-        </div>
-        <div class="modal-body">
-          <p>Tu mascota se registro correctamente</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="popUpMascotaRegistrada" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¡Bienvenido!</h5>
+
       </div>
-
+      <div class="modal-body">
+       Se registró correctamente la mascota
+      </div>
+      <div class="modal-footer">
+      <href="/miPerfil" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Volver a mi perfil
+      </div>
     </div>
   </div>
-
 </div>
 
-</body>
-
-	</form>
-
 
 
 
 
 </body>
+ </html>

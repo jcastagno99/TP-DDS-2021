@@ -7,7 +7,7 @@ import spark.Response;
 public class HomeController {
 
   public ModelAndView index(Request request, Response response) {
-    return new ModelAndView(null,"home.hbs");
+    return new ModelAndView(null,"home2.hbs");
   }
 
 }

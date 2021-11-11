@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-public class RegistroController{
+public class RegistroController {
 
   public static ModelAndView registrarUsuario(Request request, Response response) {
     return new ModelAndView(LocalDate.now(), "registrarUsuario.hbs");
@@ -53,24 +53,23 @@ public class RegistroController{
         int telefono = Integer.parseInt(pairs.get(7).getValue());
         String email = pairs.get(8).getValue();*/
 
-        //TODO: Obtener la asociacion del usuario, esta la hardcodeo
-        UbicacionDeDominio ubiHuellas = new UbicacionDeDominio(66, 70);
-        Asociacion huellas = new Asociacion(ubiHuellas);
+      //TODO: Obtener la asociacion del usuario, esta la hardcodeo
+      UbicacionDeDominio ubiHuellas = new UbicacionDeDominio(66, 70);
+      Asociacion huellas = new Asociacion(ubiHuellas);
 
-        Contacto contactoDuenio = new Contacto(telefono, email);
-        Duenio nuevoDuenio = new Duenio(nombreUsuario, contrasenia, huellas, nombre, apellido, fechaNacimiento, tipoDeDocumento, numeroDeDocumento, contactoDuenio);
+      Contacto contactoDuenio = new Contacto(telefono, email);
+      Duenio nuevoDuenio = new Duenio(nombreUsuario, contrasenia, huellas, nombre, apellido, fechaNacimiento, tipoDeDocumento, numeroDeDocumento, contactoDuenio);
 
-        transaction.begin();
-        RepositorioUsuarios.instance().guardarUsuario(nuevoDuenio);
-        transaction.commit();
+      transaction.begin();
+      RepositorioUsuarios.instance().guardarUsuario(nuevoDuenio);
+      transaction.commit();
 
-        response.redirect("/me");
-        return new ModelAndView(nuevoDuenio, "homeLogueado.hbs");
+      response.redirect("/miPerfil");
+      return null;
 
     } catch (UsuarioYaRegistradoException a) {
       return new ModelAndView(a, "usuarioEncontradoAlRegistrar.hbs");
     }
   }
-
 
 }

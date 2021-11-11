@@ -3,6 +3,8 @@ package domain.Controllers;
 import domain.Asociacion.Asociacion;
 import domain.Asociacion.RepositorioAsociaciones;
 import domain.Mascotas.MascotaRegistrada;
+import domain.Mascotas.Sexo;
+import domain.Mascotas.TipoMascota;
 import domain.Roles.Duenio;
 import domain.Roles.RepositorioUsuarios;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
@@ -20,25 +22,29 @@ public class MascotasController {
   }
 
   public ModelAndView registrarMascota(Request request, Response response) {
+
     EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
     EntityTransaction transaction = entityManager.getTransaction();
     String nombreMascota = request.queryParams("nombreMascota");
-    String tipoMascota = request.queryParams("tipo");
+    TipoMascota tipoMascota = TipoMascota.valueOf(request.queryParams("tipo"));
     String apodoMascota = request.queryParams("apodoMascota");
     int edadAproximada = Integer.parseInt(request.queryParams("edadAproximada"));
-    String sexoMascota = request.queryParams("sexoMascota");
+    Sexo sexoMascota = Sexo.valueOf(request.queryParams("sexoMascota"));
     String descripcion = request.queryParams("descripcionFisica");
     String foto = request.queryParams("foto");
     String usuario = request.cookie("nombreDeUsuario");
 
     Duenio duenioMascota = RepositorioUsuarios.instance().buscarDuenioMedianteUsuario(usuario);
     Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePertenece(duenioMascota);
-    MascotaRegistrada mascota = new MascotaRegistrada(nombreMascota, tipoMascota, apodoMascota, edadAproximada, sexoMascota,);
+    MascotaRegistrada mascota = new MascotaRegistrada(tipoMascota, nombreMascota, apodoMascota, edadAproximada, sexoMascota, descripcion, foto);
 
     transaction.begin();
     asociacion.agregarMascota(mascota);
+    entityManager.persist(mascota);
     transaction.commit();
 
-    return new ModelAndView(null, "mascotaBienGuardada.hbs"); // redirigir a segundo hbs imprimiento mensaje de registro corecto
+    response.cookie("nombreUsuario", duenioMascota.getUsuario());
+    response.redirect("/miPerfil");
+    return null;
   }
 }

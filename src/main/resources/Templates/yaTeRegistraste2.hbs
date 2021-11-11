@@ -1,8 +1,4 @@
-<html>
-
-<head>
-<!-- Required meta tags -->
-    <meta charset="utf-8">
+{{#partial "headers"}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -165,13 +161,12 @@
  	text-align:center;
  }
 
-
-
 </style>
 
-</head>
+{{/partial}}
 
-<body>
+
+{{#partial "contenido"}}
 
 <div class="login-wrap">
 <form action = "/ingresarParaRegistrarMascota" method = "POST">
@@ -252,8 +247,7 @@
 	</div>
 </form>
 </div>
+{{/partial}}
 
-</body>
 
-
-</html>
+{{>layout.hbs}}

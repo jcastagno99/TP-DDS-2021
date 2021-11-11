@@ -13,7 +13,7 @@ public class IngresoController extends Controller{
 
   public ModelAndView preIngreso(Request request, Response response) {
 
-    return new ModelAndView(LocalDate.now(), "yaTeRegistraste.hbs");
+    return new ModelAndView(LocalDate.now(), "yaTeRegistraste2.hbs");
   }
 
 
@@ -45,7 +45,7 @@ public class IngresoController extends Controller{
   }
 
   public ModelAndView ingresarComunmente(Request request, Response response) {
-    return new ModelAndView(null, "pantallaDeLogueo.hbs");
+    return new ModelAndView(null, "pantallaDeLogueo2.hbs");
   }
 
   public ModelAndView mostrarPerfil(Request request, Response response) {
