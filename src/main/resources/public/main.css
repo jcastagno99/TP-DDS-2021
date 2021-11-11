@@ -48,3 +48,13 @@ body {
 .nombre-usuario{
     text-transform: uppercase;
 }
+
+.contenedor .elemento select{
+    width: 300px;
+    padding: 10px 0;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 20px;
+}

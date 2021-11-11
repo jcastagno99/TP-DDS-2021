@@ -33,7 +33,7 @@
         <div>
             <div class="contenedor">
                 <h2>UNETE A NOSOTROS</h2>
-                <form action="/registrarme" method="post">
+                <form action="/registrarme" method="POST">
                     <div>
                         <div class="form-group col-lg-6">
                             <div class="elemento">
@@ -43,7 +43,7 @@
 
                             <div class="elemento">
                                 <label for="contraseña">Contraseña</label>
-                                <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" class="form-control" required>
+                                <input type="password" id="contraseña" name="contrasenia" placeholder="Contraseña" class="form-control" minlength = "8">
                             </div>
 
                             <!-- <label for="confirmarContraseña">Confirmar Contraseña</label>
@@ -51,27 +51,29 @@
 
                             <div class="elemento">
                                 <label for="nombreReal">Nombre</label>
-                                <input type="text" id="nombreReal" name="nombreReal" placeholder="Nombre" class="form-control" required>
+                                <input type="text" id="nombreReal" name="nombre" placeholder="Nombre" class="form-control" required>
                             </div>
 
                             <div class="elemento">
-                                <label for="apellidoUsuario">Apellido</label>
-                                <input type="text" id="apellidoUsuario" name="apellidoReal" placeholder="Apellido" class="form-control" required>
+                                <label for="apellido">Apellido</label>
+                                <input type="text" id="apellido" name="apellido" placeholder="Apellido" class="form-control" required>
                             </div>
 
                             <div class="elemento">
                                 <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                                <input type="date" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento" class="form-control" required>
+                                <input type="date" id="fechaNacimiento" name="fechaNacimiento" min="1950-01-01" max="{{this}}" placeholder="Fecha de Nacimiento" class="form-control" required>
                             </div>
 
                             <div class="elemento">
                                 <label for="tipoDocumento">Tipo de Documento</label>
-                                <input type="text" id="tipoDocumento" name="tipoDocumento" placeholder="Tipo de Documento" class="form-control" required>
+                                <select name="tipoDocumento" id="tipoDocumento" class="form-control">
+                                    <option value="DNI">DNI</option>
+                                </select>
                             </div>
 
                             <div class="elemento">
                                 <label for="numeroDocumento">Numero de Documento</label>
-                                <input type="number" id="numeroDocumento" name="numeroDocumento" placeholder="Numero de Documento" class="form-control" required>
+                                <input type="number" id="numeroDocumento" name="numeroDeDocumento" placeholder="Numero de Documento" class="form-control" required>
                             </div>
 
                             <div class="elemento">
@@ -91,5 +93,6 @@
                     </div>
                 </form>
             </div>
+        </div>
     </body>
 </html>

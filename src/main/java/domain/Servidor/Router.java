@@ -32,7 +32,7 @@ public class Router {
 
     Spark.post("/ingresar", ingresoController::mostrarPerfil, engineTemplate);
 
-    Spark.get("/registrarme", RegistroController::registrarUsuario, engineTemplate);
+    Spark.get("/registrarme", registroController::registrarUsuario, engineTemplate);
 
     Spark.post("/registrarme", registroController::crearUsuario, engineTemplate);
 
