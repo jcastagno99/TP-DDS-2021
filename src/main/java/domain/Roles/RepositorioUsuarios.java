@@ -71,6 +71,7 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
       return false;
     }
   }
+ 
   public Duenio buscarDuenioMedianteUsuario(String nombreUsuario){
     return (Duenio) this.buscarSoloUsuario(nombreUsuario, Duenio.class.getTypeName());
   }
@@ -79,12 +80,12 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
     EntityManager entityManager = this.entityManager();
     try {
       return (Usuario) entityManager.createQuery("from " + nombreTabla + " t where t.usuario = "
-                      + ":nombreDeUsuario")
-              .setParameter("nombreDeUsuario", nombreUsuario)
-              .getSingleResult();
+          + ":nombreDeUsuario")
+          .setParameter("nombreDeUsuario", nombreUsuario)
+          .getSingleResult();
     }  catch (NoResultException e) {
       throw new BusquedaEnBaseDeDatosException("No se ha encontrado un usuario registrado con los "
-              + "datos de inicio de sesión aportados. Por favor, ingrese un usuario y contraseña válidos");
+          + "datos de inicio de sesión aportados. Por favor, ingrese un usuario y contraseña válidos");
       //Por cuestiones de seguridad, no se especifica qué dato (usuario o contraseña) fue incorrecto
     }
   }

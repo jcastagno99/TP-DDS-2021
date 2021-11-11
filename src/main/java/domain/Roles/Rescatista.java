@@ -3,17 +3,14 @@ package domain.Roles;
 import domain.services.HogaresDeTransitoDDS.ServicioHogaresDeTransitoDds;
 import domain.services.HogaresDeTransitoDDS.entities.Hogar;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.IOException;
 import java.util.List;
 
 @Entity
 public class Rescatista {
 
-  @OneToOne
+  @OneToOne(cascade = {CascadeType.ALL})
   DatosFormulario datosFormulario;
 
   @Id

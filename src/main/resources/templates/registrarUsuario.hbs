@@ -15,7 +15,7 @@
 
     <body>
         <div class="contenedor">
-            <h2>UNETE A NOSOTROS</h2>
+            <h2>UNETE A NOSOTROS</h2>  <br>
             <form action="/registrarme" method="POST">
                 <div>
                     <div class="form-group col-lg-6">
@@ -33,8 +33,8 @@
                         <input type="password" id="confirmarContraseña" name="confirmarContraseña" placeholder="Contraseña" class="form-control" required> -->
 
                         <div class="elemento">
-                            <label for="nombreReal">Nombre</label>
-                            <input type="text" id="nombreReal" name="nombre" placeholder="Nombre" class="form-control" required>
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" required>
                         </div>
 
                         <div class="elemento">
@@ -50,7 +50,7 @@
                         <div class="elemento">
                             <label for="tipoDocumento">Tipo de Documento</label>
                             <select name="tipoDocumento" id="tipoDocumento" class="form-control">
-                                <option value="DNI">DNI</option>
+                                <option class="opcion" value="DNI">DNI</option>
                             </select>
                         </div>
 
@@ -76,33 +76,5 @@
                 </div>
             </form>
         </div>
-
-        <!--
-        <script>
-            $("#button").on("click", function() {
-                if($("#contraseña").val()!==$("#confirmarContraseña").val()) {
-                    alert("Las contraseñas no coinciden");
-                    return false;
-                }
-                var nombreUsuario = $('#nombreUsuario').val();
-                var contraseña = $('#contraseña').val();
-                var nombreReal = $('#nombreReal').val();
-                var apellidoUsuario = $('#apellidoUsuario').val();
-                var data = {'usuario': usuario, 'password': password};
-                $.ajax({
-                    url: '/registro',
-                    type:'POST',
-                    data: data,
-                    success: function(result) {
-                        $("#mensaje").html(result);
-                    },
-                    error: function (error) {
-                        alert("Se ha producido un error inesperado, intente más tarde");
-                        console.log(error)
-                    }
-                });
-            })
-        </script>
-        -->
     </body>
 </html>

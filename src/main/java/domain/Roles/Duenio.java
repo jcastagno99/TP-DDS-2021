@@ -93,5 +93,16 @@ public class Duenio extends Usuario {
     return contacto;
   }
 
+  public LocalDate getFechaNacimiento() {
+    return fechaNacimiento;
+  }
+
+  public String getTipoDocumento() {
+    return tipoDocumento;
+  }
+
+  public int getNumeroDocumento() {
+    return numeroDocumento;
+  }
 }
 

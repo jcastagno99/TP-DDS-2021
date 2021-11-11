@@ -50,6 +50,8 @@ public class RegistroController {
 
         //TODO cookies
         //response.redirect("/me"); TODO: no existe ningun /me
+        response.cookie("nombreUsuario",nombreUsuario);
+        response.cookie("contrasenia",contrasenia);
         return new ModelAndView(nuevoDuenio, "homeLogueado.hbs");
 
     } catch (UsuarioYaRegistradoException a) {
