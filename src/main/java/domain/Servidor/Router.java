@@ -24,11 +24,11 @@ public class Router {
     MascotasController mascotasController = new MascotasController();
     EncontreMascotaController encontreMascotaController = new EncontreMascotaController();
 
-    Spark.get("/",homeController::index, engineTemplate);
+    Spark.get("/",homeController::index, engineTemplate); // listo
 
-    Spark.get("/ingresar", ingresoController::ingresarComunmente, engineTemplate);
+    Spark.get("/ingresar", ingresoController::ingresarComunmente, engineTemplate); // listo
 
-    Spark.post("/ingresar", ingresoController::mostrarPerfil, engineTemplate);
+    Spark.post("/ingresar", ingresoController::mostrarPerfil, engineTemplate); // Listo
 
     Spark.get("/registrarme", registroController::registrarUsuario, engineTemplate);
 
