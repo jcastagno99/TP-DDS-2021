@@ -37,16 +37,17 @@ public class RegistroController {
         int telefono = Integer.parseInt(request.queryParams("telefono"));
         String email = request.queryParams("email");
 
-      //TODO: Obtener la asociacion del usuario, esta la hardcodeo
-      UbicacionDeDominio ubiHuellas = new UbicacionDeDominio(66, 70);
-      Asociacion huellas = new Asociacion(ubiHuellas);
+        //TODO: Obtener la asociacion del usuario, esta la hardcodeo
+        UbicacionDeDominio ubiHuellas = new UbicacionDeDominio(66, 70);
+        Asociacion huellas = new Asociacion(ubiHuellas);
 
         Contacto contactoDuenio = new Contacto(telefono, email);
         Duenio nuevoDuenio = new Duenio(nombreUsuario, contrasenia, huellas, nombre, apellido, fechaNacimiento, tipoDocumento, numeroDocumento, contactoDuenio);
 
-      transaction.begin();
-      RepositorioUsuarios.instance().guardarUsuario(nuevoDuenio);
-      transaction.commit();
+        //TODO agregar usuario a asociacion y persistir asociacion
+        transaction.begin();
+        RepositorioUsuarios.instance().guardarUsuario(nuevoDuenio);
+        transaction.commit();
 
         //TODO cookies
         //response.redirect("/me"); TODO: no existe ningun /me

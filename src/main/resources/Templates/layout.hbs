@@ -1,26 +1,22 @@
 <html>
-<head>
-     {{#block "headers"}}
-     {{/block}}
-</head>
+    <head>
+         {{#block "headers"}}
+         {{/block}}
+    </head>
+    <body>
+        <header>
+                {{#block "navBar"}}
+                {{/block}}
+        </header>
 
-<body>
+        {{#block "contenido"}}
+        {{/block}}
 
-{{#block "navBar"}}
-{{/block}}
-
-<div class="container">
-	{{#block "contenido"}}
-	{{/block}}
-</div>
-
-<footer class="footer">
-    <br>
-    <p class="text-center">
-      &copy; 2021 rescatedepatitas.com
-    </p>
-</footer>
-
-</body>
-
+        <footer class="footer">
+            <br>
+            <p class="text-center">
+              &copy; 2021 rescatedepatitas.com
+            </p>
+        </footer>
+    </body>
 </html>

@@ -1,38 +1,33 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+{{#partial "headers"}}
+    {{>headers.hbs}}
+{{/partial}}
 
-        <!--Nuestro CSS -->
-        <link rel="stylesheet" type="text/css" href="main.css">
-
-    </head>
+{{#partial "navBar"}}
+    {{>navBarSinLogueo.hbs}}
+{{/partial}}
 
 
-    <body>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+{{#partial "contenido"}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-        <br>
+    <br>
 
-        <div class="alert alert-primary d-flex align-items-center" role="alert">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-            </svg>
-            <div>
-                {{message}} . Por favor ingrese un nuevo nombre de usuario.
-            </div>
-        </div>
-
-        <br>
-
+    <div class="alert alert-primary d-flex align-items-center" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" color="red" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg>
         <div>
+            {{message}} . Por favor ingrese un nuevo nombre de usuario.
+        </div>
+    </div>
+
+    <body class="body-contenido">
+    <section id="pantalla-dividia">
+        <div class="izquierda-fondo"></div>
+        <div class="derecha-form">
             <div class="contenedor">
-                <h2>UNETE A NOSOTROS</h2>
+                <h2>UNETE A NOSOTROS</h2> <br>
                 <form action="/registrarme" method="POST">
                     <div>
                         <div class="form-group col-lg-6">
@@ -50,8 +45,8 @@
                              <input type="password" id="confirmarContraseña" name="confirmarContraseña" placeholder="Contraseña" class="form-control" required> -->
 
                             <div class="elemento">
-                                <label for="nombreReal">Nombre</label>
-                                <input type="text" id="nombreReal" name="nombre" placeholder="Nombre" class="form-control" required>
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" required>
                             </div>
 
                             <div class="elemento">
@@ -67,32 +62,39 @@
                             <div class="elemento">
                                 <label for="tipoDocumento">Tipo de Documento</label>
                                 <select name="tipoDocumento" id="tipoDocumento" class="form-control">
-                                    <option value="DNI">DNI</option>
+                                    <option class="opcion" value="DNI">DNI</option>
                                 </select>
                             </div>
 
                             <div class="elemento">
-                                <label for="numeroDocumento">Numero de Documento</label>
-                                <input type="number" id="numeroDocumento" name="numeroDeDocumento" placeholder="Numero de Documento" class="form-control" required>
+                                <label for="numeroDocumento">Número de Documento</label>
+                                <input type="number" id="numeroDocumento" name="numeroDocumento" placeholder="Número de Documento" class="form-control" required>
                             </div>
 
                             <div class="elemento">
-                                <label for="telefono">Telefono</label>
-                                <input type="number" id="telefono" name="telefono" placeholder="Telefono" class="form-control" required>
+                                <label for="telefono">Teléfono</label>
+                                <input type="number" id="telefono" name="telefono" placeholder="Teléfono" class="form-control" required>
                             </div>
 
                             <div class="elemento">
-                                <label for="email">Direccion de Email</label>
+                                <label for="email">Dirección de Email</label>
                                 <input type="email" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" class="form-control" required>
                             </div>
 
                             <div class="elemento">
-                                <button type="submit" id="button" class="btn btn-primary col-lg-6">Registrarse</button> <br> <br>
+                                <button type="submit" id="button">REGISTRARSE</button><br>
+                            </div>
+                            <br>
+                            <div>
+                                <link><a href="/ingresar" class="form-link">¿Ya tenés un usuario?</a></link>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+    </section>
     </body>
-</html>
+{{/partial}}
+
+{{>layout.hbs}}

@@ -21,7 +21,7 @@ public class Asociacion {
 
   @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
   public List<MascotaRegistrada> mascotasRegistradas;
-  @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
+  @OneToMany(cascade = CascadeType.PERSIST , orphanRemoval = true)
   public List<Duenio> dueniosRegistrados;
   @ManyToMany(cascade = CascadeType.PERSIST)
   public List<Caracteristica> caracteristicasPedidas;

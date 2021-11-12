@@ -22,7 +22,7 @@ public class EncontreMascotaController {
   }
 
   public ModelAndView registrarMascotaSinChapita(Request request, Response response) {
-    if(!request.cookie("nombreDeUsuario").isEmpty()){
+    if(request.cookie("nombreDeUsuario") != null){
       Duenio duenio = RepositorioUsuarios.instance().buscarDuenioMedianteUsuario(request.cookie("nombreDeUsuario"));
       return new ModelAndView(duenio,"formularioMascotaSinChapitaLogueado.hbs");
     }
