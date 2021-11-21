@@ -36,7 +36,7 @@ public class Router {
 
     Spark.get("/ingresarParaRegistrarMascota", ingresoController::preIngreso, engineTemplate);
 
-    Spark.post("/ingresarParaRegistrarMascota", ingresoController::ingresarParaRegistrarMascota, engineTemplate); // No usamos post porque tira
+    Spark.post("/ingresarParaRegistrarMascota", ingresoController::ingresarParaRegistrarMascota, engineTemplate);
 
     Spark.get("/registrarMascota", mascotasController::mostrarFormDeRegistro, engineTemplate);
 

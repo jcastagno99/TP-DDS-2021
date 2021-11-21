@@ -15,7 +15,7 @@ public class DuenioTest {
   private MascotaRegistrada miguelito = new MascotaRegistrada(TipoMascota.GATO,"Miguelito","Gato",1,Sexo.MASCULINO,"Gordo y naranja","URL");
 
   private UbicacionDeDominio ubicacionCallejeritos = new UbicacionDeDominio(34, 65);
-  private Asociacion callejeritos = new Asociacion(ubicacionCallejeritos);
+  private Asociacion callejeritos = new Asociacion(ubicacionCallejeritos,"callejeritos");
 
   private Contacto pepeContacto = new Contacto(540111587,"pepeMezar@pimientaNegra.com");
   private Duenio pepe = new Duenio("PepeOscar",  "Mezar1234567", callejeritos,"Pepe","Chavez",LocalDate.now(),"DNI",19875698,pepeContacto);

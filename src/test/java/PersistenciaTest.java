@@ -19,9 +19,9 @@ public class PersistenciaTest extends AbstractPersistenceTest implements WithGlo
   private UbicacionDeDominio ubiCallejeritos = new UbicacionDeDominio(-35, -45);
   private UbicacionDeDominio ubiCallejeritosCerca = new UbicacionDeDominio(-39, -49);
   private UbicacionDeDominio ubiAsociacion = new UbicacionDeDominio(-60, -70);
-  private Asociacion callejeritos =  new Asociacion(ubiCallejeritos);
-  private Asociacion callejeritosCerca =  new Asociacion(ubiCallejeritosCerca);
-  private Asociacion asociacion = new Asociacion(ubiAsociacion);
+  private Asociacion callejeritos =  new Asociacion(ubiCallejeritos,"callejeritos");
+  private Asociacion callejeritosCerca =  new Asociacion(ubiCallejeritosCerca,"callejeritosCerca");
+  private Asociacion asociacion = new Asociacion(ubiAsociacion,"asociacionGenerica");
   private Administrador administrador = new Administrador("mabelp", "afsfa656", null, "Mabel", "Perez");
   private Administrador administrador2 = new Administrador("pedroAbelardo", "pepeabel89522", null, "Pedro", "Fernandez");
   private Duenio duenio = new Duenio("josefern", "jose123599", asociacion, "José", "Fernández", null, null, 3212346, null);

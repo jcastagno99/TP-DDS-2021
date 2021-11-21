@@ -61,7 +61,7 @@ public class EncontreMascotaController {
 
     //TODO: Obtener la asociacion del usuario, esta la hardcodeo
     UbicacionDeDominio ubiAnimalitos = new UbicacionDeDominio(99, 99);
-    Asociacion animalitos = new Asociacion(ubiAnimalitos);
+    Asociacion animalitos = new Asociacion(ubiAnimalitos,"animalitos");
     animalitos.crearPublicacion(mascotaPerdidaSinChapita,rescatista);
 
     //TODO: Solo funciona porque estoy creando la asociacion de 0, se supone que la asociacion ya tiene que estar cargada de antes y esto tiene que ser un UPDATE
@@ -99,7 +99,7 @@ public class EncontreMascotaController {
 
     //TODO: Obtener la asociacion del usuario, esta la hardcodeo
     UbicacionDeDominio ubiAnimalitos = new UbicacionDeDominio(99, 99);
-    Asociacion animalitos = new Asociacion(ubiAnimalitos);
+    Asociacion animalitos = new Asociacion(ubiAnimalitos,"animalitos");
     animalitos.crearPublicacion(mascotaPerdidaSinChapita,rescatista);
 
     //TODO: Solo funciona porque estoy creando la asociacion de 0, se supone que la asociacion ya tiene que estar cargada de antes y esto tiene que ser un UPDATE

@@ -40,9 +40,9 @@ public class Bootstrap implements WithGlobalEntityManager {
     UbicacionDeDominio ubiElCampito = new UbicacionDeDominio(55, 60);
     UbicacionDeDominio ubiPatitas = new UbicacionDeDominio(30, 30);
     UbicacionDeDominio ubiVidaAnimal = new UbicacionDeDominio(200, 210);
-    Asociacion elCampito =  new Asociacion(ubiElCampito);
-    Asociacion patitas =  new Asociacion(ubiPatitas);
-    Asociacion vidaAnimal = new Asociacion(ubiVidaAnimal);
+    Asociacion elCampito =  new Asociacion(ubiElCampito,"elCampito");
+    Asociacion patitas =  new Asociacion(ubiPatitas,"patitas");
+    Asociacion vidaAnimal = new Asociacion(ubiVidaAnimal,"vidaAnimal");
     return Arrays.asList(elCampito,patitas,vidaAnimal);
   }
 

@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class VoluntarioTest {
   private UbicacionDeDominio ubiCallejeritos = new UbicacionDeDominio(-35, -45);
   private UbicacionDeDominio ubicacionEncuentro = new UbicacionDeDominio(56, 189);
-  private Asociacion callejeritos =  new Asociacion(ubiCallejeritos);
+  private Asociacion callejeritos =  new Asociacion(ubiCallejeritos,"callejeritos");
   private Contacto pepeContacto = new Contacto(540111587,"pepeMezar@pimientaNegra.com");
   private DatosFormulario datosFormulario = new DatosFormulario ("Shrek","Ogro", LocalDate.now(),"DNI",3, pepeContacto,"MuyMuyLejano");
   private Rescatista shrek = new Rescatista(datosFormulario);

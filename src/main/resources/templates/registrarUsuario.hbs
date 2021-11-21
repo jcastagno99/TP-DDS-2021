@@ -42,7 +42,7 @@
 
                                 <div class="elemento">
                                     <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" min="1950-01-01" max="{{this}}" placeholder="Fecha de Nacimiento" class="form-control" required>
+                                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" min="1950-01-01" max="{{fechaActual}}" placeholder="Fecha de Nacimiento" class="form-control" required>
                                 </div>
 
                                 <div class="elemento">
@@ -65,6 +65,15 @@
                                 <div class="elemento">
                                     <label for="email">Dirección de Email</label>
                                     <input type="email" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" class="form-control" required>
+                                </div>
+
+                                <div class="elemento">
+                                    <label for="asociaciones">Elija la asociacion</label>
+                                    <select name="asociaciones" id="asociaciones">
+                                        {{#each asociaciones}}
+                                        <option class="opcion-asociacion">{{nombreAsociacion}}</option>
+                                        {{/each}}
+                                    </select>
                                 </div>
 
                                 <div class="elemento">

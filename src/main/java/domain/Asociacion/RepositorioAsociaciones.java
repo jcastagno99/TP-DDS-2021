@@ -47,6 +47,11 @@ public class RepositorioAsociaciones implements WithGlobalEntityManager {
         .contains(unDuenio)).collect(Collectors.toList()).get(0);
   }
 
+  public Asociacion obtenerAsociacionPorNombre(String nombre){
+    return this.obtenerAsociaciones().stream().filter(asociacion
+        -> asociacion.getNombreAsociacion().equals(nombre)).collect(Collectors.toList()).get(0);
+  }
+
 
   public List<PublicacionMascotaPerdida> getPublicaciones() {
     //TODO aplanar lista de lista de publicaciones de asociaciones

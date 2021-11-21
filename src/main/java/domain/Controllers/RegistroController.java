@@ -1,9 +1,8 @@
 package domain.Controllers;
 import domain.Asociacion.Asociacion;
-import domain.Asociacion.UbicacionDeDominio;
+import domain.Asociacion.RepositorioAsociaciones;
 import domain.Roles.Contacto;
 import domain.Roles.Duenio;
-import domain.Roles.RepositorioUsuarios;
 import exception.UsuarioYaRegistradoException;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.ModelAndView;
@@ -12,13 +11,22 @@ import spark.Response;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.time.LocalDate;
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class RegistroController {
 
   public ModelAndView registrarUsuario(Request request, Response response) {
-    return new ModelAndView(LocalDate.now(), "registrarUsuario.hbs");
+
+    Map<String,Object> model = new HashMap<>();
+
+    model.put("fechaActual",LocalDate.now());
+    List<Asociacion> asociaciones = RepositorioAsociaciones.instance().obtenerAsociaciones();
+    model.put("asociaciones",asociaciones);
+
+    return new ModelAndView(model, "registrarUsuario.hbs");
   }
 
   public ModelAndView crearUsuario(Request request, Response response) {
@@ -27,6 +35,7 @@ public class RegistroController {
 
         EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
+
         String nombreUsuario = request.queryParams("nombreUsuario");
         String contrasenia = request.queryParams("contrasenia");
         String nombre = request.queryParams("nombre");
@@ -37,22 +46,20 @@ public class RegistroController {
         int telefono = Integer.parseInt(request.queryParams("telefono"));
         String email = request.queryParams("email");
 
-        //TODO: Obtener la asociacion del usuario, esta la hardcodeo
-        UbicacionDeDominio ubiHuellas = new UbicacionDeDominio(66, 70);
-        Asociacion huellas = new Asociacion(ubiHuellas);
+        Asociacion asociacionElegida = RepositorioAsociaciones.instance().obtenerAsociacionPorNombre(request.queryParams("asociaciones"));
 
         Contacto contactoDuenio = new Contacto(telefono, email);
-        Duenio nuevoDuenio = new Duenio(nombreUsuario, contrasenia, huellas, nombre, apellido, fechaNacimiento, tipoDocumento, numeroDocumento, contactoDuenio);
+        Duenio nuevoDuenio = new Duenio(nombreUsuario, contrasenia, asociacionElegida, nombre, apellido, fechaNacimiento, tipoDocumento, numeroDocumento, contactoDuenio);
 
-        //TODO agregar usuario a asociacion y persistir asociacion
+        asociacionElegida.agregarNuevoDuenio(nuevoDuenio);
+
         transaction.begin();
-        RepositorioUsuarios.instance().guardarUsuario(nuevoDuenio);
+        entityManager.persist(asociacionElegida);
         transaction.commit();
 
-        //TODO cookies
-        //response.redirect("/me"); TODO: no existe ningun /me
         response.cookie("nombreUsuario",nombreUsuario);
         response.cookie("contrasenia",contrasenia);
+
         return new ModelAndView(nuevoDuenio, "homeLogueado.hbs");
 
     } catch (UsuarioYaRegistradoException a) {
