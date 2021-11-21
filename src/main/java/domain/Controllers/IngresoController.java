@@ -44,8 +44,9 @@ public class IngresoController extends Controller{
     }
   }
 
+  // Listo
   public ModelAndView ingresarComunmente(Request request, Response response) {
-    return new ModelAndView(null, "pantallaDeLogueo2.hbs");
+    return new ModelAndView(null, "pantallaDeLogueo.hbs");
   }
 
   public ModelAndView mostrarPerfil(Request request, Response response) {
@@ -53,7 +54,7 @@ public class IngresoController extends Controller{
       Duenio duenio = this.buscarDuenio(request, response);
       return new ModelAndView(duenio, "homeLogueado.hbs");
     } catch (BusquedaEnBaseDeDatosException e) {
-      return new ModelAndView(e, "logueoComunUsuarioNoEncontrado.hbs");
+      return new ModelAndView(e, "pantallaDeLogueo.hbs");
     }
   }
 
