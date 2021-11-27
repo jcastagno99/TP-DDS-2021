@@ -21,7 +21,6 @@ public class RegistroController {
   public ModelAndView registrarUsuario(Request request, Response response) {
 
     Map<String,Object> model = new HashMap<>();
-
     model.put("fechaActual",LocalDate.now());
     List<Asociacion> asociaciones = RepositorioAsociaciones.instance().obtenerAsociaciones();
     model.put("asociaciones",asociaciones);
@@ -57,7 +56,7 @@ public class RegistroController {
         entityManager.persist(asociacionElegida);
         transaction.commit();
 
-        response.cookie("nombreUsuario",nombreUsuario);
+        response.cookie("nombreDeUsuario",nombreUsuario);
         response.cookie("contrasenia",contrasenia);
 
         return new ModelAndView(nuevoDuenio, "homeLogueado.hbs");

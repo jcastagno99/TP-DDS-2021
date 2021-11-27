@@ -52,8 +52,6 @@ public class Router {
 
     Spark.post("/formularioSinChapita",encontreMascotaController::crearPublicacionMascotaPerdida, engineTemplate);
 
-    Spark.post("/formularioSinChapitaLogueado",encontreMascotaController::crearPublicacionMascotaPerdidaLogueado, engineTemplate);
-
   }
 
 }

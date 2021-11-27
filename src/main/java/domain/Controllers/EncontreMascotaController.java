@@ -1,6 +1,7 @@
 package domain.Controllers;
 
 import domain.Asociacion.Asociacion;
+import domain.Asociacion.RepositorioAsociaciones;
 import domain.Asociacion.UbicacionDeDominio;
 import domain.Mascotas.DatosDeEncuentroDeMascota;
 import domain.Mascotas.MascotaPerdidaSinChapita;
@@ -15,10 +16,21 @@ import spark.Response;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class EncontreMascotaController {
   public ModelAndView encontreUnaMascota(Request request, Response response) {
-    return new ModelAndView(null,"encontreMascota.hbs");
+    Map<String,Object> model = new HashMap<>();
+    model.put("fechaActual",LocalDate.now());
+    if(request.cookie("nombreDeUsuario") != null){
+      model.put("usuario",request.cookie("nombreDeUsuario"));
+      return new ModelAndView(model,"encontreMascotaLogueado.hbs");
+    }
+    List<Asociacion> asociaciones = RepositorioAsociaciones.instance().obtenerAsociaciones();
+    model.put("asociaciones",asociaciones);
+    return new ModelAndView(model,"encontreMascota.hbs");
   }
 
   public ModelAndView registrarMascotaSinChapita(Request request, Response response) {
@@ -33,6 +45,41 @@ public class EncontreMascotaController {
 
     EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
     EntityTransaction transaction = entityManager.getTransaction();
+
+    if(request.cookie("nombreDeUsuario") != null){
+
+      Duenio duenio = RepositorioUsuarios.instance().buscarDuenioMedianteUsuario(request.cookie("nombreDeUsuario"));
+
+      TipoMascota tipoMascota = TipoMascota.valueOf(request.queryParams("tipoMascota"));
+      Tamanio tamanioMascota = Tamanio.valueOf(request.queryParams("tamanioMascota"));
+      LocalDate fechaEncuentro = LocalDate.parse(request.queryParams("fechaEncuentro"));
+      String descripcionEncuentro = request.queryParams("descripcionEncuentro");
+      String direccion = request.queryParams("direccion");
+
+      DatosFormulario datosFormulario = new DatosFormulario(duenio.getNombre(), duenio.getApellido(),
+          duenio.getFechaNacimiento(), duenio.getTipoDocumento(), duenio.getNumeroDocumento(), duenio.getContacto(), direccion);
+
+      Rescatista rescatista = new Rescatista(datosFormulario);
+
+      //TODO hardcodeo algunos de estos datos, hay que ver la implementacion de la ubicacion y de las fotos
+      UbicacionDeDominio ubiEncuentro = new UbicacionDeDominio(55,55);
+      DatosDeEncuentroDeMascota datosEncuentro = new DatosDeEncuentroDeMascota(descripcionEncuentro,ubiEncuentro,"asd");
+
+      MascotaPerdidaSinChapita mascotaPerdidaSinChapita = new MascotaPerdidaSinChapita(rescatista,datosEncuentro,tamanioMascota,tipoMascota,fechaEncuentro);
+
+
+      Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePertenece(duenio);
+      asociacion.crearPublicacion(mascotaPerdidaSinChapita,rescatista);
+
+      transaction.begin();
+      entityManager.persist(asociacion);
+      transaction.commit();
+
+
+      Map<String,Object> model = new HashMap<>();
+      model.put("usuario",request.cookie("nombreDeUsuario"));
+      return new ModelAndView(model,"homeLogueado.hbs");
+    }
 
     TipoMascota tipoMascota = TipoMascota.valueOf(request.queryParams("tipoMascota"));
     Tamanio tamanioMascota = Tamanio.valueOf(request.queryParams("tamanioMascota"));
@@ -59,54 +106,16 @@ public class EncontreMascotaController {
 
     MascotaPerdidaSinChapita mascotaPerdidaSinChapita = new MascotaPerdidaSinChapita(rescatista,datosEncuentro,tamanioMascota,tipoMascota,fechaEncuentro);
 
-    //TODO: Obtener la asociacion del usuario, esta la hardcodeo
+    //TODO: A QUE ASOCIACION LE AGREGAMOS LA PUBLICACION?? EL USUARIO NO ESTA LOGUEADO POR LO QUE NO PERTENECE A NINGUNA
     UbicacionDeDominio ubiAnimalitos = new UbicacionDeDominio(99, 99);
     Asociacion animalitos = new Asociacion(ubiAnimalitos,"animalitos");
     animalitos.crearPublicacion(mascotaPerdidaSinChapita,rescatista);
 
-    //TODO: Solo funciona porque estoy creando la asociacion de 0, se supone que la asociacion ya tiene que estar cargada de antes y esto tiene que ser un UPDATE
     transaction.begin();
     entityManager.persist(animalitos);
     transaction.commit();
 
     return new ModelAndView(null,"home.hbs");
 
-  }
-
-  public ModelAndView crearPublicacionMascotaPerdidaLogueado(Request request, Response response) {
-
-    EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-    EntityTransaction transaction = entityManager.getTransaction();
-
-    Duenio duenio = RepositorioUsuarios.instance().buscarDuenioMedianteUsuario(request.cookie("nombreDeUsuario"));
-
-    TipoMascota tipoMascota = TipoMascota.valueOf(request.queryParams("tipoMascota"));
-    Tamanio tamanioMascota = Tamanio.valueOf(request.queryParams("tamanioMascota"));
-    LocalDate fechaEncuentro = LocalDate.parse(request.queryParams("fechaEncuentro"));
-    String descripcionEncuentro = request.queryParams("descripcionEncuentro");
-    String direccion = request.queryParams("direccion");
-
-    DatosFormulario datosFormulario = new DatosFormulario(duenio.getNombre(), duenio.getApellido(),
-        duenio.getFechaNacimiento(), duenio.getTipoDocumento(), duenio.getNumeroDocumento(), duenio.getContacto(), direccion);
-
-    Rescatista rescatista = new Rescatista(datosFormulario);
-
-    //TODO hardcodeo algunos de estos datos, hay que ver la implementacion de la ubicacion y de las fotos
-    UbicacionDeDominio ubiEncuentro = new UbicacionDeDominio(55,55);
-    DatosDeEncuentroDeMascota datosEncuentro = new DatosDeEncuentroDeMascota(descripcionEncuentro,ubiEncuentro,"asd");
-
-    MascotaPerdidaSinChapita mascotaPerdidaSinChapita = new MascotaPerdidaSinChapita(rescatista,datosEncuentro,tamanioMascota,tipoMascota,fechaEncuentro);
-
-    //TODO: Obtener la asociacion del usuario, esta la hardcodeo
-    UbicacionDeDominio ubiAnimalitos = new UbicacionDeDominio(99, 99);
-    Asociacion animalitos = new Asociacion(ubiAnimalitos,"animalitos");
-    animalitos.crearPublicacion(mascotaPerdidaSinChapita,rescatista);
-
-    //TODO: Solo funciona porque estoy creando la asociacion de 0, se supone que la asociacion ya tiene que estar cargada de antes y esto tiene que ser un UPDATE
-    transaction.begin();
-    entityManager.persist(animalitos);
-    transaction.commit();
-
-    return new ModelAndView(duenio,"homeLogueado.hbs");
   }
 }

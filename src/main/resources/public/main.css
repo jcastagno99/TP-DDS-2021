@@ -90,18 +90,17 @@
 }
 
 .contenedor{
-    margin: 10px auto;
+    margin: 12px auto;
     width: 450px;
     padding: 15px;
     background: rgba(0, 0, 0, .5);
     border-radius: 10px;
-    height: 99%;
+    height: 97%;
     font-family: 'Montserrat', sans-serif;
-
 }
 
 .contenedor h2{
-    margin: 0 0 15px;
+    margin: 0 0 0px;
     padding: 0;
     color: #fff;
     text-align: center;
@@ -182,3 +181,43 @@
     background-color: transparent; /* No me lo toma */
     color: black;
 }
+
+/*--------------------------------PANTALLA DE ENCONTRE MASCOTA PERDIDA--------------------------------*/
+
+.izquierda-fondo-2{
+    background-size: cover;
+    background: url("encontre-mascota-fondo.jpeg") center;
+    height: 100vh;
+    width: 50%;
+}
+
+.formulario-scrolleable{
+    overflow-y: scroll;
+    height: 75%;
+}
+
+.formulario-scrolleable h5{
+    margin: 0 0 15px;
+    padding: 0;
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.a-contenido2{
+    background-color: rgba(0, 0, 0, 0);
+    border: 3px solid #000000;
+    border-radius: 30px;
+    cursor: pointer;
+    padding: 15px;
+    width: 350px;
+    color: black;
+    font-weight: bold;
+}
+
+.a-contenido2:hover{
+    background-color: black;
+    color: #a47053;
+    text-decoration: none;
+}
+
