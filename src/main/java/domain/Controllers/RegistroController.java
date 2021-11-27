@@ -82,20 +82,12 @@ public class RegistroController {
         autenticadorController.crearSessionUsuario(request, duenioAAutenticar.getId(), Rol.DUENIO);
 
         response.redirect("/miPerfil");
+
         //asociacionElegida.agregarNuevoDuenio(nuevoDuenio);
 
         /*transaction.begin();
         entityManager.persist(asociacionElegida);
         transaction.commit();*/
-
-        /*response.cookie("nombreUsuario",nombreUsuario);
-        response.cookie("contrasenia",contrasenia);*/
-
-        //return new ModelAndView(nuevoDuenio, "homeLogueado.hbs");
-
-        //return new IngresoController().ingresar(request, response);
-        /*
-        * probar con return autenticador...*/
 
       } catch (UsuarioYaRegistradoException | ContraseniaInvalidaException e) {
         modelo = new ModelAndView(e, "registrarUsuario.hbs");

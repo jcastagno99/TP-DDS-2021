@@ -58,7 +58,7 @@ public class AutenticadorController {
   public boolean usuarioAutenticado(Request request){
    return request.session().attribute("idUsuario") != null;
   }
-
+/*
   public ModelAndView autenticarDesuso(Request request, Response response) {
    ModelAndView modelo = new ModelAndView(null, null);
 
@@ -68,5 +68,5 @@ public class AutenticadorController {
      //Spark.halt();
    }
    return modelo;
-  }
+  }*/
 }

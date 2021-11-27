@@ -9,30 +9,27 @@
             <div class="derecha-form">
                 <div class="contenedor">
                     <h2>UNETE A NOSOTROS</h2> <br>
-                    <div class = "elemento">{{message}}</div>
+                   <div class = "elemento">{{message}}</div>
                     <form action="/registroDeUsuario" method="POST">
-                        <div>
+                        <div class="formulario-scrolleable">
                             <div class="form-group col-lg-6">
                                 <div class="elemento">
-                                    <label for="nombreUsuario">Nombre de Usuario</label>
+                                    <label for="nombreUsuario">NOMBRE DE USUARIO</label>
                                     <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre de Usuario" class="form-control" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="contraseña">Contraseña</label>
+                                    <label for="contraseña">CONTRASEÑA</label>
                                     <input type="password" id="contraseña" name="contrasenia" placeholder="Contraseña" class="form-control" minlength = "8">
                                 </div>
 
-                                <!-- <label for="confirmarContraseña">Confirmar Contraseña</label>
-                                 <input type="password" id="confirmarContraseña" name="confirmarContraseña" placeholder="Contraseña" class="form-control" required> -->
-
                                 <div class="elemento">
-                                    <label for="nombre">Nombre</label>
+                                    <label for="nombre">NOMBRE</label>
                                     <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="apellido">Apellido</label>
+                                    <label for="apellido">APELLIDO</label>
                                     <input type="text" id="apellido" name="apellido" placeholder="Apellido" class="form-control" required>
                                 </div>
 
@@ -46,51 +43,51 @@
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                                    <label for="fechaNacimiento">FECHA DE NACIMIENTO</label>
                                     <input type="date" id="fechaNacimiento" name="fechaNacimiento" min="1950-01-01" max="{{fechaActual}}" placeholder="Fecha de Nacimiento" class="form-control" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="tipoDocumento">Tipo de Documento</label>
+                                    <label for="tipoDocumento">TIPO DE DOCUMENTO</label>
                                     <select name="tipoDocumento" id="tipoDocumento" class="form-control">
                                         <option class="opcion" value="DNI">DNI</option>
                                     </select>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="numeroDocumento">Número de Documento</label>
+                                    <label for="numeroDocumento">NÚMERO DE DOCUMENTO</label>
                                     <input type="number" id="numeroDocumento" name="numeroDocumento" placeholder="Número de Documento" class="form-control" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="telefono">Teléfono</label>
+                                    <label for="telefono">TELÉFONO</label>
                                     <input type="number" id="telefono" name="telefono" placeholder="Teléfono" class="form-control" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="email">Dirección de Email</label>
+                                    <label for="email">DIRECCIÓN DE EMAIL</label>
                                     <input type="email" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" class="form-control" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="asociaciones">Elija la asociacion</label>
+                                    <label for="asociaciones">ELIJA LA ASOCIACIÓN</label>
                                     <select name="asociaciones" id="asociaciones">
                                         {{#each asociaciones}}
                                         <option class="opcion-asociacion">{{nombreAsociacion}}</option>
                                         {{/each}}
                                     </select>
                                 </div>
-
-                                <div class="elemento">
-                                    <button type="submit" id="button">REGISTRARSE</button><br>
-                                </div>
-                                <br>
-                                <div>
-                                    <link><a href="/ingreso" class="form-link">¿Ya tenés un usuario?</a></link>
-                                </div>
                             </div>
                         </div>
                     </form>
+                    <br>
+                    <div class="elemento" style="text-align: center">
+                        <button type="submit" id="button">REGISTRARSE</button><br>
+                    </div>
+                    <br>
+                    <div style="text-align: center">
+                        <link><a href="/ingreso" class="form-link">¿Ya tenés un usuario?</a></link>
+                    </div>
                 </div>
             </div>
         </section>

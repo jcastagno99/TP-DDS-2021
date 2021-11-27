@@ -62,7 +62,7 @@ public class Router {
 
     Spark.post("/formularioSinChapita", encontreMascotaController::crearPublicacionMascotaPerdida, engineTemplate);
 
-    Spark.post("/formularioSinChapitaLogueado", encontreMascotaController::crearPublicacionMascotaPerdidaLogueado, engineTemplate);
+    Spark.post("/formularioSinChapitaLogueado", encontreMascotaController::crearPublicacionMascotaPerdida, engineTemplate);
 
     Spark.get("/qr", mascotasController::crearQRParaMascota, engineTemplate);
 
