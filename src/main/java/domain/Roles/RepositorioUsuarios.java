@@ -19,8 +19,10 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
     return INSTANCE;
   }
 
+  private final EntityManager entityManager = this.entityManager();
+
   private Usuario buscar(String nombreUsuario, String contrasenia, String nombreTabla) {
-    EntityManager entityManager = this.entityManager();
+    //EntityManager entityManager = this.entityManager();
     try {
       return (Usuario) entityManager.createQuery("from " + nombreTabla + " t where t.usuario = "
           + ":nombreDeUsuario and t.contrasenia = :contrasenia")
@@ -47,20 +49,38 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
     return (Voluntario) this.buscar(nombreUsuario, contrasenia, Voluntario.class.getTypeName());
   }
 
+  private <T> Usuario buscarPorId(long id, Class clase) {
+    //EntityManager entityManager = this.entityManager();
+      return (Usuario) entityManager.find(clase, id);
+  }
+
+  public Administrador buscarAdministradorPorId(long id) {
+    return (Administrador) this.buscarPorId(id, Administrador.class);
+  }
+
+  public Duenio buscarDuenioPorId(long id) {
+    return (Duenio) this.buscarPorId(id, Duenio.class);
+  }
+
+  public Voluntario buscarVoluntarioPorId(long id) {
+    return (Voluntario) this.buscarPorId(id, Voluntario.class);
+  }
+
   public void guardarUsuario(Usuario usuario) {
     if (!this.nombreDeUsuarioExistente(usuario.getUsuario(), usuario.getClass().getTypeName())) {
-      EntityManager entityManager = this.entityManager();
+      //EntityManager entityManager = this.entityManager();
       entityManager.persist(usuario);
     } else {
       throw new UsuarioYaRegistradoException("Ya existe una persona registrada con el mismo nombre "
-          + "de usuario");
-      /*No se permitirán nombres de usuarios idénticos en la totalidad del sistema sin importar
-      * los roles*/
+          + "de usuario. Por favor, ingrese otro nombre de usuario distinto.");
+      /* No se permitirán nombres de usuarios idénticos dentro de un mismo rol. Entre disintos roles podría
+      * haber nombres de usuario repetidos.
+      * */
     }
   }
 
   private boolean nombreDeUsuarioExistente(String nombreUsuario, String nombreTabla) {
-    EntityManager entityManager = this.entityManager();
+    //EntityManager entityManager = this.entityManager();
     try {
       entityManager.createQuery("from " + nombreTabla
           + " t where t.usuario = :nombreUsuario")
@@ -77,7 +97,7 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
   }
 
   private Usuario buscarSoloUsuario(String nombreUsuario, String nombreTabla) {
-    EntityManager entityManager = this.entityManager();
+    //EntityManager entityManager = this.entityManager();
     try {
       return (Usuario) entityManager.createQuery("from " + nombreTabla + " t where t.usuario = "
           + ":nombreDeUsuario")

@@ -18,7 +18,7 @@ public class MascotaRegistrada {
   private Sexo sexo;
   private String descripcionFisica;
   private String fotos;
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.MERGE)
   private Duenio miDuenio;
   @ManyToMany
   private List<Caracteristica> caracteristicas;
@@ -30,7 +30,7 @@ public class MascotaRegistrada {
   private long id;
 
   public MascotaRegistrada(TipoMascota tipoMascota, String nombre, String apodo, int
-      edadAproximada, Sexo sexo, String descripcionFisica, String fotos) {
+      edadAproximada, Sexo sexo, String descripcionFisica, Duenio duenio, String fotos) {
     this.tipoMascota = tipoMascota;
     this.nombre = nombre;
     this.apodo = apodo;
@@ -39,6 +39,7 @@ public class MascotaRegistrada {
     this.descripcionFisica = descripcionFisica;
     this.fotos = fotos;
     this.caracteristicas = new ArrayList<>();
+    this.miDuenio = duenio;
   }
 
   public MascotaRegistrada(){}
@@ -60,10 +61,6 @@ public class MascotaRegistrada {
     .esTipo(tipoCaracteristica)).collect(Collectors.toList()).get(0);
   }
 
-  public void setDuenio(Duenio duenio) {
-    this.miDuenio = duenio;
-  }
-
   public boolean tieneDuenio(Duenio duenio) {
     return miDuenio.equals(duenio);
   }
@@ -82,5 +79,9 @@ public class MascotaRegistrada {
 
   public List<Caracteristica> getCaracteristicas() {
     return caracteristicas;
+  }
+
+  public long getId(){
+    return this.id;
   }
 }

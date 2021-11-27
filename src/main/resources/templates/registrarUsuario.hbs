@@ -9,7 +9,8 @@
             <div class="derecha-form">
                 <div class="contenedor">
                     <h2>UNETE A NOSOTROS</h2> <br>
-                    <form action="/registrarme" method="POST">
+                    <div class = "elemento">{{message}}</div>
+                    <form action="/registroDeUsuario" method="POST">
                         <div>
                             <div class="form-group col-lg-6">
                                 <div class="elemento">
@@ -33,6 +34,15 @@
                                 <div class="elemento">
                                     <label for="apellido">Apellido</label>
                                     <input type="text" id="apellido" name="apellido" placeholder="Apellido" class="form-control" required>
+                                </div>
+
+
+
+                                <div class="elemento">
+                                    <label for="rol">Rol</label>
+                                    <select name="rol" id="rol" class="form-control">
+                                        <option class="opcion" value="DUENIO">Dueño</option>
+                                    </select>
                                 </div>
 
                                 <div class="elemento">
@@ -76,7 +86,7 @@
                                 </div>
                                 <br>
                                 <div>
-                                    <link><a href="/ingresar" class="form-link">¿Ya tenés un usuario?</a></link>
+                                    <link><a href="/ingreso" class="form-link">¿Ya tenés un usuario?</a></link>
                                 </div>
                             </div>
                         </div>

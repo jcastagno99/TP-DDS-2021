@@ -42,10 +42,11 @@ public class RepositorioAsociaciones implements WithGlobalEntityManager {
   }
 
 
-  public Asociacion obtenerAsociacionA_LaQuePertenece(Duenio unDuenio) {
-    return this.obtenerAsociaciones().stream().filter(asociacion -> asociacion.getDueniosRegistrados()
-        .contains(unDuenio)).collect(Collectors.toList()).get(0);
-  }
+  /*public Asociacion obtenerAsociacionA_LaQuePertenece(Duenio unDuenio) {
+    /*return this.obtenerAsociaciones().stream().filter(asociacion -> asociacion.getDueniosRegistrados()
+        .contains(unDuenio)).collect(Collectors.toList()).get(0);*/
+    /*return unDuenio.getAsociacion();
+  }*/
 
   public Asociacion obtenerAsociacionPorNombre(String nombre){
     return this.obtenerAsociaciones().stream().filter(asociacion

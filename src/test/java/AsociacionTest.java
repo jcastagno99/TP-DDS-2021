@@ -13,7 +13,7 @@ public class AsociacionTest {
   private Contacto pepeContacto = new Contacto(540111587,"pepeMezar@pimientaNegra.com");
   private Duenio pepe = new Duenio("PepeOscar",  "Mezar1234567", callejeritos,"Pepe","Chavez", LocalDate.now(),"DNI",19875698, pepeContacto);
 
-  @Test
+  /*@Test
   public void seAgregaUnDuenioAUnaAsociacionCorrectamente() {
     assertTrue(callejeritos.getDueniosRegistrados().contains(pepe));
   }
@@ -21,5 +21,5 @@ public class AsociacionTest {
   @Test
   public void unDuenioEstaSeteadoCorrectamente() {
     assertEquals(callejeritos.getDueniosRegistrados().get(0).getApellido(), pepe.getApellido());
-  }
+  }*/
 }

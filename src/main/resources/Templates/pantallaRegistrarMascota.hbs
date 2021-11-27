@@ -195,6 +195,21 @@ width:15px;
 }
 
 </style>
+    <!-- ESTO NO DEBE MODIFICARSE-->
+    <script>
+        $(document).ready(function () {
+            $('#miForm').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: $(this).attr("method"),
+                    url: $(this).attr("action"),
+                    data:$(this).serialize()
+                })
+                $('#popUpMascotaRegistrada').modal('show');
+            });
+        });
+    </script>
+
 
 </head>
 
@@ -202,7 +217,7 @@ width:15px;
 <body>
 
 <div class="login-wrap">
-<form action = "/registrarMascota" method = "POST">
+<form id = "miForm" action = "/miPerfil/registroDeMascota" method = "POST">
 	<div class="login-html">
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Registra tu mascota</label>
 		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
@@ -211,28 +226,33 @@ width:15px;
 			<label for="nombre" class="label">Nombre</label>
 			<input id="nombre" class="input" data-type="text" name = "nombreMascota" required>
 	      </div>
-            <div>
+            <div class="group">
             <label>Tipo de Mascota</label>
-          	<select class="input">
+          	<select class="input" name = "tipoMascota" required>
             <option value="" disabled selected> </option>
-            <option class = "input" data-type = "text" name = "tipo" value="GATO">Gato</option>
-            <option class = "input" data-type = "text" name = "tipo" value="PERRO">Perro</option>
+            <option class = "input" data-type = "text"  value="GATO">Gato</option>
+            <option class = "input" data-type = "text"  value="PERRO">Perro</option>
 		    </select>
 		    </div>
 
+            <div class="group">
+                <label>Sexo</label>
+                <select class="input" name = "sexoMascota" required>
+                    <option value="" disabled selected> </option>
+                    <option class = "input" data-type = "text" value="MASCULINO"> Masculino</option>
+                    <option class = "input" data-type = "text" value="FEMENINO">Femenino</option>
+                </select>
+            </div>
 
-				<div class="group">
+            <div class="group">
                 	<label for="apodo" class="label">Apodo</label>
                 	<input id="apodo" class="input" data-type="text" name = "apodoMascota" required>
                 </div>
 				<div class="group">
-                	<label for="edad" class="label">Edad Aproximada</label>
-                	<input id="edad" class="input" data-type="numer" name = "edadAproximada" required>
+                	<label for="edad" class="label">Edad Aproximada (años)</label>
+                	<input id="edad" class="input" data-type="number" name = "edadAproximada" min = 1 max 100 required>
                 </div>
-				<div class="group">
-                	<label for="sexo" class="label">Sexo</label>
-                	<input id="sexo" class="input" data-type="text" name = "sexoMascota" required>
-                </div>
+
 				<div class="group">
                 	<label for="descipcion" class="label">Descripcion Fisica</label>
                 	<input id="descipcion" class="input" data-type="text" name = "descripcionFisica" required>
@@ -246,14 +266,15 @@ width:15px;
                 </form>
 
                 <div class="group">
-                	<input type="submit" class="button" value="Registrar" data-toggle="modal" data-target="#popUpMascotaRegistrada">
+                	<input type="submit" class="button" value="Registrar">
                 </div>
 
 
                     <div class="hr"></div>
                 	</div>
 
-                </form>
+    </div>
+</form>
 
 
 
@@ -262,21 +283,22 @@ width:15px;
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">¡Bienvenido!</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Registro de mascota</h5>
 
       </div>
       <div class="modal-body">
-       Se registró correctamente la mascota
+       Tu mascota ha sido registrada correctamente
       </div>
       <div class="modal-footer">
-      <href="/miPerfil" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Volver a mi perfil
+          <a href="/miPerfil/misMascotas" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Ver mis mascotas para imprimir QR</a>
+          <a href="/miPerfil" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Volver a mi perfil</a>
       </div>
     </div>
   </div>
 </div>
 
 
-
+</div>
 
 
 </body>

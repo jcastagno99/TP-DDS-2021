@@ -19,11 +19,11 @@ import java.util.stream.Collectors;
 @Table(name = "Asociaciones")
 public class Asociacion {
 
-  @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
+  @OneToMany(cascade = CascadeType.MERGE ,fetch = FetchType.EAGER ,orphanRemoval = true)
   public List<MascotaRegistrada> mascotasRegistradas;
-  @OneToMany(cascade = CascadeType.PERSIST , orphanRemoval = true)
+  /*@OneToMany(cascade = CascadeType.PERSIST , orphanRemoval = true)
   @JoinColumn
-  public List<Duenio> dueniosRegistrados;
+  public List<Duenio> dueniosRegistrados;*/
   @ManyToMany(cascade = CascadeType.PERSIST)
   public List<Caracteristica> caracteristicasPedidas;
   @Embedded
@@ -47,7 +47,7 @@ public class Asociacion {
 
   public Asociacion(UbicacionDeDominio ubicacion,String nombreAsociacion) {
     this.mascotasRegistradas = new ArrayList<>();
-    this.dueniosRegistrados = new ArrayList<>();
+    //this.dueniosRegistrados = new ArrayList<>();
     this.caracteristicasPedidas = new ArrayList<>();
     this.publicaciones = new ArrayList<>();
     this.ubicacion = ubicacion;
@@ -134,17 +134,17 @@ public class Asociacion {
     //MailSender.instance().sendMail(unMail, adoptante.getContacto().getEmail());
   }
 
-  public void agregarNuevoDuenio(Duenio unDuenio) {
+  /*public void agregarNuevoDuenio(Duenio unDuenio) {
     this.dueniosRegistrados.add(unDuenio);
-  }
+  }*/
 
   public List<Caracteristica> getCaracteristicasPedidas() {
     return caracteristicasPedidas;
   }
 
-  public List<Duenio> getDueniosRegistrados() {
+  /*public List<Duenio> getDueniosRegistrados() {
     return dueniosRegistrados;
-  }
+  }*/
 
   public UbicacionDeDominio getUbicacion() {
     return ubicacion;

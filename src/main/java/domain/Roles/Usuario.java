@@ -46,4 +46,8 @@ public abstract class Usuario {
     return this.nombre;
   }
 
+  public long getId() {
+    return this.id;
+  }
+
 }

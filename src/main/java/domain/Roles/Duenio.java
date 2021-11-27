@@ -10,6 +10,10 @@ import domain.Notificadores.MedioDeNotificacion;
 import domain.Publicaciones.PublicacionAdopcion;
 import domain.Publicaciones.PublicacionAdoptante;
 import domain.Publicaciones.PublicacionMascotaPerdida;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,7 +26,10 @@ public class Duenio extends Usuario {
   private String tipoDocumento;
   private int numeroDocumento;
 
-  @OneToOne(cascade = {CascadeType.ALL})
+  @ManyToOne
+  private Asociacion asociacion;
+
+  @OneToOne(cascade = CascadeType.ALL)
   private Contacto contacto;
 
   @Transient
@@ -37,8 +44,8 @@ public class Duenio extends Usuario {
     this.numeroDocumento = numeroDocumento;
     this.contacto = contacto;
     this.mediosNotificacion = new ArrayList<>();
-
-    asociacion.agregarNuevoDuenio(this);
+    this.asociacion = asociacion;
+    //asociacion.agregarNuevoDuenio(this);
   }
 
   public Duenio(){
@@ -56,7 +63,7 @@ public class Duenio extends Usuario {
   public void registrarMascota(MascotaRegistrada mascota, Asociacion unaAsoc) {
     mascota.copiarCaracteristicas(unaAsoc);
     unaAsoc.agregarMascota(mascota);
-    mascota.setDuenio(this);
+    //mascota.setDuenio(this);
   }
 
   public List<PublicacionMascotaPerdida> verPublicaciones() {
@@ -65,8 +72,7 @@ public class Duenio extends Usuario {
 
   //La asociacion llega cuando el usuario la selecciona por UI
   void darEnAdopcion(MascotaRegistrada unaMascota) {
-    Asociacion asociacion = RepositorioAsociaciones.instance()
-        .obtenerAsociacionA_LaQuePertenece(this);
+    Asociacion asociacion = this.getAsociacion();
     PublicacionAdopcion publicacion = new PublicacionAdopcion(unaMascota, contacto);
     asociacion.agregarPublicacionAdopcion(publicacion);
   }
@@ -103,6 +109,10 @@ public class Duenio extends Usuario {
 
   public int getNumeroDocumento() {
     return numeroDocumento;
+  }
+
+  public Asociacion getAsociacion() {
+    return this.asociacion;
   }
 }
 

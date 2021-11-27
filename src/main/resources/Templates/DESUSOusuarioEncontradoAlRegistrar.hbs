@@ -9,7 +9,7 @@
 
 
 {{#partial "contenido"}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <br>
 
@@ -20,7 +20,7 @@
         <div>
             {{message}} . Por favor ingrese un nuevo nombre de usuario.
         </div>
-    </div>
+    </div>-->
 
     <body class="body-contenido">
     <section id="pantalla-dividia">
@@ -28,6 +28,8 @@
         <div class="derecha-form">
             <div class="contenedor">
                 <h2>UNETE A NOSOTROS</h2> <br>
+                <div>Ya existe un usuario registrado con los mismo datos de sesión ingresados. Por favor, ingrese otro nombre de usuario y contraseña válidos</div>
+                <br>
                 <form action="/registrarme" method="POST">
                     <div>
                         <div class="form-group col-lg-6">

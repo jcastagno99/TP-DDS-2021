@@ -2,10 +2,7 @@ package domain.Controllers;
 
 import domain.Asociacion.Asociacion;
 import domain.Asociacion.UbicacionDeDominio;
-import domain.Mascotas.DatosDeEncuentroDeMascota;
-import domain.Mascotas.MascotaPerdidaSinChapita;
-import domain.Mascotas.Tamanio;
-import domain.Mascotas.TipoMascota;
+import domain.Mascotas.*;
 import domain.Roles.*;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.ModelAndView;
@@ -17,8 +14,13 @@ import javax.persistence.EntityTransaction;
 import java.time.LocalDate;
 
 public class EncontreMascotaController {
-  public ModelAndView encontreUnaMascota(Request request, Response response) {
-    return new ModelAndView(null,"encontreMascota.hbs");
+  private AutenticadorController autenticadorController = new AutenticadorController();
+
+  public ModelAndView mostrarFormDeEncuentroDeMascotaSinChapitaParaDuenio(Request request, Response response) {
+    //return new ModelAndView(null,"encontreMascota.hbs");
+    IngresoController ingresoController = new IngresoController();
+    Duenio duenio = (Duenio) ingresoController.buscarUsuarioPorSessionYMostrarVista(request, response).getModel();
+    return new ModelAndView(duenio,"formularioMascotaSinChapitaLogueado.hbs");
   }
 
   public ModelAndView registrarMascotaSinChapita(Request request, Response response) {
@@ -70,7 +72,6 @@ public class EncontreMascotaController {
     transaction.commit();
 
     return new ModelAndView(null,"home.hbs");
-
   }
 
   public ModelAndView crearPublicacionMascotaPerdidaLogueado(Request request, Response response) {
@@ -109,4 +110,5 @@ public class EncontreMascotaController {
 
     return new ModelAndView(duenio,"homeLogueado.hbs");
   }
+
 }

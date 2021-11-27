@@ -3,6 +3,8 @@ import domain.Asociacion.Asociacion;
 import domain.Asociacion.RepositorioAsociaciones;
 import domain.Roles.Contacto;
 import domain.Roles.Duenio;
+import domain.Roles.RepositorioUsuarios;
+import domain.Roles.Rol;
 import exception.UsuarioYaRegistradoException;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.ModelAndView;
@@ -18,23 +20,42 @@ import java.util.Map;
 
 public class RegistroController {
 
-  public ModelAndView registrarUsuario(Request request, Response response) {
+  private AutenticadorController autenticadorController = new AutenticadorController();
 
-    Map<String,Object> model = new HashMap<>();
+  public ModelAndView mostrarFormDeRegistroDeUsuario(Request request, Response response) {
+    ModelAndView modelo = null;
 
-    model.put("fechaActual",LocalDate.now());
-    List<Asociacion> asociaciones = RepositorioAsociaciones.instance().obtenerAsociaciones();
-    model.put("asociaciones",asociaciones);
+    if (autenticadorController.usuarioAutenticado(request)) {
+      response.redirect("/miPerfil");
+    }
 
-    return new ModelAndView(model, "registrarUsuario.hbs");
+    else {
+      Map<String,Object> model = new HashMap<>();
+
+      model.put("fechaActual",LocalDate.now());
+      List<Asociacion> asociaciones = RepositorioAsociaciones.instance().obtenerAsociaciones();
+      model.put("asociaciones",asociaciones);
+
+      modelo = new ModelAndView(model, "registrarUsuario.hbs");
+    }
+
+    return modelo;
   }
 
-  public ModelAndView crearUsuario(Request request, Response response) {
-
-    try {
-
+  public ModelAndView registrarUsuario(Request request, Response response) {
+    ModelAndView modelo = null;
+    if (autenticadorController.usuarioAutenticado(request)) {
+      response.redirect("/miPerfil");
+    }
+    else {
+      try {
         EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
+
+        /* El rol en este caso se utilizaría para hacer trs ifs y determinar qué clase instanciar:
+         * Duenio, Voluntario, Administrador. Como por ahora sólo se permite que los duños puedan registrarse,
+         * queda una puerta para aportar extensibilidad a futuro. Más abajo, el rol se setea a Rol.Duenio
+         */
 
         String nombreUsuario = request.queryParams("nombreUsuario");
         String contrasenia = request.queryParams("contrasenia");
@@ -49,22 +70,36 @@ public class RegistroController {
         Asociacion asociacionElegida = RepositorioAsociaciones.instance().obtenerAsociacionPorNombre(request.queryParams("asociaciones"));
 
         Contacto contactoDuenio = new Contacto(telefono, email);
+
         Duenio nuevoDuenio = new Duenio(nombreUsuario, contrasenia, asociacionElegida, nombre, apellido, fechaNacimiento, tipoDocumento, numeroDocumento, contactoDuenio);
 
-        asociacionElegida.agregarNuevoDuenio(nuevoDuenio);
-
         transaction.begin();
-        entityManager.persist(asociacionElegida);
+        RepositorioUsuarios.instance().guardarUsuario(nuevoDuenio);
         transaction.commit();
+        Duenio duenioAAutenticar = RepositorioUsuarios.instance().buscarDuenio(nombreUsuario, contrasenia);
 
-        response.cookie("nombreUsuario",nombreUsuario);
-        response.cookie("contrasenia",contrasenia);
+        autenticadorController.crearSessionUsuario(request, duenioAAutenticar.getId(), Rol.DUENIO);
 
-        return new ModelAndView(nuevoDuenio, "homeLogueado.hbs");
+        response.redirect("/miPerfil");
+        //asociacionElegida.agregarNuevoDuenio(nuevoDuenio);
 
-    } catch (UsuarioYaRegistradoException a) {
-      return new ModelAndView(a, "usuarioEncontradoAlRegistrar.hbs");
+        /*transaction.begin();
+        entityManager.persist(asociacionElegida);
+        transaction.commit();*/
+
+        /*response.cookie("nombreUsuario",nombreUsuario);
+        response.cookie("contrasenia",contrasenia);*/
+
+        //return new ModelAndView(nuevoDuenio, "homeLogueado.hbs");
+
+        //return new IngresoController().ingresar(request, response);
+        /*
+        * probar con return autenticador...*/
+
+      } catch (UsuarioYaRegistradoException e) {
+        modelo = new ModelAndView(e, "registrarUsuario.hbs");
+      }
     }
+    return modelo;
   }
-
 }
