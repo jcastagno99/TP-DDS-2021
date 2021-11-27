@@ -5,6 +5,7 @@ import domain.Roles.Contacto;
 import domain.Roles.Duenio;
 import domain.Roles.RepositorioUsuarios;
 import domain.Roles.Rol;
+import exception.ContraseniaInvalidaException;
 import exception.UsuarioYaRegistradoException;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.ModelAndView;
@@ -96,7 +97,7 @@ public class RegistroController {
         /*
         * probar con return autenticador...*/
 
-      } catch (UsuarioYaRegistradoException e) {
+      } catch (UsuarioYaRegistradoException | ContraseniaInvalidaException e) {
         modelo = new ModelAndView(e, "registrarUsuario.hbs");
       }
     }
