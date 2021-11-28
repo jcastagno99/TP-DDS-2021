@@ -58,14 +58,13 @@ public class Router {
 
     Spark.get("/miPerfil/encuentroDeMascota", encontreMascotaController::mostrarFormDeEncuentroDeMascotaSinChapitaParaDuenio,engineTemplate); // LISTO
 
-    Spark.get("/formularioSinChapita", encontreMascotaController::registrarMascotaSinChapita, engineTemplate);
+    Spark.post("/miPerfil/encuentroDeMascota", encontreMascotaController::crearPublicacionMascotaPerdida, engineTemplate); // LISTO
 
-    Spark.post("/formularioSinChapita", encontreMascotaController::crearPublicacionMascotaPerdida, engineTemplate);
+    Spark.get("/encuentroDeMascota", encontreMascotaController::mostrarFormDeEncuentroDeMascotaSinChapita,engineTemplate);
 
-    Spark.post("/formularioSinChapitaLogueado", encontreMascotaController::crearPublicacionMascotaPerdida, engineTemplate);
+    Spark.post("/encuentroDeMascota", encontreMascotaController::crearPublicacionMascotaPerdida,engineTemplate);
 
     Spark.get("/qr", mascotasController::crearQRParaMascota, engineTemplate);
-
 
 
     /*Spark.before("/miPerfil/*", (request, response) -> {

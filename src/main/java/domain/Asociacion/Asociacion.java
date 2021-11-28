@@ -21,7 +21,6 @@ public class Asociacion {
 
   @OneToMany(cascade = CascadeType.MERGE ,fetch = FetchType.EAGER ,orphanRemoval = true)
   public List<MascotaRegistrada> mascotasRegistradas;
-
   @OneToMany(cascade = CascadeType.PERSIST , orphanRemoval = true)
   @JoinColumn()
   public List<Duenio> dueniosRegistrados;

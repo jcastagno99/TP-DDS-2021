@@ -18,48 +18,39 @@ import java.util.List;
 import java.util.Map;
 
 public class EncontreMascotaController {
+
   private AutenticadorController autenticadorController = new AutenticadorController();
 
   public ModelAndView mostrarFormDeEncuentroDeMascotaSinChapitaParaDuenio(Request request, Response response) {
-    //return new ModelAndView(null,"encontreMascota.hbs");
     IngresoController ingresoController = new IngresoController();
     Duenio duenio = (Duenio) ingresoController.buscarUsuarioPorSessionYMostrarVista(request, response).getModel();
-    return new ModelAndView(duenio, "formularioMascotaSinChapitaLogueado.hbs");
+    return new ModelAndView(duenio, "encontreMascotaLogueado.hbs");
   }
-  // TODO pasar a session
-  public ModelAndView encontreUnaMascota(Request request, Response response) {
+
+  public ModelAndView mostrarFormDeEncuentroDeMascotaSinChapita(Request request, Response response) {
     Map<String,Object> model = new HashMap<>();
     model.put("fechaActual",LocalDate.now());
-    if(request.cookie("nombreDeUsuario") != null){
-      model.put("usuario",request.cookie("nombreDeUsuario"));
-      return new ModelAndView(model,"encontreMascotaLogueado.hbs");
-    }
+    //TODO: La asociacion deberia ser la mas cercana
     List<Asociacion> asociaciones = RepositorioAsociaciones.instance().obtenerAsociaciones();
     model.put("asociaciones",asociaciones);
     return new ModelAndView(model,"encontreMascota.hbs");
   }
 
-  public ModelAndView registrarMascotaSinChapita(Request request, Response response) {
-    if(request.cookie("nombreDeUsuario") != null){
-      Duenio duenio = RepositorioUsuarios.instance().buscarDuenioMedianteUsuario(request.cookie("nombreDeUsuario"));
-      return new ModelAndView(duenio,"formularioMascotaSinChapitaLogueado.hbs");
-    }
-    return new ModelAndView(null,"formularioMascotaSinChapita.hbs");
-  }
-
+  // El post se hace contra dos rutas distintas, pero que llaman al mismo método
   public ModelAndView crearPublicacionMascotaPerdida(Request request, Response response) {
 
     EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
     EntityTransaction transaction = entityManager.getTransaction();
 
+    TipoMascota tipoMascota = TipoMascota.valueOf(request.queryParams("tipoMascota"));
+    Tamanio tamanioMascota = Tamanio.valueOf(request.queryParams("tamanioMascota"));
+    LocalDate fechaEncuentro = LocalDate.parse(request.queryParams("fechaEncuentro"));
+    String descripcionEncuentro = request.queryParams("descripcionEncuentro");
+
     if (autenticadorController.usuarioAutenticado(request)) {
 
-      Duenio duenio = RepositorioUsuarios.instance().buscarDuenioMedianteUsuario(request.cookie("nombreDeUsuario"));
+      Duenio duenio = RepositorioUsuarios.instance().buscarDuenioPorId(request.session().attribute("idUsuario"));
 
-      TipoMascota tipoMascota = TipoMascota.valueOf(request.queryParams("tipoMascota"));
-      Tamanio tamanioMascota = Tamanio.valueOf(request.queryParams("tamanioMascota"));
-      LocalDate fechaEncuentro = LocalDate.parse(request.queryParams("fechaEncuentro"));
-      String descripcionEncuentro = request.queryParams("descripcionEncuentro");
       String direccion = request.queryParams("direccion");
 
       DatosFormulario datosFormulario = new DatosFormulario(duenio.getNombre(), duenio.getApellido(),
@@ -73,24 +64,17 @@ public class EncontreMascotaController {
 
       MascotaPerdidaSinChapita mascotaPerdidaSinChapita = new MascotaPerdidaSinChapita(rescatista,datosEncuentro,tamanioMascota,tipoMascota,fechaEncuentro);
 
-
       Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePertenece(duenio);
       asociacion.crearPublicacion(mascotaPerdidaSinChapita,rescatista);
 
       transaction.begin();
+      //TODO ver merge
       entityManager.persist(asociacion);
       transaction.commit();
 
-
-      Map<String,Object> model = new HashMap<>();
-      model.put("usuario",request.cookie("nombreDeUsuario"));
-      return new ModelAndView(model,"homeLogueado.hbs");
+      return new ModelAndView(duenio,"homeLogueado.hbs");
     }
 
-    TipoMascota tipoMascota = TipoMascota.valueOf(request.queryParams("tipoMascota"));
-    Tamanio tamanioMascota = Tamanio.valueOf(request.queryParams("tamanioMascota"));
-    LocalDate fechaEncuentro = LocalDate.parse(request.queryParams("fechaEncuentro"));
-    String descripcionEncuentro = request.queryParams("descripcionEncuentro");
     String nombre = request.queryParams("nombre");
     String apellido = request.queryParams("apellido");
     LocalDate fechaNacimiento = LocalDate.parse(request.queryParams("fechaNacimiento"));
@@ -112,7 +96,7 @@ public class EncontreMascotaController {
 
     MascotaPerdidaSinChapita mascotaPerdidaSinChapita = new MascotaPerdidaSinChapita(rescatista,datosEncuentro,tamanioMascota,tipoMascota,fechaEncuentro);
 
-    //TODO: A QUE ASOCIACION LE AGREGAMOS LA PUBLICACION?? EL USUARIO NO ESTA LOGUEADO POR LO QUE NO PERTENECE A NINGUNA
+    //TODO: DEBERIA USAR LA ASOCIACION MAS CERCANA PERO NO FUNCAAAAAAAA
     UbicacionDeDominio ubiAnimalitos = new UbicacionDeDominio(99, 99);
     Asociacion animalitos = new Asociacion(ubiAnimalitos,"animalitos");
     animalitos.crearPublicacion(mascotaPerdidaSinChapita,rescatista);
