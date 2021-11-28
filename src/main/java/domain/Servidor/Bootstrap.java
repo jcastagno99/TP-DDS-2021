@@ -27,14 +27,14 @@ public class Bootstrap implements WithGlobalEntityManager {
 
     EntityManager entityManager = this.entityManager();
     EntityTransaction transaction = entityManager.getTransaction();
-/*
+
     transaction.begin();
     asociaciones.forEach((asociacion) -> RepositorioAsociaciones.instance().agregarAsociacion(asociacion));
     transaction.commit();
     List<Duenio> usuariosRegistrados = this.duenios();
     transaction.begin();
     usuariosRegistrados.forEach((duenio -> RepositorioUsuarios.instance().guardarUsuario(duenio)));
-    transaction.commit();*/
+    transaction.commit();
 /*
     Asociacion asociacion = (Asociacion) entityManager.createQuery("from Asociacion a where a.nombreAsociacion = 'elCampito'").getSingleResult();
 

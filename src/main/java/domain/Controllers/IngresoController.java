@@ -77,7 +77,7 @@ public class IngresoController extends Controller{
     ModelAndView perfilVista = new ModelAndView(null, null);
     Rol rol = Rol.valueOf(request.session().attribute("rol").toString());
     long usuarioId = Long.parseLong(request.session().attribute("idUsuario").toString());
-    // TODO modificar validacion
+
     if (rol.equals(Rol.ADMINISTRADOR)) {
       Administrador administrador = RepositorioUsuarios.instance().buscarAdministradorPorId(usuarioId);
       perfilVista = new ModelAndView(administrador, "homeLogueadoAdministrador.hbs");
