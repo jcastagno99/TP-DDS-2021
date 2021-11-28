@@ -1,0 +1,28 @@
+{{#partial "titulo"}}
+    Mi perfil
+{{/partial}}
+
+{{#partial "navBar"}}
+    {{>navBarConLogueoAdministrador.hbs}}
+{{/partial}}
+
+{{#partial "contenido"}}
+    <body class="body-contenido">
+    <section id="pantalla-dividia">
+        <div class="izquierda">
+            <h2 class="h2-contenido"><span class="top-creative">BIENVENIDOS A</span></h2>
+            <h1 class="h1-contenido"><span class="creative">RESCATE DE</span>
+                PATITAS
+            </h1>
+            <h3 class="h3-contenido"><span class="top-creative">OPERACIONES</span></h3>
+            <div class="link">
+                <a class="a-contenido" href="/ingreso/registroDeMascota">CONFIGURAR CARACTERÍSTICAS</a> <br>
+                <a class="a-contenido" href="">GESTIONAR VOLUNTARIOS</a> <br>
+            </div>
+        </div>
+        <div class="derecha"></div>
+    </section>
+    </body>
+{{/partial}}
+
+{{>layout.hbs}}

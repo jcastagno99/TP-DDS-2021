@@ -257,12 +257,22 @@ width:15px;
                 	<label for="descipcion" class="label">Descripcion Fisica</label>
                 	<input id="descipcion" class="input" data-type="text" name = "descripcionFisica" required>
                 </div>
+
+                <div class="group" style="overflow-y: scroll">
+                    <label class="label">Características</label>
+                    {{#each caracteristicas}}
+                        <div class="group">
+                            <label for={{tipo}} class="label">{{tipo}}</label>
+                            <input id={{tipo}} class="input" data-type="text" name={{tipo}} required>
+                        </div>
+                    {{/each}}
+                </div>
+
          		<form>
                 	<div class="group">
                          <label for="foto" class="label">Foto</label>
                         <input type="file" class="form-control-file" id="foto" name = "foto" >
                       </div>
-
                 </form>
 
                 <div class="group">

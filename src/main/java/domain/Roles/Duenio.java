@@ -26,8 +26,6 @@ public class Duenio extends Usuario {
   private String tipoDocumento;
   private int numeroDocumento;
 
-  @ManyToOne
-  private Asociacion asociacion;
 
   @OneToOne(cascade = CascadeType.ALL)
   private Contacto contacto;
@@ -44,8 +42,7 @@ public class Duenio extends Usuario {
     this.numeroDocumento = numeroDocumento;
     this.contacto = contacto;
     this.mediosNotificacion = new ArrayList<>();
-    this.asociacion = asociacion;
-    //asociacion.agregarNuevoDuenio(this);
+    asociacion.agregarNuevoDuenio(this);
   }
 
   public Duenio(){
@@ -72,7 +69,7 @@ public class Duenio extends Usuario {
 
   //La asociacion llega cuando el usuario la selecciona por UI
   void darEnAdopcion(MascotaRegistrada unaMascota) {
-    Asociacion asociacion = this.getAsociacion();
+    Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePertenece(this);
     PublicacionAdopcion publicacion = new PublicacionAdopcion(unaMascota, contacto);
     asociacion.agregarPublicacionAdopcion(publicacion);
   }
@@ -111,8 +108,5 @@ public class Duenio extends Usuario {
     return numeroDocumento;
   }
 
-  public Asociacion getAsociacion() {
-    return this.asociacion;
-  }
 }
 

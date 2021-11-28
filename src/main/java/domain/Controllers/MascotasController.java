@@ -1,6 +1,7 @@
 package domain.Controllers;
 
 import domain.Asociacion.Asociacion;
+import domain.Asociacion.Caracteristica;
 import domain.Asociacion.RepositorioAsociaciones;
 import domain.Mascotas.MascotaRegistrada;
 import domain.Mascotas.RepositorioDeMascotasRegistradas;
@@ -16,6 +17,9 @@ import spark.Response;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MascotasController {
 
@@ -24,7 +28,12 @@ public class MascotasController {
     if(!autenticadorController.usuarioAutenticado(request)) {
       response.redirect("/");
     }
-    return new ModelAndView(null, "pantallaRegistrarMascota.hbs");
+    Map<String,Object> model = new HashMap<>();
+    Duenio duenio = RepositorioUsuarios.instance().buscarDuenioPorId(request.session().attribute("idUsuario"));
+    Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePertenece(duenio);
+    List<Caracteristica> caracteristicas = asociacion.getCaracteristicasPedidas();
+    model.put("caracteristicas",caracteristicas);
+    return new ModelAndView(model, "pantallaRegistrarMascota.hbs");
   }
 
   /* Sólo podrán registrar mascotas los usuarios logueados como dueños. En el caso de que un voluntario
@@ -47,7 +56,7 @@ public class MascotasController {
 
     long idDuenio = request.session().attribute("idUsuario");
     Duenio duenioMascota = RepositorioUsuarios.instance().buscarDuenioPorId(idDuenio);
-    Asociacion asociacion = duenioMascota.getAsociacion();
+    Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePertenece(duenioMascota);
     MascotaRegistrada mascota = new MascotaRegistrada(tipoMascota, nombreMascota, apodoMascota, edadAproximada, sexoMascota, descripcion, duenioMascota, foto);
     //mascota.setDuenio(duenioMascota);
 

@@ -1,17 +1,15 @@
 package domain.Asociacion;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+@Embeddable
 public class Caracteristica {
   String caracteristica;
   String tipo;
 
-  @Id
-  @GeneratedValue
-  private long id;
 
   //Solo es llamado por el admin, por eso usa solo el tipo
   public Caracteristica(String tipo) {
@@ -26,6 +24,10 @@ public class Caracteristica {
 
   public String getTipo() {
     return tipo;
+  }
+
+  public void setTipo(String tipo) {
+    this.tipo = tipo;
   }
 
   public void setCaracteristica(String caracteristica) {

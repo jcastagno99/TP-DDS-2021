@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class PublicacionAdoptante {
 
-  @OneToMany
+  @ElementCollection
   List<Caracteristica> preferencias;
 
   @ElementCollection

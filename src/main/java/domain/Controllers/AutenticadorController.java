@@ -64,7 +64,7 @@ public class AutenticadorController {
 
    if (!this.usuarioAutenticado(request)) {
      response.status(404);
-     modelo = new ModelAndView(null, "paginaNoEncontrada.hbs");
+     modelo = new ModelAndView(null, "");
      //Spark.halt();
    }
    return modelo;

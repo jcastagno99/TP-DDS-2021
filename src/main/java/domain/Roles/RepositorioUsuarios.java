@@ -19,10 +19,10 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
     return INSTANCE;
   }
 
-  private final EntityManager entityManager = this.entityManager();
+  //private final EntityManager entityManager = this.entityManager();
 
   private Usuario buscar(String nombreUsuario, String contrasenia, String nombreTabla) {
-    //EntityManager entityManager = this.entityManager();
+    EntityManager entityManager = this.entityManager();
     try {
       return (Usuario) entityManager.createQuery("from " + nombreTabla + " t where t.usuario = "
           + ":nombreDeUsuario and t.contrasenia = :contrasenia")
@@ -50,7 +50,7 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
   }
 
   private <T> Usuario buscarPorId(long id, Class clase) {
-    //EntityManager entityManager = this.entityManager();
+    EntityManager entityManager = this.entityManager();
       return (Usuario) entityManager.find(clase, id);
   }
 
@@ -68,7 +68,7 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
 
   public void guardarUsuario(Usuario usuario) {
     if (!this.nombreDeUsuarioExistente(usuario.getUsuario(), usuario.getClass().getTypeName())) {
-      //EntityManager entityManager = this.entityManager();
+      EntityManager entityManager = this.entityManager();
       entityManager.persist(usuario);
     } else {
       throw new UsuarioYaRegistradoException("Ya existe una persona registrada con el mismo nombre "
@@ -80,7 +80,7 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
   }
 
   private boolean nombreDeUsuarioExistente(String nombreUsuario, String nombreTabla) {
-    //EntityManager entityManager = this.entityManager();
+    EntityManager entityManager = this.entityManager();
     try {
       entityManager.createQuery("from " + nombreTabla
           + " t where t.usuario = :nombreUsuario")
@@ -97,7 +97,7 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
   }
 
   private Usuario buscarSoloUsuario(String nombreUsuario, String nombreTabla) {
-    //EntityManager entityManager = this.entityManager();
+    EntityManager entityManager = this.entityManager();
     try {
       return (Usuario) entityManager.createQuery("from " + nombreTabla + " t where t.usuario = "
           + ":nombreDeUsuario")

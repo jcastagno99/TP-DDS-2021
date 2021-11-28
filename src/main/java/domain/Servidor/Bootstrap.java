@@ -3,6 +3,7 @@ package domain.Servidor;
 import domain.Asociacion.Asociacion;
 import domain.Asociacion.RepositorioAsociaciones;
 import domain.Asociacion.UbicacionDeDominio;
+import domain.Roles.Administrador;
 import domain.Roles.Contacto;
 import domain.Roles.Duenio;
 import domain.Roles.RepositorioUsuarios;
@@ -23,17 +24,22 @@ public class Bootstrap implements WithGlobalEntityManager {
 
   public void init(){
 
-    List<Asociacion> asociaciones = this.asociaciones();
-
     EntityManager entityManager = this.entityManager();
     EntityTransaction transaction = entityManager.getTransaction();
 
+    List<Asociacion> asociaciones = this.asociaciones();
     transaction.begin();
     asociaciones.forEach((asociacion) -> RepositorioAsociaciones.instance().agregarAsociacion(asociacion));
     transaction.commit();
+
     List<Duenio> usuariosRegistrados = this.duenios();
     transaction.begin();
     usuariosRegistrados.forEach((duenio -> RepositorioUsuarios.instance().guardarUsuario(duenio)));
+    transaction.commit();
+
+    List<Administrador> administradores = this.administradores();
+    transaction.begin();
+    administradores().forEach((administrador -> RepositorioUsuarios.instance().guardarUsuario(administrador)));
     transaction.commit();
 /*
     Asociacion asociacion = (Asociacion) entityManager.createQuery("from Asociacion a where a.nombreAsociacion = 'elCampito'").getSingleResult();
@@ -75,6 +81,17 @@ public class Bootstrap implements WithGlobalEntityManager {
         "Martin","Perez",LocalDate.now(),"DNI",222222,new Contacto(1598874,"MartinPp@gmail.com"));
     Duenio juan = new Duenio("juan", "matias1234", conexionAnimalDeBD, "Juan", "Martínez", LocalDate.now(), "DNI",455445, new Contacto(5455, "asdas@asads"));
     return Arrays.asList(pablo,martin, juan);
+  }
+
+  private List<Administrador> administradores(){
+
+    Asociacion elCampitoDeBD = (Asociacion) entityManager().createQuery("from Asociacion a where a.nombreAsociacion = 'elCampito'").getSingleResult();
+
+    Administrador jorge = new Administrador("jorgito27","159753asd",elCampitoDeBD,"Jorge","Perez");
+    //Administrador pepe = new Administrador("pepito27","159753asd",elCampitoDeBD,"Pepe","Perez");
+
+    return Arrays.asList(jorge);
+
   }
 
 }

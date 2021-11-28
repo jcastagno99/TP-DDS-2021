@@ -20,7 +20,7 @@ public class MascotaRegistrada {
   private String fotos;
   @ManyToOne(cascade = CascadeType.MERGE)
   private Duenio miDuenio;
-  @ManyToMany
+  @ElementCollection
   private List<Caracteristica> caracteristicas;
   @ElementCollection
   private List<String> necesidades;

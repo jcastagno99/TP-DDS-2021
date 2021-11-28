@@ -64,7 +64,7 @@ public class Router {
 
     Spark.post("/encuentroDeMascota", encontreMascotaController::crearPublicacionMascotaPerdida,engineTemplate); // LISTO
 
-    Spark.get("/publicacionesDeMascotasPerdidas", encontreMascotaController::mostrarPublicacionesDeMascotasPerdidas, engineTemplate); //validar logueo
+    Spark.get("/publicacionesDeMascotasPerdidas", encontreMascotaController::mostrarPublicacionesDeMascotasPerdidas, engineTemplate); //validar logueo, se podría hacer rutas /inicio/ para validar por /inicio/* con un before
 
     Spark.get("/qr", mascotasController::crearQRParaMascota, engineTemplate);
 

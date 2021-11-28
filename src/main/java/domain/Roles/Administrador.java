@@ -2,8 +2,7 @@ package domain.Roles;
 
 import domain.Asociacion.Asociacion;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Administrador extends Usuario {
