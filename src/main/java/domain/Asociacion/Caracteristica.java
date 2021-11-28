@@ -12,8 +12,9 @@ public class Caracteristica {
 
 
   //Solo es llamado por el admin, por eso usa solo el tipo
-  public Caracteristica(String tipo) {
+  public Caracteristica(String tipo, String caracteristica) {
     this.tipo = tipo;
+    this.caracteristica = caracteristica;
   }
 
   public Caracteristica(){}

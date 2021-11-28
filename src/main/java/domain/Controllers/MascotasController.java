@@ -51,14 +51,18 @@ public class MascotasController {
     int edadAproximada = Integer.parseInt(request.queryParams("edadAproximada"));
     Sexo sexoMascota = Sexo.valueOf(request.queryParams("sexoMascota"));
     String descripcion = request.queryParams("descripcionFisica");
-    String foto = request.queryParams("foto");
-    String nombreDeUsuario = request.session().attribute("nombreDeUsuario");
-
+    String foto = request.queryParams("fot
     long idDuenio = request.session().attribute("idUsuario");
     Duenio duenioMascota = RepositorioUsuarios.instance().buscarDuenioPorId(idDuenio);
     Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePertenece(duenioMascota);
     MascotaRegistrada mascota = new MascotaRegistrada(tipoMascota, nombreMascota, apodoMascota, edadAproximada, sexoMascota, descripcion, duenioMascota, foto);
     //mascota.setDuenio(duenioMascota);
+
+    // Modelando como objetos caracteristica:
+
+    //asociacion.getCaracteristicasPedidas().forEach(caracteristica -> mascota.agregarCaracteristica(new Caracteristica(caracteristica.getTipo(), request.queryParams(caracteristica.getTipo()))));
+
+    // Modelado como strings: TODO
 
     transaction.begin();
     asociacion.agregarMascota(mascota);
