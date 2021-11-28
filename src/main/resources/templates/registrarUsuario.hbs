@@ -9,35 +9,37 @@
             <div class="derecha-form">
                 <div class="contenedor">
                     <h2>UNETE A NOSOTROS</h2> <br>
-                   <div class = "elemento">{{message}}</div>
+                   <div class = "elemento"> <label>{{message}}</label></div>
+                    <br>
                     <form action="/registroDeUsuario" method="POST">
                         <div class="formulario-scrolleable">
                             <div class="form-group col-lg-6">
                                 <div class="elemento">
                                     <label for="nombreUsuario">NOMBRE DE USUARIO</label>
-                                    <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre de Usuario" class="form-control" required>
+                                    <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre de Usuario" class="form-control" maxlength="50" required>
                                 </div>
 
                                 <div class="elemento">
                                     <label for="contraseña">CONTRASEÑA</label>
-                                    <input type="password" id="contraseña" name="contrasenia" placeholder="Contraseña" class="form-control" minlength = "8">
+                                    <input type="password" id="contraseña" name="contrasenia" placeholder="Contraseña" class="form-control" minlength = "8" maxlength="100" required>
                                 </div>
 
                                 <div class="elemento">
                                     <label for="nombre">NOMBRE</label>
-                                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" required>
+                                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" maxlength="50" required>
                                 </div>
 
                                 <div class="elemento">
                                     <label for="apellido">APELLIDO</label>
-                                    <input type="text" id="apellido" name="apellido" placeholder="Apellido" class="form-control" required>
+                                    <input type="text" id="apellido" name="apellido" placeholder="Apellido" class="form-control" maxlength="50" required>
                                 </div>
 
 
 
                                 <div class="elemento">
-                                    <label for="rol">Rol</label>
-                                    <select name="rol" id="rol" class="form-control">
+                                    <label for="rol">ROL</label>
+                                    <select name="rol" id="rol" required>
+                                        <option disabled selected value="">Rol</option>
                                         <option class="opcion" value="DUENIO">Dueño</option>
                                     </select>
                                 </div>
@@ -49,29 +51,31 @@
 
                                 <div class="elemento">
                                     <label for="tipoDocumento">TIPO DE DOCUMENTO</label>
-                                    <select name="tipoDocumento" id="tipoDocumento" class="form-control">
+                                    <select name="tipoDocumento" id="tipoDocumento" class="form-control" required>
+                                        <option disabled selected value="">Tipo de documento</option>
                                         <option class="opcion" value="DNI">DNI</option>
                                     </select>
                                 </div>
 
                                 <div class="elemento">
                                     <label for="numeroDocumento">NÚMERO DE DOCUMENTO</label>
-                                    <input type="number" id="numeroDocumento" name="numeroDocumento" placeholder="Número de Documento" class="form-control" required>
+                                    <input type="number" id="numeroDocumento" name="numeroDocumento" min="1" placeholder="Número de Documento" class="form-control" required>
                                 </div>
 
                                 <div class="elemento">
                                     <label for="telefono">TELÉFONO</label>
-                                    <input type="number" id="telefono" name="telefono" placeholder="Teléfono" class="form-control" required>
+                                    <input type="number" id="telefono" name="telefono" min="1" placeholder="Teléfono" class="form-control" required>
                                 </div>
 
                                 <div class="elemento">
                                     <label for="email">DIRECCIÓN DE EMAIL</label>
-                                    <input type="email" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" class="form-control" required>
+                                    <input type="email" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" class="form-control" maxlength="100" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="asociaciones">ELIJA LA ASOCIACIÓN</label>
-                                    <select name="asociaciones" id="asociaciones">
+                                    <label for="asociaciones">ELEGÍ UNA ASOCIACIÓN</label>
+                                    <select name="asociaciones" id="asociaciones" required>
+                                        <option disabled selected value="">Elegí una asociación</option>
                                         {{#each asociaciones}}
                                         <option class="opcion-asociacion">{{nombreAsociacion}}</option>
                                         {{/each}}
@@ -79,12 +83,12 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
                     <br>
                     <div class="elemento" style="text-align: center">
                         <button type="submit" id="button">REGISTRARSE</button><br>
                     </div>
                     <br>
+                    </form>
                     <div style="text-align: center">
                         <link><a href="/ingreso" class="form-link">¿Ya tenés un usuario?</a></link>
                     </div>

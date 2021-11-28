@@ -14,19 +14,21 @@
                             <div class="form-group col-lg-6">
                                 <h5>DATOS DE LA MASCOTA</h5>
                                 <div class="elemento">
-                                    <label for="tipoMascota">Tipo de la Mascota</label>
-                                    <select name="tipoMascota" id="tipoMascota" class="form-control">
-                                        <option class="opcion" value="GATO">GATO</option>
-                                        <option class="opcion" value="PERRO">PERRO</option>
+                                    <label for="tipoMascota">Tipo de Mascota</label>
+                                    <select name="tipoMascota" id="tipoMascota" required>
+                                        <option disabled selected value = "">Tipo de mascota</option>
+                                        <option class="opcion" value="GATO">Gato</option>
+                                        <option class="opcion" value="PERRO">Perro</option>
                                     </select>
                                 </div>
 
                                 <div class="elemento">
                                     <label for="tamanioMascota">Tamaño de la Mascota</label>
-                                    <select name="tamanioMascota" id="tamanioMascota" class="form-control">
-                                        <option class="opcion" value="PEQUENIO">PEQUEÑO</option>
-                                        <option class="opcion" value="MEDIANO">MEDIANO</option>
-                                        <option class="opcion" value="GRANDE">GRANDE</option>
+                                    <select name="tamanioMascota" id="tamanioMascota" required>
+                                        <option disabled selected value="">Tamaño de la mascota</option>
+                                        <option class="opcion" value="PEQUENIO">Pequeño</option>
+                                        <option class="opcion" value="MEDIANO">Mediano</option>
+                                        <option class="opcion" value="GRANDE">Grande</option>
                                     </select>
                                 </div>
                                 <br>
@@ -34,61 +36,63 @@
                                 <h5>DATOS DEL ENCUENTRO</h5>
                                 <div class="elemento">
                                     <label for="fechaEncuentro">Fecha de Encuentro</label>
-                                    <input type="date" id="fechaEncuentro" name="fechaEncuentro" placeholder="Fecha de Encuentro" class="form-control" required>
+                                    <input type="date" id="fechaEncuentro" name="fechaEncuentro" min="1950-01-01" max="{{fechaActual}}" placeholder="Fecha de Encuentro" class="form-control" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="descripcionEncuentro">Descripcion del Encuentro</label>
-                                    <input type="text" id="descripcionEncuentro" name="descripcionEncuentro" placeholder="Cuentanos como fue su encuentro..." class="form-control">
+                                    <label for="descripcionEncuentro">Descripción del Encuentro</label>
+                                    <input type="text" id="descripcionEncuentro" name="descripcionEncuentro" placeholder="Cuentanos como fue su encuentro..." maxlength="255" class="form-control" required>
                                 </div>
                                 <br>
 
                                 <h5>TUS DATOS</h5>
                                 <div class="elemento">
-                                    <label for="nombre">NOMBRE</label>
-                                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" required>
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" maxlength="50" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="apellido">APELLIDO</label>
-                                    <input type="text" id="apellido" name="apellido" placeholder="Apellido" class="form-control" required>
+                                    <label for="apellido">Apellido</label>
+                                    <input type="text" id="apellido" name="apellido" placeholder="Apellido" class="form-control" maxlength="50" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="fechaNacimiento">FECHA DE NACIMIENTO</label>
+                                    <label for="fechaNacimiento">Fecha de nacimiento</label>
                                     <input type="date" id="fechaNacimiento" name="fechaNacimiento" min="1950-01-01" max="{{fechaActual}}" placeholder="Fecha de Nacimiento" class="form-control" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="tipoDocumento">TIPO DE DOCUMENTO</label>
-                                    <select name="tipoDocumento" id="tipoDocumento" class="form-control">
+                                    <label for="tipoDocumento">Tipo de documento</label>
+                                    <select name="tipoDocumento" id="tipoDocumento" class="form-control" required>
+                                        <option disabled selected value="">Tipo de documento</option>
                                         <option class="opcion" value="DNI">DNI</option>
                                     </select>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="numeroDocumento">NÚMERO DE DOCUMENTO</label>
-                                    <input type="number" id="numeroDocumento" name="numeroDocumento" placeholder="Número de Documento" class="form-control" required>
+                                    <label for="numeroDocumento">Número de documento</label>
+                                    <input type="number" id="numeroDocumento" name="numeroDocumento" min = "1" placeholder="Número de Documento" class="form-control" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="telefono">TELÉFONO</label>
-                                    <input type="number" id="telefono" name="telefono" placeholder="Teléfono" class="form-control" required>
+                                    <label for="telefono">Teléfono</label>
+                                    <input type="number" id="telefono" name="telefono" min="1" placeholder="Teléfono" class="form-control" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="email">DIRECCIÓN DE EMAIL</label>
-                                    <input type="email" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" class="form-control" required>
+                                    <label for="email">Dirección de email</label>
+                                    <input type="email" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" class="form-control" maxlength="100" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="direccion">DIRECCIÓN</label>
-                                    <input type="direccion" id="direccion" name="direccion" placeholder="Direccion" class="form-control" required>
+                                    <label for="direccion">Dirección</label>
+                                    <input type="direccion" id="direccion" name="direccion" placeholder="Direccion" class="form-control" maxlength="100" required>
                                 </div>
 
                                 <div class="elemento">
-                                    <label for="asociaciones">ELIJA LA ASOCIACIÓN</label>
-                                    <select name="asociaciones" id="asociaciones">
+                                    <label for="asociaciones">Elegí una asociación</label>
+                                    <select name="asociaciones" id="asociaciones" >
+                                        <option disabled selected value="">Elegí una asociación</option>
                                         {{#each asociaciones}}
                                             <option class="opcion-asociacion">{{nombreAsociacion}}</option>
                                         {{/each}}
@@ -96,11 +100,11 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
                     <br>
                     <div class="elemento" style="text-align: center">
                         <button type="submit" id="button">ENVIAR</button><br>
                     </div>
+                    </form>
                 </div>
             </div>
         </section>

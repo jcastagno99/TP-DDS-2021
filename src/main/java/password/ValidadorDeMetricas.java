@@ -9,9 +9,9 @@ public class ValidadorDeMetricas{
 
   public ValidadorDeMetricas() {
     this.validadores = Arrays.asList(new ValidadorContraseniaComun("La contrasenia "
-        + "pertenece a las 10k mas usadas"), new ValidadorLongitudContrasenia("La "
-        + "contrasenia es demasiado corta"), new ValidadorContraseniaNoContieneUsuario(
- "La contrasenia contiene al usuario"));
+        + "pertenece a las 10000 más usadas. Por favor, ingrese otra contraseña"), new ValidadorLongitudContrasenia("La "
+        + "contraseña es demasiado corta. Por favor, ingrese una contraseña de más de 8 caracteres."), new ValidadorContraseniaNoContieneUsuario(
+ "La contraseñaa contiene al usuario. Por favor, ingrese otra contraseña."));
   }
 
 
