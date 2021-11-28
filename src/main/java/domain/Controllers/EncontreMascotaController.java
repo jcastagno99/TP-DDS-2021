@@ -108,5 +108,9 @@ public class EncontreMascotaController {
     return new ModelAndView(null,"home.hbs");
 
   }
+
+  public ModelAndView mostrarPublicacionesDeMascotasPerdidas(Request request, Response response) {
+    return new ModelAndView(null, "publicacionesDeMascotasPerdidas.hbs");
+  }
 }
 

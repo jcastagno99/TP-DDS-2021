@@ -60,9 +60,11 @@ public class Router {
 
     Spark.post("/miPerfil/encuentroDeMascota", encontreMascotaController::crearPublicacionMascotaPerdida, engineTemplate); // LISTO
 
-    Spark.get("/encuentroDeMascota", encontreMascotaController::mostrarFormDeEncuentroDeMascotaSinChapita,engineTemplate);
+    Spark.get("/encuentroDeMascota", encontreMascotaController::mostrarFormDeEncuentroDeMascotaSinChapita,engineTemplate); // LISTO
 
-    Spark.post("/encuentroDeMascota", encontreMascotaController::crearPublicacionMascotaPerdida,engineTemplate);
+    Spark.post("/encuentroDeMascota", encontreMascotaController::crearPublicacionMascotaPerdida,engineTemplate); // LISTO
+
+    Spark.get("/publicacionesDeMascotasPerdidas", encontreMascotaController::mostrarPublicacionesDeMascotasPerdidas, engineTemplate); //validar logueo
 
     Spark.get("/qr", mascotasController::crearQRParaMascota, engineTemplate);
 
@@ -94,6 +96,12 @@ public class Router {
         response.redirect("/miPerfil");
       }
     });*/
+
+    Spark.before("/encuentroDeMascota", (request, response) -> {
+      if (autenticadorController.usuarioAutenticado(request)) {
+        response.redirect("/miPerfil");
+      }
+    });
 
     Spark.before("/miPerfil", (request, response) -> {
       if(!autenticadorController.usuarioAutenticado(request)) {
