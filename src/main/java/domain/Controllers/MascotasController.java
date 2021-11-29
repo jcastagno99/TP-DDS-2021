@@ -32,7 +32,7 @@ public class MascotasController {
     Duenio duenio = RepositorioUsuarios.instance().buscarDuenioPorId(request.session().attribute("idUsuario"));
     Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePertenece(duenio);
     List<String> caracteristicas = asociacion.getCaracteristicasPedidas();
-    model.put("caracteristicas",caracteristicas);
+    model.put("tiposCaracteristicas",caracteristicas);
     return new ModelAndView(model, "pantallaRegistrarMascota.hbs");
   }
 
