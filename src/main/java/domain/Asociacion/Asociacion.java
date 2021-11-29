@@ -22,10 +22,10 @@ public class Asociacion {
   @OneToMany(cascade = CascadeType.MERGE ,fetch = FetchType.EAGER ,orphanRemoval = true)
   public List<MascotaRegistrada> mascotasRegistradas;
   @OneToMany(cascade = CascadeType.PERSIST , orphanRemoval = true)
-  @JoinColumn(name = "asociacionId",referencedColumnName = "id")
+  @JoinColumn(name = "asociacion_id", referencedColumnName = "id")
   public List<Duenio> dueniosRegistrados;
   @ElementCollection
-  public List<Caracteristica> caracteristicasPedidas;
+  public List<String> caracteristicasPedidas;
   @Embedded
   public UbicacionDeDominio ubicacion;
   @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
@@ -47,7 +47,7 @@ public class Asociacion {
 
   public Asociacion(UbicacionDeDominio ubicacion,String nombreAsociacion) {
     this.mascotasRegistradas = new ArrayList<>();
-    //this.dueniosRegistrados = new ArrayList<>();
+    this.dueniosRegistrados = new ArrayList<>();
     this.caracteristicasPedidas = new ArrayList<>();
     this.publicaciones = new ArrayList<>();
     this.ubicacion = ubicacion;
@@ -59,12 +59,12 @@ public class Asociacion {
 
   public Asociacion(){}
 
-  public void agregarCaracteristicasA_Mascotas(String caracteristicaNueva) {
-    if (this.caracteristicaExistente(caracteristicaNueva)) {
+  public void agregarCaracteristicasA_Mascotas(String tipoCaracteristicaNueva) {
+    if (this.caracteristicaExistente(tipoCaracteristicaNueva)) {
       throw new CaracteristicaExistenteException("La caracteristica que se quiere agregar "
           + "ya existe");
     }
-    caracteristicasPedidas.add(new Caracteristica(caracteristicaNueva));
+    caracteristicasPedidas.add(tipoCaracteristicaNueva);
   }
 
   public void eliminarCaracteristicaExistente(String caracteristicaExistente) {
@@ -77,14 +77,16 @@ public class Asociacion {
   }
 
   public void removerCaracteristica(String tipoCaracteristica) {
-    Caracteristica temporal = caracteristicasPedidas.stream().filter(caracteristica ->
+    /*Caracteristica temporal = caracteristicasPedidas.stream().filter(caracteristica ->
         caracteristica.esTipo(tipoCaracteristica)).collect(Collectors.toList()).get(0);
-    caracteristicasPedidas.remove(temporal);
+    caracteristicasPedidas.remove(temporal);*/
+    caracteristicasPedidas.remove(tipoCaracteristica);
   }
 
   public boolean caracteristicaExistente(String tipoCaracteristica) {
-    return caracteristicasPedidas.stream().anyMatch(caracteristica ->
-        caracteristica.getTipo().equals(tipoCaracteristica));
+   /* return caracteristicasPedidas.stream().anyMatch(caracteristica ->
+        caracteristica.getTipo().equalsIgnoreCase(tipoCaracteristica));*/
+    return this.caracteristicasPedidas.contains(tipoCaracteristica);
   }
 
   public void agregarMascota(MascotaRegistrada mascota) {
@@ -138,7 +140,7 @@ public class Asociacion {
     this.dueniosRegistrados.add(unDuenio);
   }
 
-  public List<Caracteristica> getCaracteristicasPedidas() {
+  public List<String> getCaracteristicasPedidas() {
     return caracteristicasPedidas;
   }
 
@@ -165,6 +167,13 @@ public class Asociacion {
   public void agregarNuevaMascotaPerdidaConChapita(MascotaPerdidaConChapita
       mascotaPerdidaConChapita) {
     this.mascotasPerdidasConChapita.add(mascotaPerdidaConChapita);
+  }
+
+  /* La relación Asociacion-Duenio es UNO a MUCHOS, con cardinalidad obligatoria y opcional, respectivamente. Si bien deberia verificarse que un usuario
+  * no se regsitro previamente a una ascoaición, esa validación está hecha a nivel vista porque no peude haber dos duenios idénticos registrados
+  * */
+  public void registrarDuenio(Duenio duenio) {
+    this.dueniosRegistrados.add(duenio);
   }
 
 

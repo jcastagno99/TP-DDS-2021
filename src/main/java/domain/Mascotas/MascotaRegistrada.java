@@ -43,10 +43,10 @@ public class MascotaRegistrada {
   }
 
   public MascotaRegistrada(){}
-
+/*
   public void copiarCaracteristicas(Asociacion unaAsoc) {
     this.caracteristicas = unaAsoc.getCaracteristicasPedidas();
-  }
+  }*/
 
   public void setearCaracteristica(String caracteristica, String respuesta) {
     Caracteristica caracteristicaBuscada = this.buscarCaracteristica(caracteristica);
@@ -59,6 +59,10 @@ public class MascotaRegistrada {
   public Caracteristica buscarCaracteristica(String tipoCaracteristica) {
     return caracteristicas.stream().filter(caracteristica -> caracteristica
     .esTipo(tipoCaracteristica)).collect(Collectors.toList()).get(0);
+  }
+
+  public void agregarCaracteristica(Caracteristica caracteristica) {
+    this.caracteristicas.add((caracteristica));
   }
 
   public boolean tieneDuenio(Duenio duenio) {

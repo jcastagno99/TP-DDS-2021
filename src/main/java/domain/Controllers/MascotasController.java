@@ -31,7 +31,7 @@ public class MascotasController {
     Map<String,Object> model = new HashMap<>();
     Duenio duenio = RepositorioUsuarios.instance().buscarDuenioPorId(request.session().attribute("idUsuario"));
     Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePertenece(duenio);
-    List<Caracteristica> caracteristicas = asociacion.getCaracteristicasPedidas();
+    List<String> caracteristicas = asociacion.getCaracteristicasPedidas();
     model.put("caracteristicas",caracteristicas);
     return new ModelAndView(model, "pantallaRegistrarMascota.hbs");
   }
@@ -51,16 +51,18 @@ public class MascotasController {
     int edadAproximada = Integer.parseInt(request.queryParams("edadAproximada"));
     Sexo sexoMascota = Sexo.valueOf(request.queryParams("sexoMascota"));
     String descripcion = request.queryParams("descripcionFisica");
-    String foto = request.queryParams("fot
+    String foto = request.queryParams("foto");
     long idDuenio = request.session().attribute("idUsuario");
     Duenio duenioMascota = RepositorioUsuarios.instance().buscarDuenioPorId(idDuenio);
+
+    //indexbound exception
     Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePertenece(duenioMascota);
     MascotaRegistrada mascota = new MascotaRegistrada(tipoMascota, nombreMascota, apodoMascota, edadAproximada, sexoMascota, descripcion, duenioMascota, foto);
     //mascota.setDuenio(duenioMascota);
 
     // Modelando como objetos caracteristica:
 
-    //asociacion.getCaracteristicasPedidas().forEach(caracteristica -> mascota.agregarCaracteristica(new Caracteristica(caracteristica.getTipo(), request.queryParams(caracteristica.getTipo()))));
+    asociacion.getCaracteristicasPedidas().forEach(tipoCaracteristica -> mascota.agregarCaracteristica(new Caracteristica(tipoCaracteristica, request.queryParams(tipoCaracteristica))));
 
     // Modelado como strings: TODO
 

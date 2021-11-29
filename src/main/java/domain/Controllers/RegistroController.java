@@ -72,7 +72,9 @@ public class RegistroController {
 
         Contacto contactoDuenio = new Contacto(telefono, email);
 
-        Duenio nuevoDuenio = new Duenio(nombreUsuario, contrasenia, asociacionElegida, nombre, apellido, fechaNacimiento, tipoDocumento, numeroDocumento, contactoDuenio);
+        Duenio nuevoDuenio = new Duenio(nombreUsuario, contrasenia, nombre, apellido, fechaNacimiento, tipoDocumento, numeroDocumento, contactoDuenio);
+
+        asociacionElegida.registrarDuenio(nuevoDuenio);
 
         transaction.begin();
         RepositorioUsuarios.instance().guardarUsuario(nuevoDuenio);

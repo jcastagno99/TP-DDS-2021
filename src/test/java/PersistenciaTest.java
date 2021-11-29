@@ -24,7 +24,7 @@ public class PersistenciaTest extends AbstractPersistenceTest implements WithGlo
   private Asociacion asociacion = new Asociacion(ubiAsociacion,"asociacionGenerica");
   private Administrador administrador = new Administrador("mabelp", "afsfa656", null, "Mabel", "Perez");
   private Administrador administrador2 = new Administrador("pedroAbelardo", "pepeabel89522", null, "Pedro", "Fernandez");
-  private Duenio duenio = new Duenio("josefern", "jose123599", asociacion, "José", "Fernández", null, null, 3212346, null);
+  private Duenio duenio = new Duenio("josefern", "jose123599", "José", "Fernández", null, null, 3212346, null);
 
   @BeforeEach
   public void antes() {

@@ -26,14 +26,13 @@ public class Duenio extends Usuario {
   private String tipoDocumento;
   private int numeroDocumento;
 
-
   @OneToOne(cascade = CascadeType.ALL)
   private Contacto contacto;
 
   @Transient
   private List<MedioDeNotificacion> mediosNotificacion;
 
-  public Duenio(String usuario, String contrasenia, Asociacion asociacion, String nombre,
+  public Duenio(String usuario, String contrasenia,/* Asociacion asociacion, */String nombre,
        String apellido, LocalDate fechaNacimiento, String tipoDocumento, int numeroDocumento,
        Contacto contacto) {
     super(usuario, contrasenia, nombre, apellido);
@@ -42,7 +41,7 @@ public class Duenio extends Usuario {
     this.numeroDocumento = numeroDocumento;
     this.contacto = contacto;
     this.mediosNotificacion = new ArrayList<>();
-    asociacion.agregarNuevoDuenio(this);
+    //asociacion.agregarNuevoDuenio(this); -
   }
 
   public Duenio(){
@@ -57,11 +56,12 @@ public class Duenio extends Usuario {
     this.mediosNotificacion.remove(medioDeNotificacion);
   }
 
-  public void registrarMascota(MascotaRegistrada mascota, Asociacion unaAsoc) {
+  // misplaced method
+  /*public void registrarMascota(MascotaRegistrada mascota, Asociacion unaAsoc) {
     mascota.copiarCaracteristicas(unaAsoc);
     unaAsoc.agregarMascota(mascota);
     //mascota.setDuenio(this);
-  }
+  }*/
 
   public List<PublicacionMascotaPerdida> verPublicaciones() {
     return RepositorioAsociaciones.instance().getPublicaciones();
