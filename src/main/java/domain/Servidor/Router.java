@@ -59,11 +59,11 @@ public class Router {
 
     Spark.get("/miPerfil/encuentroDeMascota", encontreMascotaController::mostrarFormDeEncuentroDeMascotaSinChapitaParaDuenio,engineTemplate); // LISTO
 
-    Spark.post("/miPerfil/encuentroDeMascota", encontreMascotaController::crearPublicacionMascotaPerdida, engineTemplate); // LISTO
+    Spark.post("/miPerfil/encuentroDeMascota", encontreMascotaController::crearPublicacionMascotaPerdida, engineTemplate); // LISTO obs: se utiliza el mismo método que para el caso no logueado
 
-    Spark.get("/encuentroDeMascota", encontreMascotaController::mostrarFormDeEncuentroDeMascotaSinChapita,engineTemplate); // LISTO
+    Spark.get("/encuentroDeMascota", encontreMascotaController::mostrarFormDeEncuentroDeMascotaSinChapita, engineTemplate); // LISTO
 
-    Spark.post("/encuentroDeMascota", encontreMascotaController::crearPublicacionMascotaPerdida,engineTemplate); // LISTO
+    Spark.post("/encuentroDeMascota", encontreMascotaController::crearPublicacionMascotaPerdida, engineTemplate); // LISTO
 
     Spark.get("/publicacionesDeMascotasPerdidas", encontreMascotaController::mostrarPublicacionesDeMascotasPerdidas, engineTemplate); //validar logueo, se podría hacer rutas /inicio/ para validar por /inicio/* con un before
 

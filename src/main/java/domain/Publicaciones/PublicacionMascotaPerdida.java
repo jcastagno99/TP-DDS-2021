@@ -31,10 +31,11 @@ public class PublicacionMascotaPerdida { // Deberia ser publicacionMascotaPerdid
     this.rescatista = rescatista;
     this.asociacion = asociacion;
     this.estado = EstadoPublicacion.PENDIENTE;
-    this.link = "unLinkGenerado...";
+    this.link = "rescateDePatitas.com/publicaciones/" /*+ this.getId()*/; // TODO esto deberia hacerse con un trigger o algo de eso
   }
 
-  public PublicacionMascotaPerdida(){}
+  public PublicacionMascotaPerdida(){
+  }
 
   public MascotaPerdidaSinChapita getMascota() {
     return mascota;
@@ -67,5 +68,9 @@ public class PublicacionMascotaPerdida { // Deberia ser publicacionMascotaPerdid
     // Elegimos que se le envíe la notificación por email
     MailSender mailSender = new MailSender();
     mailSender.notificarARescatista(duenioNoRegistrado, this);
+  }
+
+  public long getId() {
+    return this.id;
   }
 }

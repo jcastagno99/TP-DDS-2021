@@ -57,26 +57,17 @@ public class MascotasController {
     //indexbound exception
     Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePerteneceDuenio(duenioMascota);
     MascotaRegistrada mascota = new MascotaRegistrada(tipoMascota, nombreMascota, apodoMascota, edadAproximada, sexoMascota, descripcion, duenioMascota, foto);
-    //mascota.setDuenio(duenioMascota);
-
-    // Modelando como objetos caracteristica:
 
     asociacion.getCaracteristicasPedidas().forEach(tipoCaracteristica -> mascota.agregarCaracteristica(new Caracteristica(tipoCaracteristica, request.queryParams(tipoCaracteristica))));
 
-    // Modelado como strings: TODO
 
     transaction.begin();
     //asociacion.agregarMascota(mascota);
     mascota.registrarEn(asociacion);
     RepositorioDeMascotasRegistradas.instance().guardarMascota(mascota);
     RepositorioAsociaciones.instance().agregarAsociacion(asociacion);
-    //RepositorioDeMascotasRegistradas.instance().guardarMascota(mascota);
-    //RepositorioAsociaciones.instance().agregarAsociacion(asociacion);
-    //entityManager.merge(asociacion);
-    //RepositorioAsociaciones.instance().agregarAsociacion(asociacion);
     transaction.commit();
     return null;
-    //response.cookie("nombreUsuario", duenioMascota.getUsuario());
   }
 
   public ModelAndView crearQRParaMascota(Request request, Response response) {
