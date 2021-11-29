@@ -40,17 +40,17 @@
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
 
-            <!--<property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver" />
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver" />
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/prueba?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
             <property name="hibernate.connection.username" value="root" />
-            <property name="hibernate.connection.password" value="mysql" />-->
+            <property name="hibernate.connection.password" value="mysql" />
 
 
-             <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" />
+             <!--<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" />
              <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db" />
              <property name="hibernate.connection.username" value="sa" />
              <property name="hibernate.connection.password" value="" />
-             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />-->
 
 
              <property name="hibernate.show_sql" value="true" />
