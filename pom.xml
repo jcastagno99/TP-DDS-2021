@@ -134,7 +134,7 @@
         <executions>
           <execution>
             <id>Validar Code Smells</id>
-            <phase>verify</phase>
+            <phase>none</phase>
             <goals>
               <goal>check</goal>
             </goals>
