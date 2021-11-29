@@ -8,6 +8,19 @@ Mascotas perdidas
     LA OTRA OPCIÓN SERÍA PONER UN CAROUSSEL EN EL INICIO
     <br>
     VERSI ADEMÁS VAMOS A PONER ESTA PANTALLA PAR AUN USUARIO LOGUEADO
+
+    <br>
+    <br>
+    <br>
+
+
+    {{#each publicaciones}}
+        {{@key}}
+        <div class="group">
+            <h1> estado: {{estado}}, asociacion: {{asociacion.nombre}}, rescatista: {{rescatista.nombre}}</h1>
+        </div>
+    {{/each}}
+
 {{/partial}}
 
 {{>layout.hbs}}

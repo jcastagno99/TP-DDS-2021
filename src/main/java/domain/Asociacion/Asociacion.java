@@ -38,14 +38,14 @@ public class Asociacion {
   private List<Pregunta> preguntasAdopcion;
   @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE} , orphanRemoval = true)
   private List<MascotaPerdidaConChapita> mascotasPerdidasConChapita;
-  String nombreAsociacion;
+  private String nombre;
 
   @Id
   @GeneratedValue
   private long id;
 
 
-  public Asociacion(UbicacionDeDominio ubicacion,String nombreAsociacion) {
+  public Asociacion(UbicacionDeDominio ubicacion,String nombre) {
     this.mascotasRegistradas = new ArrayList<>();
     this.dueniosRegistrados = new ArrayList<>();
     this.caracteristicasPedidas = new ArrayList<>();
@@ -54,7 +54,7 @@ public class Asociacion {
     this.preguntasAdopcion = new ArrayList<>();
     //RepositorioAsociaciones.instance().agregarAsociacion(this);
     this.mascotasPerdidasConChapita = new ArrayList<>();
-    this.nombreAsociacion=nombreAsociacion;
+    this.nombre = nombre;
   }
 
   public Asociacion(){}
@@ -160,8 +160,8 @@ public class Asociacion {
     return publicacionesMascotaPerdidaSinChapita;
   }
 
-  public String getNombreAsociacion() {
-    return nombreAsociacion;
+  public String getNombre() {
+    return this.nombre;
   }
 
   public void agregarNuevaMascotaPerdidaConChapita(MascotaPerdidaConChapita

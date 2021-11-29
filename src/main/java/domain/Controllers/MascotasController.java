@@ -60,13 +60,14 @@ public class MascotasController {
 
     asociacion.getCaracteristicasPedidas().forEach(tipoCaracteristica -> mascota.agregarCaracteristica(new Caracteristica(tipoCaracteristica, request.queryParams(tipoCaracteristica))));
 
+    mascota.setDuenio(duenioMascota);
+    mascota.registrarEn(asociacion);
 
     transaction.begin();
-    //asociacion.agregarMascota(mascota);
-    mascota.registrarEn(asociacion);
     RepositorioDeMascotasRegistradas.instance().guardarMascota(mascota);
-    RepositorioAsociaciones.instance().agregarAsociacion(asociacion);
     transaction.commit();
+
+    entityManager.clear();
     return null;
   }
 
@@ -74,5 +75,14 @@ public class MascotasController {
     Duenio juan = RepositorioUsuarios.instance().buscarDuenio("juan", "matias1234");
     MascotaRegistrada mascotaRegistrada = new MascotaRegistrada(TipoMascota.PERRO,"asdasd","asdasd",5,Sexo.MASCULINO,"asdasd",juan,"asdasd");
     return new ModelAndView(mascotaRegistrada, "qr.hbs");
+  }
+
+  public ModelAndView mostrarMascotasRegistradas(Request request, Response response) {
+    long idUsuario = request.session().attribute("idUsuario");
+    Duenio duenio = RepositorioUsuarios.instance().buscarDuenioPorId(idUsuario);
+    List<MascotaRegistrada> mascotaRegistradas = duenio.getMascotaRegistradas();
+    Map<String, Object> model = new HashMap<>();
+    model.put("mascotasRegistradas", mascotaRegistradas);
+    return new ModelAndView(model, "mascotasRegistradas.hbs");
   }
 }

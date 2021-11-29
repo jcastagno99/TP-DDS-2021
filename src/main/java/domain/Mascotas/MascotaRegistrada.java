@@ -19,8 +19,8 @@ public class MascotaRegistrada {
   private String descripcionFisica;
   private String fotos;
 
-  // TODO quizás este atributo no haga falta más que para los tests
-  @ManyToOne(cascade = CascadeType.MERGE)
+  @ManyToOne(cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "duenio_id", referencedColumnName = "id")
   private Duenio duenio;
 
   @ElementCollection
@@ -76,6 +76,10 @@ public class MascotaRegistrada {
     return this.duenio.equals(duenio);
   }
 
+  public void setDuenio(Duenio duenio) {
+    this.duenio = duenio;
+  }
+
   public Duenio getDuenio() {
     return duenio;
   }
@@ -102,5 +106,9 @@ public class MascotaRegistrada {
 
   public long getAsociacionId() {
     return asociacion.getId();
+  }
+
+  public String getApodo() {
+    return apodo;
   }
 }

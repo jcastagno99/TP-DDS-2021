@@ -55,7 +55,7 @@ public class RepositorioAsociaciones implements WithGlobalEntityManager {
   public Asociacion obtenerAsociacionPorNombre(String nombre){
     /*return this.obtenerAsociaciones().stream().filter(asociacion
         -> asociacion.getNombreAsociacion().equals(nombre)).collect(Collectors.toList()).get(0);*/
-    return (Asociacion) this.entityManager().createQuery("from Asociacion a where a.nombreAsociacion = :nombre").setParameter("nombre", nombre).getSingleResult();
+    return (Asociacion) this.entityManager().createQuery("from Asociacion a where a.nombre = :nombre").setParameter("nombre", nombre).getSingleResult();
   }
 
 

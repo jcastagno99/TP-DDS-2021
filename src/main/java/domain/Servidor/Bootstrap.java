@@ -67,7 +67,7 @@ public class Bootstrap implements WithGlobalEntityManager {
   }
 
   private List<Usuario> usuarios(){
-    Asociacion conexionAnimalDeBD = (Asociacion) entityManager().createQuery("from Asociacion a where a.nombreAsociacion = 'Conexión animal'").getSingleResult();
+    Asociacion conexionAnimalDeBD = (Asociacion) entityManager().createQuery("from Asociacion a where a.nombre = 'Conexión animal'").getSingleResult();
     Duenio pablo = new Duenio("pablito27","qsxesz00",/*elCampitoDeBD,*/
         "Pablo","Perez", LocalDate.now(),"DNI",111111,new Contacto(15472289,"pablitoPerez@gmail.com"));
     Duenio martin = new Duenio("martinkpo90","753951asd",/*patitasDeBD,*/
@@ -79,9 +79,9 @@ public class Bootstrap implements WithGlobalEntityManager {
   }
 
   private void registrarUsuarios() {
-    Asociacion elCampitoDeBD = (Asociacion) entityManager().createQuery("from Asociacion a where a.nombreAsociacion = 'elCampito'").getSingleResult();
-    Asociacion patitasDeBD = (Asociacion) entityManager().createQuery("from Asociacion a where a.nombreAsociacion = 'patitas'").getSingleResult();
-    Asociacion conexionAnimalDeBD = (Asociacion) entityManager().createQuery("from Asociacion a where a.nombreAsociacion = 'Conexión animal'").getSingleResult();
+    Asociacion elCampitoDeBD = (Asociacion) entityManager().createQuery("from Asociacion a where a.nombre = 'elCampito'").getSingleResult();
+    Asociacion patitasDeBD = (Asociacion) entityManager().createQuery("from Asociacion a where a.nombre = 'patitas'").getSingleResult();
+    Asociacion conexionAnimalDeBD = (Asociacion) entityManager().createQuery("from Asociacion a where a.nombre = 'Conexión animal'").getSingleResult();
 
     Duenio pablo = RepositorioUsuarios.instance().buscarDuenio("pablito27", "qsxesz00");
     Duenio martin = RepositorioUsuarios.instance().buscarDuenio("martinkpo90", "753951asd");

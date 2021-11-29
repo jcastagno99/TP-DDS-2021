@@ -4,6 +4,7 @@ import domain.Asociacion.Asociacion;
 import domain.Asociacion.RepositorioAsociaciones;
 import domain.Asociacion.UbicacionDeDominio;
 import domain.Mascotas.*;
+import domain.MascotasPerdidasManagement.RepositorioMascotasPerdidas;
 import domain.Publicaciones.PublicacionMascotaPerdida;
 import domain.Roles.*;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
@@ -47,6 +48,7 @@ public class EncontreMascotaController implements WithGlobalEntityManager {
   // El post se hace contra dos rutas distintas, pero que llaman al mismo método
   public ModelAndView crearPublicacionMascotaPerdida(Request request, Response response) {
 
+    // TODO Para evitar el reenvío de fomrulario, debería setearse una cookie para verificar que el mismo fue completado
     EntityManager entityManager = this.entityManager();
     EntityTransaction transaction = entityManager.getTransaction();
 
@@ -120,8 +122,5 @@ public class EncontreMascotaController implements WithGlobalEntityManager {
 
   }
 
-  public ModelAndView mostrarPublicacionesDeMascotasPerdidas(Request request, Response response) {
-    return new ModelAndView(null, "publicacionesDeMascotasPerdidas.hbs");
-  }
 }
 

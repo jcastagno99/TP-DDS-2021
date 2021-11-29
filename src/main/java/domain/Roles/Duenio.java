@@ -30,6 +30,9 @@ public class Duenio extends Usuario {
   @JoinColumn(name = "asociacion_id", referencedColumnName = "id")
   private Asociacion asociacion;
 
+  @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "duenio")
+  private List<MascotaRegistrada> mascotaRegistradas;
+
   @Transient
   private List<MedioDeNotificacion> mediosNotificacion;
 
@@ -43,7 +46,7 @@ public class Duenio extends Usuario {
     this.contacto = contacto;
     this.mediosNotificacion = new ArrayList<>();
     this.asociacion = null;
-    //asociacion.agregarNuevoDuenio(this); -> esto tiraba el error
+    this.mascotaRegistradas = new ArrayList<>();
   }
 
   public Duenio(){
@@ -116,6 +119,10 @@ public class Duenio extends Usuario {
 
   public void registrarEn(Asociacion asociacion) {
     this.asociacion = asociacion;
+  }
+
+  public List<MascotaRegistrada> getMascotaRegistradas() {
+    return this.mascotaRegistradas;
   }
 }
 

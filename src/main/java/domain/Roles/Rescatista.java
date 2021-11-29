@@ -30,4 +30,8 @@ public class Rescatista {
   public DatosFormulario getDatosFormulario() {
     return datosFormulario;
   }
+
+  public String getNombre() {
+    return this.datosFormulario.getNombre();
+  }
 }

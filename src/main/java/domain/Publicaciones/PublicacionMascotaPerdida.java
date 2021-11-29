@@ -73,4 +73,8 @@ public class PublicacionMascotaPerdida { // Deberia ser publicacionMascotaPerdid
   public long getId() {
     return this.id;
   }
+
+  public Asociacion getAsociacion() {
+    return this.asociacion;
+  }
 }
