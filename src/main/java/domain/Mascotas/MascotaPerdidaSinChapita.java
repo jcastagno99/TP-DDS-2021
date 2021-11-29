@@ -7,10 +7,10 @@ import java.time.LocalDate;
 
 @Entity
 public class MascotaPerdidaSinChapita {
-  @OneToOne(cascade = {CascadeType.ALL})
+  @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
   private DatosDeEncuentroDeMascota datosDeEncuentroDeMascota;
   private LocalDate fechaEncuentro;
-  @OneToOne(cascade = {CascadeType.ALL})
+  @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
   private Rescatista rescatista;
   private Tamanio tamanio;
   private TipoMascota tipoMascota;

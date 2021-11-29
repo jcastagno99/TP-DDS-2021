@@ -28,6 +28,7 @@ public class Router {
     MascotasController mascotasController = new MascotasController();
     EncontreMascotaController encontreMascotaController = new EncontreMascotaController();
     AutenticadorController autenticadorController = new AutenticadorController();
+    AsociacionesController asociacionesController = new AsociacionesController();
 
     Spark.get("/", homeController::index, engineTemplate); // LISTO
 
@@ -66,6 +67,7 @@ public class Router {
 
     Spark.get("/publicacionesDeMascotasPerdidas", encontreMascotaController::mostrarPublicacionesDeMascotasPerdidas, engineTemplate); //validar logueo, se podría hacer rutas /inicio/ para validar por /inicio/* con un before
 
+    Spark.get("/caracteristicas/configuracion", asociacionesController::configurarCaracteristicas, engineTemplate);
     Spark.get("/qr", mascotasController::crearQRParaMascota, engineTemplate);
 
 

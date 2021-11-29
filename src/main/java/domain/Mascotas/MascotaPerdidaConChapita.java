@@ -9,15 +9,14 @@ import java.time.LocalDate;
 @Entity
 public class MascotaPerdidaConChapita {
 
-  @ManyToOne
+  @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
   private Rescatista rescatista;
 
-  @OneToOne
+  @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
   private MascotaRegistrada mascotaPerdidaExistente;
 
-  @OneToOne
+  @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
   private DatosDeEncuentroDeMascota encuentro;
-
 
   private LocalDate fechaEncuentro;
 
@@ -36,13 +35,13 @@ public class MascotaPerdidaConChapita {
     this.mascotaPerdidaExistente = mascotaPerdidaExistente;
     this.encuentro = encuentro;
     fechaEncuentro = LocalDate.now();
-    Asociacion asociacion = RepositorioAsociaciones.instance()
+    /*Asociacion asociacion = RepositorioAsociaciones.instance()
         .obtenerAsociacionA_LaQuePerteneceMascota(mascotaPerdidaExistente);
-    asociacion.agregarNuevaMascotaPerdidaConChapita(this);
+    asociacion.agregarNuevaMascotaPerdidaConChapita(this);*/
   }
 
   public void informarA_Duenio() {
-    this.mascotaPerdidaExistente.getMiDuenio().mascotaFueEncontrada(rescatista, encuentro);
+    this.mascotaPerdidaExistente.getDuenio().mascotaFueEncontrada(rescatista, encuentro);
   }
 
   public LocalDate getFechaDeEncuentro() {

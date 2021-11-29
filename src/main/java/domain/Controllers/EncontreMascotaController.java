@@ -64,7 +64,7 @@ public class EncontreMascotaController {
 
       MascotaPerdidaSinChapita mascotaPerdidaSinChapita = new MascotaPerdidaSinChapita(rescatista,datosEncuentro,tamanioMascota,tipoMascota,fechaEncuentro);
 
-      Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePertenece(duenio);
+      Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePerteneceDuenio(duenio);
       asociacion.crearPublicacion(mascotaPerdidaSinChapita,rescatista);
 
       transaction.begin();

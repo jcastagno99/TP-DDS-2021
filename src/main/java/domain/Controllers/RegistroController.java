@@ -24,6 +24,7 @@ public class RegistroController {
   private AutenticadorController autenticadorController = new AutenticadorController();
 
   public ModelAndView mostrarFormDeRegistroDeUsuario(Request request, Response response) {
+   //ModelAndView modelo = new ModelAndView(null, null);
     ModelAndView modelo = null;
 
     if (autenticadorController.usuarioAutenticado(request)) {
@@ -44,7 +45,7 @@ public class RegistroController {
   }
 
   public ModelAndView registrarUsuario(Request request, Response response) {
-    ModelAndView modelo = null;
+    ModelAndView modelo = new ModelAndView(null, null);
     if (autenticadorController.usuarioAutenticado(request)) {
       response.redirect("/miPerfil");
     }
@@ -67,31 +68,26 @@ public class RegistroController {
         int numeroDocumento = Integer.parseInt(request.queryParams("numeroDocumento"));
         int telefono = Integer.parseInt(request.queryParams("telefono"));
         String email = request.queryParams("email");
-
         Asociacion asociacionElegida = RepositorioAsociaciones.instance().obtenerAsociacionPorNombre(request.queryParams("asociaciones"));
 
         Contacto contactoDuenio = new Contacto(telefono, email);
 
         Duenio nuevoDuenio = new Duenio(nombreUsuario, contrasenia, nombre, apellido, fechaNacimiento, tipoDocumento, numeroDocumento, contactoDuenio);
 
-        asociacionElegida.registrarDuenio(nuevoDuenio);
+        nuevoDuenio.registrarEn(asociacionElegida);
 
         transaction.begin();
-        RepositorioUsuarios.instance().guardarUsuario(nuevoDuenio);
+        RepositorioUsuarios.instance().actualizarUsuario(nuevoDuenio);
         transaction.commit();
+
         Duenio duenioAAutenticar = RepositorioUsuarios.instance().buscarDuenio(nombreUsuario, contrasenia);
 
         autenticadorController.crearSessionUsuario(request, duenioAAutenticar.getId(), Rol.DUENIO);
 
         response.redirect("/miPerfil");
 
-        //asociacionElegida.agregarNuevoDuenio(nuevoDuenio);
-
-        /*transaction.begin();
-        entityManager.persist(asociacionElegida);
-        transaction.commit();*/
-
       } catch (UsuarioYaRegistradoException | ContraseniaInvalidaException e) {
+        //buscar asociaciones y meter en map
         modelo = new ModelAndView(e, "registrarUsuario.hbs");
       }
     }

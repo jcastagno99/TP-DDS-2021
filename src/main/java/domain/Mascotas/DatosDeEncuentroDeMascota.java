@@ -26,9 +26,7 @@ public class DatosDeEncuentroDeMascota {
     this.descripcionEstadoEncuentro = descripcionEstadoEncuentro;
     this.ubicacion = ubicacion;
     this.fotos = new ArrayList<>();
-    // TODO valdiacion de no nulo
     this.fotos.add(foto);
-
   }
 
   public DatosDeEncuentroDeMascota(String descripcionEstadoEncuentro){

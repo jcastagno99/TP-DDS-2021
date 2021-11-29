@@ -19,24 +19,24 @@ import java.util.stream.Collectors;
 @Table(name = "Asociaciones")
 public class Asociacion {
 
-  @OneToMany(cascade = CascadeType.MERGE ,fetch = FetchType.EAGER ,orphanRemoval = true)
+  @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "asociacion")
   public List<MascotaRegistrada> mascotasRegistradas;
-  @OneToMany(cascade = CascadeType.PERSIST , orphanRemoval = true)
-  @JoinColumn(name = "asociacion_id", referencedColumnName = "id")
+  @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "asociacion")
   public List<Duenio> dueniosRegistrados;
   @ElementCollection
   public List<String> caracteristicasPedidas;
   @Embedded
   public UbicacionDeDominio ubicacion;
-  @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
-  private List<PublicacionMascotaPerdida> publicaciones;
-  @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
+  @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+  @JoinColumn(name = "id_asociacion", referencedColumnName = "id")
+  private List<PublicacionMascotaPerdida> publicacionesMascotaPerdidaSinChapita;
+  @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
   private List<PublicacionAdopcion> publicacionesAdopcion;
-  @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
+  @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
   private List<PublicacionAdoptante> publicacionesAdoptante;
-  @ManyToMany(cascade = CascadeType.PERSIST)
+  @ManyToMany(cascade = CascadeType.PERSIST) // TODO ver
   private List<Pregunta> preguntasAdopcion;
-  @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
+  @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE} , orphanRemoval = true)
   private List<MascotaPerdidaConChapita> mascotasPerdidasConChapita;
   String nombreAsociacion;
 
@@ -49,7 +49,7 @@ public class Asociacion {
     this.mascotasRegistradas = new ArrayList<>();
     this.dueniosRegistrados = new ArrayList<>();
     this.caracteristicasPedidas = new ArrayList<>();
-    this.publicaciones = new ArrayList<>();
+    this.publicacionesMascotaPerdidaSinChapita = new ArrayList<>();
     this.ubicacion = ubicacion;
     this.preguntasAdopcion = new ArrayList<>();
     //RepositorioAsociaciones.instance().agregarAsociacion(this);
@@ -67,21 +67,21 @@ public class Asociacion {
     caracteristicasPedidas.add(tipoCaracteristicaNueva);
   }
 
-  public void eliminarCaracteristicaExistente(String caracteristicaExistente) {
+  public void eliminarCaracteristica(String caracteristica) {
 
-    if (!this.caracteristicaExistente(caracteristicaExistente)) {
+    if (!this.caracteristicaExistente(caracteristica)) {
       throw new CaracteristicaNoEncontradaException("La característica solicitada no se puede "
           + "eliminar porque no existe");
     }
-    this.removerCaracteristica(caracteristicaExistente);
+    this.caracteristicasPedidas.remove(caracteristica);
   }
 
-  public void removerCaracteristica(String tipoCaracteristica) {
+  //public void removerCaracteristica(String tipoCaracteristica) {
     /*Caracteristica temporal = caracteristicasPedidas.stream().filter(caracteristica ->
         caracteristica.esTipo(tipoCaracteristica)).collect(Collectors.toList()).get(0);
     caracteristicasPedidas.remove(temporal);*/
-    caracteristicasPedidas.remove(tipoCaracteristica);
-  }
+    /*caracteristicasPedidas.remove(tipoCaracteristica);
+  }*/
 
   public boolean caracteristicaExistente(String tipoCaracteristica) {
    /* return caracteristicasPedidas.stream().anyMatch(caracteristica ->
@@ -96,7 +96,7 @@ public class Asociacion {
   public void crearPublicacion(MascotaPerdidaSinChapita mascota, Rescatista rescatista) {
     PublicacionMascotaPerdida publicacion = new PublicacionMascotaPerdida(mascota,
         rescatista, this);
-    publicaciones.add(publicacion);
+    publicacionesMascotaPerdidaSinChapita.add(publicacion);
   }
 
   public void agregarPreguntaAdopcion(Pregunta pregunta) {
@@ -157,7 +157,7 @@ public class Asociacion {
   }
 
   public List<PublicacionMascotaPerdida> getPublicaciones() {
-    return publicaciones;
+    return publicacionesMascotaPerdidaSinChapita;
   }
 
   public String getNombreAsociacion() {
@@ -176,5 +176,7 @@ public class Asociacion {
     this.dueniosRegistrados.add(duenio);
   }
 
-
+  public long getId(){
+    return this.id;
+  }
 }

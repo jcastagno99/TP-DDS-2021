@@ -10,9 +10,6 @@ import domain.Notificadores.MedioDeNotificacion;
 import domain.Publicaciones.PublicacionAdopcion;
 import domain.Publicaciones.PublicacionAdoptante;
 import domain.Publicaciones.PublicacionMascotaPerdida;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -29,6 +26,10 @@ public class Duenio extends Usuario {
   @OneToOne(cascade = CascadeType.ALL)
   private Contacto contacto;
 
+  @ManyToOne(cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "asociacion_id", referencedColumnName = "id")
+  private Asociacion asociacion;
+
   @Transient
   private List<MedioDeNotificacion> mediosNotificacion;
 
@@ -41,7 +42,8 @@ public class Duenio extends Usuario {
     this.numeroDocumento = numeroDocumento;
     this.contacto = contacto;
     this.mediosNotificacion = new ArrayList<>();
-    //asociacion.agregarNuevoDuenio(this); -
+    this.asociacion = null;
+    //asociacion.agregarNuevoDuenio(this); -> esto tiraba el error
   }
 
   public Duenio(){
@@ -69,7 +71,7 @@ public class Duenio extends Usuario {
 
   //La asociacion llega cuando el usuario la selecciona por UI
   void darEnAdopcion(MascotaRegistrada unaMascota) {
-    Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePertenece(this);
+    Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePerteneceDuenio(this);
     PublicacionAdopcion publicacion = new PublicacionAdopcion(unaMascota, contacto);
     asociacion.agregarPublicacionAdopcion(publicacion);
   }
@@ -108,5 +110,12 @@ public class Duenio extends Usuario {
     return numeroDocumento;
   }
 
+  public long getAsociacionId() {
+    return this.asociacion.getId();
+  }
+
+  public void registrarEn(Asociacion asociacion) {
+    this.asociacion = asociacion;
+  }
 }
 

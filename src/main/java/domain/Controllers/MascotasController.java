@@ -9,7 +9,6 @@ import domain.Mascotas.Sexo;
 import domain.Mascotas.TipoMascota;
 import domain.Roles.Duenio;
 import domain.Roles.RepositorioUsuarios;
-import domain.Roles.Usuario;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.ModelAndView;
 import spark.Request;
@@ -30,7 +29,7 @@ public class MascotasController {
     }
     Map<String,Object> model = new HashMap<>();
     Duenio duenio = RepositorioUsuarios.instance().buscarDuenioPorId(request.session().attribute("idUsuario"));
-    Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePertenece(duenio);
+    Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePerteneceDuenio(duenio);
     List<String> caracteristicas = asociacion.getCaracteristicasPedidas();
     model.put("tiposCaracteristicas",caracteristicas);
     return new ModelAndView(model, "pantallaRegistrarMascota.hbs");
@@ -56,7 +55,7 @@ public class MascotasController {
     Duenio duenioMascota = RepositorioUsuarios.instance().buscarDuenioPorId(idDuenio);
 
     //indexbound exception
-    Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePertenece(duenioMascota);
+    Asociacion asociacion = RepositorioAsociaciones.instance().obtenerAsociacionA_LaQuePerteneceDuenio(duenioMascota);
     MascotaRegistrada mascota = new MascotaRegistrada(tipoMascota, nombreMascota, apodoMascota, edadAproximada, sexoMascota, descripcion, duenioMascota, foto);
     //mascota.setDuenio(duenioMascota);
 
@@ -67,10 +66,14 @@ public class MascotasController {
     // Modelado como strings: TODO
 
     transaction.begin();
-    asociacion.agregarMascota(mascota);
+    //asociacion.agregarMascota(mascota);
+    mascota.registrarEn(asociacion);
     RepositorioDeMascotasRegistradas.instance().guardarMascota(mascota);
+    RepositorioAsociaciones.instance().agregarAsociacion(asociacion);
+    //RepositorioDeMascotasRegistradas.instance().guardarMascota(mascota);
     //RepositorioAsociaciones.instance().agregarAsociacion(asociacion);
-    entityManager.merge(asociacion);
+    //entityManager.merge(asociacion);
+    //RepositorioAsociaciones.instance().agregarAsociacion(asociacion);
     transaction.commit();
     return null;
     //response.cookie("nombreUsuario", duenioMascota.getUsuario());

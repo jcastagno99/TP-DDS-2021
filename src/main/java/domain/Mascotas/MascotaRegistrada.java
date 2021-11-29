@@ -18,12 +18,18 @@ public class MascotaRegistrada {
   private Sexo sexo;
   private String descripcionFisica;
   private String fotos;
+
+  // TODO quizás este atributo no haga falta más que para los tests
   @ManyToOne(cascade = CascadeType.MERGE)
-  private Duenio miDuenio;
+  private Duenio duenio;
+
   @ElementCollection
   private List<Caracteristica> caracteristicas;
   @ElementCollection
   private List<String> necesidades;
+  @ManyToOne(cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "asociacion_id", referencedColumnName = "id")
+  private Asociacion asociacion;
 
   @Id
   @GeneratedValue
@@ -39,7 +45,8 @@ public class MascotaRegistrada {
     this.descripcionFisica = descripcionFisica;
     this.fotos = fotos;
     this.caracteristicas = new ArrayList<>();
-    this.miDuenio = duenio;
+    this.duenio = duenio;
+    this.asociacion = null;
   }
 
   public MascotaRegistrada(){}
@@ -62,15 +69,15 @@ public class MascotaRegistrada {
   }
 
   public void agregarCaracteristica(Caracteristica caracteristica) {
-    this.caracteristicas.add((caracteristica));
+    this.caracteristicas.add(caracteristica);
   }
 
   public boolean tieneDuenio(Duenio duenio) {
-    return miDuenio.equals(duenio);
+    return this.duenio.equals(duenio);
   }
 
-  public Duenio getMiDuenio() {
-    return miDuenio;
+  public Duenio getDuenio() {
+    return duenio;
   }
 
   public String getNombre() {
@@ -87,5 +94,13 @@ public class MascotaRegistrada {
 
   public long getId(){
     return this.id;
+  }
+
+  public void registrarEn(Asociacion asociacion) {
+    this.asociacion = asociacion;
+  }
+
+  public long getAsociacionId() {
+    return asociacion.getId();
   }
 }

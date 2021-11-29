@@ -11,10 +11,11 @@ import javax.persistence.*;
 @Entity
 public class PublicacionMascotaPerdida { // Deberia ser publicacionMascotaPerdidaSinChapita
 
-  @OneToOne(cascade = {CascadeType.ALL})
+  @OneToOne(cascade = {CascadeType.PERSIST})
   private MascotaPerdidaSinChapita mascota;
-  @OneToOne(cascade = {CascadeType.ALL})
+  @OneToOne(cascade = {CascadeType.PERSIST})
   private Rescatista rescatista;
+  // TODO debería ser bidireccional
   @ManyToOne(cascade = {CascadeType.ALL})
   private Asociacion asociacion;
   private EstadoPublicacion estado;
@@ -67,5 +68,4 @@ public class PublicacionMascotaPerdida { // Deberia ser publicacionMascotaPerdid
     MailSender mailSender = new MailSender();
     mailSender.notificarARescatista(duenioNoRegistrado, this);
   }
-
 }

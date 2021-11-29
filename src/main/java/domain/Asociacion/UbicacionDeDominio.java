@@ -28,5 +28,4 @@ public class UbicacionDeDominio {
     return Math.hypot((latitud - otraUbicacion.getLatitud()), longitud
         - otraUbicacion.getLongitud());
   }
-
 }

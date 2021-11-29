@@ -27,6 +27,8 @@ public class Bootstrap implements WithGlobalEntityManager {
     this.guardarUsuarios();
 
     this.registrarUsuarios();
+    //System.out.println(entityManager.createQuery("from Asociacion").getResultList());
+
 /*
     Asociacion asociacion = (Asociacion) entityManager.createQuery("from Asociacion a where a.nombreAsociacion = 'elCampito'").getSingleResult();
 
@@ -84,15 +86,18 @@ public class Bootstrap implements WithGlobalEntityManager {
     Duenio pablo = RepositorioUsuarios.instance().buscarDuenio("pablito27", "qsxesz00");
     Duenio martin = RepositorioUsuarios.instance().buscarDuenio("martinkpo90", "753951asd");
     Duenio juan = RepositorioUsuarios.instance().buscarDuenio("juan", "matias1234");
+    martin.registrarEn(patitasDeBD);
+    juan.registrarEn(conexionAnimalDeBD);
+    pablo.registrarEn(elCampitoDeBD);
 
-    elCampitoDeBD.registrarDuenio(pablo);
-    patitasDeBD.registrarDuenio(martin);
-    conexionAnimalDeBD.registrarDuenio(juan);
-
+    // Al abrir y cerrar una transacción (sin contenido), el entity manager directamente actualiza el esquema en base a toodo lo que tenga en la cachè L1
     transaction.begin();
-    RepositorioAsociaciones.instance().agregarAsociacion(elCampitoDeBD);
-    RepositorioAsociaciones.instance().agregarAsociacion(patitasDeBD);
-    RepositorioAsociaciones.instance().agregarAsociacion(conexionAnimalDeBD);
+    // Esto que viene no hace falta hacerlo, aunque sería correcto
+    //RepositorioAsociaciones.instance().agregarAsociacion(elCampitoDeBD);
+    //RepositorioAsociaciones.instance().agregarAsociacion(patitasDeBD);
+    //RepositorioAsociaciones.instance().agregarAsociacion(conexionAnimalDeBD);
+    //RepositorioUsuarios.instance().guardarUsuario(pablo);
+    //entityManager.persist(pablo);
     transaction.commit();
   }
 

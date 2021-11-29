@@ -16,6 +16,8 @@ public class RepositorioAsociaciones implements WithGlobalEntityManager {
 
   private static final RepositorioAsociaciones INSTANCE = new RepositorioAsociaciones();
 
+  //private final EntityManager entityManager = this.entityManager(); // TODO Esto puede tirar error
+
   private List<Pregunta> preguntasObligatorias;
 
   public static RepositorioAsociaciones instance() {
@@ -41,9 +43,12 @@ public class RepositorioAsociaciones implements WithGlobalEntityManager {
         .getUbicacion().calcularDistanciaA(unaUbicacion))).get();
   }
 
-  public Asociacion obtenerAsociacionA_LaQuePertenece(Duenio unDuenio) {
-    return this.obtenerAsociaciones().stream().filter(asociacion -> asociacion.getDueniosRegistrados()
-        .contains(unDuenio)).collect(Collectors.toList()).get(0);
+  public Asociacion obtenerAsociacionA_LaQuePerteneceDuenio(Duenio unDuenio) {
+    /*return this.obtenerAsociaciones().stream().filter(asociacion -> asociacion.getDueniosRegistrados()
+        .contains(unDuenio)).collect(Collectors.toList()).get(0);*/
+    EntityManager entityManager = this.entityManager();
+    long idAsociacion = unDuenio.getAsociacionId();
+    return (Asociacion) entityManager.createQuery("from Asociacion a where a.id = :idAsociacion").setParameter("idAsociacion", idAsociacion).getSingleResult();
     //return unDuenio.getAsociacion();
   }
 
@@ -66,7 +71,10 @@ public class RepositorioAsociaciones implements WithGlobalEntityManager {
   }
 
   public Asociacion obtenerAsociacionA_LaQuePerteneceMascota(MascotaRegistrada mascota) {
-    return this.obtenerAsociaciones().stream().filter(asociacion -> asociacion.getMascotasRegistradas()
-        .contains(mascota)).collect(Collectors.toList()).get(0);
+    /*return this.obtenerAsociaciones().stream().filter(asociacion -> asociacion.getMascotasRegistradas()
+        .contains(mascota)).collect(Collectors.toList()).get(0);*/
+    EntityManager entityManager = this.entityManager();
+    long idAsociacion = mascota.getAsociacionId();
+    return (Asociacion) entityManager.createQuery("from Asociacion a where a.id = :idAsociacion").setParameter("idAsociacion", idAsociacion).getSingleResult();
   }
 }

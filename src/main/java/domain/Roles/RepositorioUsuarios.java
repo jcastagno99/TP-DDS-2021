@@ -1,5 +1,6 @@
 package domain.Roles;
 
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 import exception.BusquedaEnBaseDeDatosException;
 import exception.UsuarioYaRegistradoException;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -108,6 +109,10 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
           + "datos de inicio de sesión aportados. Por favor, ingrese un usuario y contraseña válidos");
       //Por cuestiones de seguridad, no se especifica qué dato (usuario o contraseña) fue incorrecto
     }
+  }
+
+  public void actualizarUsuario(Usuario usuario) {
+    this.entityManager().persist(usuario);
   }
 
 }

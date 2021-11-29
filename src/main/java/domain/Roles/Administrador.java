@@ -17,12 +17,11 @@ public class Administrador extends Usuario {
 
   public Administrador(){}
 
-
   public void agregarNuevaCaracteristica(String caracteristicaNueva) {
     asociacionA_Cargo.agregarCaracteristicasA_Mascotas(caracteristicaNueva);
   }
 
   public void eliminarCaracteristicaExistente(String caracteristicaExistente) {
-    asociacionA_Cargo.eliminarCaracteristicaExistente(caracteristicaExistente);
+    asociacionA_Cargo.eliminarCaracteristica(caracteristicaExistente);
   }
 }
