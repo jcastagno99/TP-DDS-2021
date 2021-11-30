@@ -20,7 +20,7 @@ public class Router {
   public void configure(){
 
     HandlebarsTemplateEngine engineTemplate = new HandlebarsTemplateEngine();
-    Spark.staticFileLocation("public");
+    Spark.staticFileLocation("/public");
 
     HomeController homeController = new HomeController();
     RegistroController registroController = new RegistroController();
