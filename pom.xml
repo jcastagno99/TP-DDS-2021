@@ -185,7 +185,7 @@
           <processTypes>
             <!-- Tell Heroku how to launch your application -->
             <!-- You might have to remove the ./ in front   -->
-            <web>java -jar ./target/ejercicio-1.0-SNAPSHOT-with-dependencies.jar</web>
+            <web>java -jar target/ejercicio-1.0-SNAPSHOT-with-dependencies.jar</web>
           </processTypes>
         </configuration>
       </plugin>
