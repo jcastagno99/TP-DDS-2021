@@ -8,8 +8,8 @@ public class Server {
 
   public static void main(String[] args){
     DebugScreen.enableDebugScreen();
-    Bootstrap bootstrap = new Bootstrap();
-    bootstrap.init();
+    //Bootstrap bootstrap = new Bootstrap();
+    //bootstrap.init();
     Spark.port(Server.getHerokuAssignedPort());
     Router.getInstance().configure();
 
@@ -20,7 +20,6 @@ public class Server {
   static int getHerokuAssignedPort() {
     ProcessBuilder processBuilder = new ProcessBuilder();
     if (processBuilder.environment().get("PORT") != null) {
-      System.out.println("Aguante el ds");
       return Integer.parseInt(processBuilder.environment().get("PORT"));
     }
 
