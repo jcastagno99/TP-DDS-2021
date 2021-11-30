@@ -7,8 +7,10 @@ import spark.debug.DebugScreen;
 public class Server {
 
   public static void main(String[] args){
-    DebugScreen.enableDebugScreen();
-    Spark.port(Server.getHerokuAssignedPort());
+    //DebugScreen.enableDebugScreen();
+    int puerto = getHerokuAssignedPort();
+    System.out.println(puerto);
+    Spark.port(puerto);
 
     Router.getInstance().configure();
 
@@ -19,6 +21,7 @@ public class Server {
   static int getHerokuAssignedPort() {
     ProcessBuilder processBuilder = new ProcessBuilder();
     if (processBuilder.environment().get("PORT") != null) {
+      System.out.println("Aguante el ds");
       return Integer.parseInt(processBuilder.environment().get("PORT"));
     }
 
