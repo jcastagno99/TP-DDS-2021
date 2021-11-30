@@ -108,7 +108,7 @@
         <version>1.6.4</version>
       </dependency>-->
 
-    <!--<dependency>
+    <dependency>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-assembly-plugin</artifactId>
       <version>3.3.0</version>
@@ -119,14 +119,14 @@
       <groupId>com.heroku.sdk</groupId>
       <artifactId>heroku-maven-plugin</artifactId>
       <version>3.0.3</version>
-    </dependency>-->
+    </dependency>
 
   </dependencies>
 
   <build>
     <plugins>
 
-      <plugin>
+     <!-- <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
           <execution>
@@ -138,7 +138,6 @@
         </executions>
         <configuration>
           <descriptorRefs>
-            <!-- This tells Maven to include all dependencies -->
             <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
           <archive>
@@ -148,6 +147,32 @@
           </archive>
           <finalName>ejercicio</finalName>
         </configuration>
+      </plugin> -->
+
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>build-server</id>
+            <configuration>
+              <appendAssemblyId>false</appendAssemblyId>
+
+              <archive>
+                <manifest>
+                  <mainClass>domain.Servidor.Server</mainClass>
+                </manifest>
+              </archive>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+              <finalName>ejercicio-1.0-SNAPSHOT-jar-with-dependencies</finalName>
+            </configuration>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
@@ -160,7 +185,7 @@
           <processTypes>
             <!-- Tell Heroku how to launch your application -->
             <!-- You might have to remove the ./ in front   -->
-            <web>java -jar ./target/ejercicio-with-dependencies.jar</web>
+            <web>java -jar ./target/ejercicio-1.0-SNAPSHOT-with-dependencies.jar</web>
           </processTypes>
         </configuration>
       </plugin>
