@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "Asociaciones")
 public class Asociacion {
-//aaaaa
+
   @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "asociacion")
   public List<MascotaRegistrada> mascotasRegistradas;
   @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "asociacion")
