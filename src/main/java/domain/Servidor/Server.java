@@ -7,11 +7,8 @@ import spark.debug.DebugScreen;
 public class Server {
 
   public static void main(String[] args){
-    //DebugScreen.enableDebugScreen();
-    int puerto = getHerokuAssignedPort();
-    System.out.println(puerto);
-    Spark.port(puerto);
-
+    DebugScreen.enableDebugScreen();
+    Spark.port(Server.getHerokuAssignedPort());
     Router.getInstance().configure();
 
     Spark.init();
