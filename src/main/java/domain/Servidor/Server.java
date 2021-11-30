@@ -8,6 +8,8 @@ public class Server {
 
   public static void main(String[] args){
     DebugScreen.enableDebugScreen();
+    Bootstrap bootstrap = new Bootstrap();
+    bootstrap.init();
     Spark.port(Server.getHerokuAssignedPort());
     Router.getInstance().configure();
 
