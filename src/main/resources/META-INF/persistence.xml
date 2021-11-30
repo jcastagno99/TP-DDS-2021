@@ -40,10 +40,10 @@
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
 
-            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver" />
+           <!-- <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver" />
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/prueba?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
             <property name="hibernate.connection.username" value="root" />
-            <property name="hibernate.connection.password" value="mysql" />
+            <property name="hibernate.connection.password" value="mysql" /> -->
 
 
              <!--<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" />
@@ -52,6 +52,11 @@
              <property name="hibernate.connection.password" value="" />
              <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />-->
 
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://hva9m5uh0ae6wpzm:dkl69hduxznqukeu@jtb9ia3h1pgevwb1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/cc0755i7maxqapbl" />
+            <property name="hibernate.connection.username" value="hva9m5uh0ae6wpzm" />
+            <property name="hibernate.connection.password" value="	dkl69hduxznqukeu" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 
              <property name="hibernate.show_sql" value="true" />
              <property name="hibernate.format_sql" value="true" />
